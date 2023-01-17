@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import UserListItem from "../../components/user_list_item/UserListItem";
-
+import "./followers.css";
 const FollowerList = (props) => {
   const params = useParams();
 
@@ -23,8 +23,10 @@ const FollowerList = (props) => {
 
   return (
     <div>
-      <h1>Seguidores</h1>
-      <div>{followers.map(followerToComponent)}</div>
+      <div className="textFollowers">
+        <h1>Seguidores</h1>
+      </div>
+      <div className="containerFollowers">{followers.map(followerToComponent)}</div>
     </div>
   );
 };
