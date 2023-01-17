@@ -1,0 +1,20 @@
+/**.logo {
+  width: 15%;
+  height: 8em;
+}**/
+
+.banner {
+  position: absolute;
+  width: 110em;
+  height: 17em;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 17em;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #18295c;
+}
