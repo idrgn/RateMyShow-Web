@@ -7,7 +7,6 @@ import logout from "../../images/menu/logout.png";
  * @param {*} props
  * @returns
  */
-
 const Menu = (props) => {
   return (
     <div className="menu">
@@ -32,7 +31,7 @@ const Menu = (props) => {
             <a href="#">&nbsp; Novedades &nbsp;</a>
           </li>
           <li className="barra">|</li>
-          <li className="dropdown">
+          <li>
             <a href="#">&nbsp; Mi biblioteca &nbsp;</a>
             <ul className="dropdown-content">
               <li>
@@ -63,7 +62,7 @@ const Menu = (props) => {
 
       <div className="logInOut">
         <a href="#">
-          <img src={logout} alt=""></img>
+          <img src={logout} alt="icono para cerrar sesión"></img>
         </a>
       </div>
     </div>
