@@ -1,0 +1,33 @@
+.pie {
+  background-color: rgb(5, 5, 5);
+  height: 9em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 30%;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.enlaces2 {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-between;
+  align-items: center;
+}
+.enlaces2 a {
+  text-decoration: none;
+  padding: 5%;
+}
+
+.iconos {
+  display: grid;
+  grid-template-columns: 15% 15% 15% 15%;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  filter: invert(100%);
+}
+
+.iconos a img {
+  width: 3em;
+  height: 3em;
+}
