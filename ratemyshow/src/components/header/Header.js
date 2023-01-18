@@ -1,17 +1,17 @@
+import "./header.css";
+import banner from "../../images/header/banner.gif";
+
 /**
  * Header superior
  * @param {*} props
  * @returns
  */
 const Menu = (props) => {
-	return (
-		<div>
-			<div>
-				<img className="logo" src="" alt=""></img>
-				<img className="banner" src="" alt=""></img>
-			</div>
-		</div>
-	);
+  return (
+    <div className="header">
+      <img className="banner" src={banner} alt="banner de la página web"></img>
+    </div>
+  );
 };
 
 export default Menu;
