@@ -11,13 +11,18 @@ import leftArrow from "../../images/main-page/left-arrow.png";
 import rightArrow from "../../images/main-page/right-arrow.png";
 
 const MainPage = () => {
+	// Se crea el estado para almacenar el índice actual del cover
 	const [currentIndex, setCurrentIndex] = useState(0);
+
+	// Se crea un array con los covers
 	const images = [image1, image2, image3, image4, image5];
 
+	// Cambiar a la imagen previa
 	const previousImage = () => {
 		setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
 	};
 
+	// Cambiar a la siguiente imagen
 	const nextImage = () => {
 		setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
 	};
