@@ -9,7 +9,7 @@ import banner from "../../images/header/banner.gif";
 const Menu = (props) => {
   return (
     <div className="header">
-      <img className="banner" src={banner} alt=""></img>
+      <img className="banner" src={banner} alt="banner de la página web"></img>
     </div>
   );
 };
