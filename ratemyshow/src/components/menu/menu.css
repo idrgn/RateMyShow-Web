@@ -3,7 +3,6 @@
   padding: 0%;
   margin: 0%;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: white;
 }
 
 .menu {
@@ -13,6 +12,7 @@
   justify-content: space-between;
   align-items: center;
   height: 6em;
+  color: white;
 }
 .menu a {
   text-decoration: none;
