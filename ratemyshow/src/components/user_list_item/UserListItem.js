@@ -6,8 +6,12 @@ import "./userListItem.css";
  * @returns
  */
 const UserListItem = (props) => {
+  // Se obtiene la id de la imagen de perfil de usuario
   let imageId = props.user.avatarId;
-  let image = require("../../images/user/" + imageId + ".png");
+
+  // Se carga el archivo
+  let image = require(`../../images/user/${imageId}.png`);
+
   return (
     <div>
       <div className="contenedorImagen">
