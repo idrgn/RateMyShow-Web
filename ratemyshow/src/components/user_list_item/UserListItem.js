@@ -1,3 +1,5 @@
+import "./userListItem.css";
+
 /**
  * Representa un usuario en una lista de usuarios
  * @param {*} props
@@ -8,9 +10,13 @@ const UserListItem = (props) => {
   let image = require("../../images/user/" + imageId + ".png");
   return (
     <div>
-      <img src={image} alt="Foto de perfil"></img>
-      <h3>{props.user.username}</h3>
-      <p>{props.user.name}</p>
+      <div className="contenedorImagen">
+        <img src={image} alt="Foto de perfil" className="imagenPerfil"></img>
+      </div>
+      <div className="contenedorDatos">
+        <h3>{props.user.username}</h3>
+        <p>{props.user.name}</p>
+      </div>
     </div>
   );
 };

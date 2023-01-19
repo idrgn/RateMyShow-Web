@@ -1,0 +1,12 @@
+.contenedorImagen {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 1em;
+}
+.contenedorDatos {
+  display: inline-block;
+}
+.imagenPerfil {
+  width: 3em;
+  height: 3em;
+}
