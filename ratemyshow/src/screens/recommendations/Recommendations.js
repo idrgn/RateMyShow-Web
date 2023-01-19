@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import RecommendationList from "../../components/recommendation_list/RecommendationList";
 import "./Recommendations.css";
-import avatar from "../../images/menu/avatar.jfif";
 
 const Recommendations = (props) => {
   const params = useParams();
