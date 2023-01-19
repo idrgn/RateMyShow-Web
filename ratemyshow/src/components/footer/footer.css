@@ -4,9 +4,11 @@
   width: 100%;
   display: grid;
   grid-template-columns: 50% 30%;
-  flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
 }
 .enlaces2 {
   display: grid;
