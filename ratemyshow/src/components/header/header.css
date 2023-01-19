@@ -1,15 +1,17 @@
-.banner {
-  position: absolute;
-  width: 110em;
-  height: 17em;
+.header {
+  height: 7.5em;
+  background: url("../../images/header/banner5.svg");
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  height: 150px;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  height: 17em;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #18295c;
+@media (min-width: 2000px) {
+  .header {
+    background: url("../../images/header/banner5.svg") no-repeat;
+    background-position: center center;
+    position: relative;
+    height: 150px;
+  }
 }
