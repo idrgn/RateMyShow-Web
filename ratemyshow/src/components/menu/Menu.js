@@ -1,6 +1,7 @@
 import "./menu.css";
 import avatar from "../../images/menu/avatar.jfif";
 import logout from "../../images/menu/logout.png";
+import lupa from "../../images/menu/lupa.png";
 
 /**
  * Menú superior
@@ -51,12 +52,10 @@ const Menu = (props) => {
         </a>
       </div>
 
-      <div className="browser">
-        <form>
-          <input type="search" className="browser2" placeholder="&nbsp;Buscar"></input>
-          <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-          </svg>
+      <div>
+        <form className="formMenu">
+          <input type="search" className="browser2" placeholder="&nbsp;Buscar" />
+          <img src={lupa} alt="lupa" className="input-icon"></img>
         </form>
       </div>
 
