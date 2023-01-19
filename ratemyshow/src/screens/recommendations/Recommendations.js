@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import RecommendationList from "../../components/recommendation_list/RecommendationList";
 import "./Recommendations.css";
+import avatar from "../../images/menu/avatar.jfif";
 
 const Recommendations = (props) => {
   const params = useParams();
@@ -23,7 +24,7 @@ const Recommendations = (props) => {
   };
 
   return (
-    <div>
+    <div className="recommendations">
       <div className="textRecommendations">
         <h1>Género</h1>
       </div>

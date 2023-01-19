@@ -1,4 +1,5 @@
 import TitleListItem from "../title_list_item/TitleListItem";
+import "../../screens/recommendations/Recommendations.css";
 /**
  * Representa un título de una lista de títulos
  * @param {*} props
@@ -9,9 +10,9 @@ const RecommendationList = (props) => {
     return <TitleListItem title={u} />;
   };
   return (
-    <div>
-      <div>{props.recommendations.genre}</div>
-      <div>{props.recommendations.titles.map(recommendationsToComponent)}</div>
+    <div className="recommendationList">
+      <div className="genreRecomendations">{props.recommendations.genre}</div>
+      <div className="titlesRecomendations">{props.recommendations.titles.map(recommendationsToComponent)}</div>
     </div>
   );
 };
