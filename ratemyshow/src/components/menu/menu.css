@@ -7,30 +7,26 @@
 
 .menu {
   display: grid;
-  grid-template-columns: 1% 55% 8% 5% 5%;
+  grid-template-columns: 1% 50% 5% 12.5% 5%;
   background-color: #000;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  height: 6em;
-  color: white;
+  height: 12vh;
 }
 .menu a {
   text-decoration: none;
   color: #fff;
 }
 .enlaces {
-  font-size: 1.5em;
+  font-size: 1.5vw;
   color: white;
 }
 .enlaces a {
-  color: white;
   letter-spacing: 0.05em;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
-  height: 2em;
-  align-items: center;
+  height: 4vh;
 }
 .enlaces ul {
   list-style: none;
@@ -41,13 +37,16 @@
 
 .enlaces a:hover {
   background-color: #323232;
-  height: 2em;
-  border-radius: 15%;
+  height: 4vh;
+  text-decoration: wavy;
+  text-decoration-color: blue;
+  text-decoration-line: overline;
+  border-radius: 10%;
 }
 
 .dropdown-content a:hover {
   background-color: #323232;
-  top: 12em;
+  top: 14vh;
   padding: 0%;
 }
 .enlaces ul li ul {
@@ -62,11 +61,11 @@
 }
 .enlaces .activo {
   background-color: #323232;
-  border-radius: 40%;
+  border-radius: 10%;
 }
 .dropdown-content li a {
-  width: 7.7em;
-  height: 2em;
+  width: 10.8vw;
+  height: 4vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -79,37 +78,38 @@
   align-items: center;
 }
 
-.browser {
+.formMenu {
   position: relative;
 }
 .browser2 {
-  width: 12em;
-  height: 2em;
-  border-radius: 8em;
+  width: 12vw;
+  height: 4vh;
+  border-radius: 8vw;
+  border: 0.2vw solid rgb(92, 137, 233);
+  font-size: 1vw;
+  padding-right: 1vw;
 }
 
-.button {
-  width: 10em;
-  height: 2em;
-  background-color: #31c2e8;
-  font-weight: bold;
+.browser2:not(:placeholder-shown) + .input-icon {
+  display: none;
 }
+
 .input-icon {
   color: #191919;
   position: absolute;
-  width: 1.5em;
-  height: 1.5em;
-  right: -4em;
-  top: 50%;
+  width: 2vw;
+  height: 3vh;
+  right: 1vw;
+  top: 2vh;
   transform: translateY(-50%);
 }
 .perfil img {
-  width: 5em;
-  height: 5em;
+  width: 6vw;
+  height: 10vh;
   border-radius: 50%;
-  border: 3px solid black;
+  border: 0.2vw solid rgb(92, 137, 233);
 }
 .logInOut img {
-  width: 3em;
-  height: 3em;
+  width: 3vw;
+  height: 5vh;
 }
