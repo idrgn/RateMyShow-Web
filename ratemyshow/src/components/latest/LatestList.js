@@ -1,3 +1,4 @@
+import "../../screens/latest/Latest";
 /**
  * Representa un título de una lista de títulos
  * @param {*} props
@@ -5,7 +6,7 @@
  */
 const LatestList = (props) => {
   return (
-    <div>
+    <div className="latestRows">
       <h3>{props.latest.title}</h3>
       <p>Año: {props.latest.year}</p>
       <p>Puntuación: {props.latest.rating}</p>
