@@ -1,0 +1,19 @@
+.textLatest {
+  text-align: center;
+  padding: 2%;
+  font-size: 20px;
+}
+
+.latestList {
+  display: grid;
+  grid-template-columns: 15% 15% 15% 15% 15%;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 3%;
+  font-size: 18px;
+}
+
+.latestRows h3 {
+  padding-bottom: 1vw;
+}
