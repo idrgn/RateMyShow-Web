@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Latest.css";
-import TitleListItem from "../../components/title_list_item/TitleListItem";
+import LatestList from "../../components/latest/LatestList";
 
 const Latest = (props) => {
   const params = useParams();
@@ -19,15 +19,32 @@ const Latest = (props) => {
 
   // Función para convertir título a componente
   const latestToComponent = (l) => {
-    return <TitleListItem latest={l} />;
+    return <LatestList latest={l} />;
   };
+
+  //Filtrar las películas
+  const movies = latest.filter((item) => item.titleType.name === "Movie" || item.titleType.name === "tvMovie");
+
+  //Filtrar las series
+  const series = latest.filter((item) => item.titleType.name === "Serie" || item.titleType.name === "tvSerie");
+
+  // Ordenar por año de las películas
+  const moviesSorted = movies.sort((a, b) => b.year - a.year).slice(0, 5);
+
+  // Ordenar por año de las series
+  const seriesSorted = series.sort((a, b) => b.year - a.year).slice(0, 5);
 
   return (
     <div className="latest">
       <div>
         <h1>Últimas Series</h1>
       </div>
-      <div>{latest.map(latestToComponent)}</div>
+
+      <div>{seriesSorted.map(latestToComponent)}</div>
+      <div>
+        <h1>Últimas Películas</h1>
+      </div>
+      <div>{moviesSorted.map(latestToComponent)}</div>
     </div>
   );
 };
