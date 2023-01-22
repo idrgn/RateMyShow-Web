@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import "./register.css";
 
 const Register = () => {
 	// Se definen referencias para los elementos del form
@@ -24,10 +25,10 @@ const Register = () => {
 
 	return (
 		<div>
-			<div>
+			<div className="register-title">
 				<h1>Registro</h1>
 			</div>
-			<div>
+			<div className="register-form">
 				<form onSubmit={handleRegister}>
 					<label for="name">Nombre</label>
 					<input name="name" type="text" ref={nameRef}></input>
