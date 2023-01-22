@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useRef } from "react";
 import "./register.css";
 
@@ -15,12 +16,49 @@ const Register = () => {
 	// Evento de registro
 	const handleRegister = (e) => {
 		e.preventDefault();
+
+		// Se obtienen los valores de las referencias
+		const name = nameRef.current.value;
+		const surname = surnameRef.current.value;
+		const email = emailRef.current.value;
+		const phone = phoneRef.current.value;
+		const birthDate = birthDateRef.current.value;
+		const username = usernameRef.current.value;
 		const password = passwordRef.current.value;
 		const passwordRepeat = passwordRepeatRef.current.value;
 
+		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
 			alert("Las contraseñas no coinciden.");
 		}
+
+		// Se almacena el formData
+		const formData = {
+			name: name,
+			surname: surname,
+			email: email,
+			phone: phone,
+			birthDate: birthDate,
+			username: username,
+			password: password,
+		};
+
+		axios
+			// Se envía la petición
+			.post("http://localhost:8000/users", formData)
+			// Se almacenan el token de sesión generado
+			.then((response) => {
+				localStorage.setItem("sessionToken", response.data.sessionToken);
+			})
+			// Se muestran alertas en los códigos de error
+			.catch((err) => {
+				if ("response" in err) {
+					if (err.response.status === 400) alert("Bad request");
+					else if (err.response.status === 409) alert("Conflict");
+				} else {
+					alert(`Error: ${JSON.stringify(err)}`);
+				}
+			});
 	};
 
 	return (
