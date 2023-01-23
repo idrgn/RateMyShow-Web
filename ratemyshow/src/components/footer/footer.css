@@ -1,15 +1,16 @@
 .pie {
   background-color: rgb(5, 5, 5);
-  height: 9em;
-  width: 100%;
   display: grid;
   grid-template-columns: 50% 30%;
   justify-content: space-around;
   align-items: center;
   position: relative;
   bottom: 0%;
-  width: 100%;
+  width: 100vw;
+  height: 8vh;
+  font-size: 1vw;
 }
+
 .enlaces2 {
   display: grid;
   grid-template-columns: 30% 30% 30%;
@@ -31,6 +32,6 @@
 }
 
 .iconos a img {
-  width: 3em;
-  height: 3em;
+  width: 4vw;
+  height: 4vh;
 }

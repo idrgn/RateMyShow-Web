@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import FollowerList from "./screens/followers/Followers";
+import ContainerFooter from "./screens/footer/ContainerFooter";
 import ContainerHeader from "./screens/header/ContainerHeader";
+import Latest from "./screens/latest/Latest";
 import MainPage from "./screens/main_page/MainPage";
 import ContainerMenu from "./screens/menu/ContainerMenu";
-import ContainerFooter from "./screens/footer/ContainerFooter";
 import NotFound from "./screens/notFound/NotFound";
 import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
@@ -18,6 +19,7 @@ function App() {
 					<Route path="/register" element={<Register />}></Route>
 					<Route path="/" element={<ContainerMenu />}>
 						<Route path="users/:username/followers" element={<FollowerList />}></Route>
+						<Route path="latest" element={<Latest />}></Route>
 						<Route path="/recommendations" element={<Recommendations />}></Route>
 					</Route>
 				</Route>
