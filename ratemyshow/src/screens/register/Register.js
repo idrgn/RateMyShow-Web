@@ -55,6 +55,7 @@ const Register = () => {
 				if ("response" in err) {
 					if (err.response.status === 400) alert("Bad request");
 					else if (err.response.status === 409) alert("Conflict");
+					else alert(`Error, código:${err.response.status}`);
 				} else {
 					alert(`Error: ${JSON.stringify(err)}`);
 				}
