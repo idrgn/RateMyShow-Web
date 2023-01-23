@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
 
-.log-in,
-.sign-up {
+.mainpage-log-in,
+.mainpage-sign-up {
 	padding: 60px;
 	text-align: center;
 	width: 25%;
@@ -9,20 +9,20 @@
 	font-family: "Work Sans", sans-serif;
 }
 
-.log-in > a,
-.sign-up > a {
+.mainpage-log-in > a,
+.mainpage-sign-up > a {
 	text-decoration: none;
 	color: rgb(255, 255, 255);
 	text-shadow: rgb(255, 255, 255) 1px 0 10px;
 }
 
-.root-container {
-	background: url(../../images/main-page/background.jpg) no-repeat;
+.mainpage-root-container {
+	background: url(../../images/main_page/background.jpg) no-repeat;
 	background-size: cover;
 	background-color: #1b1b1b;
 }
 
-.main-menu-container {
+.mainpage-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
@@ -30,7 +30,7 @@
 	backdrop-filter: blur(5px);
 }
 
-.image-section {
+.mainpage-image-section {
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -39,31 +39,31 @@
 	height: 600px;
 }
 
-.image-front {
+.mainpage-image-front {
 	position: absolute;
 	z-index: 3;
 }
 
-.image-behind-right {
+.mainpage-image-behind-right {
 	position: absolute;
 	z-index: 2;
 	transform: rotate(7deg);
 }
 
-.image-behind-left {
+.mainpage-image-behind-left {
 	position: absolute;
 	z-index: 1;
 	transform: rotate(-7deg);
 }
 
-.main-page-image {
+.mainpage-image {
 	width: 300px;
 	height: 450px;
 	box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02), 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 12.5px 12.5px 10px rgba(0, 0, 0, 0.035), 22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042), 41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05), 100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
-.previous-arrow,
-.next-arrow {
+.mainpage-previous-arrow,
+.mainpage-next-arrow {
 	position: absolute;
 	z-index: 4;
 	width: 50px;
@@ -71,21 +71,21 @@
 	cursor: pointer;
 }
 
-.previous-arrow {
+.mainpage-previous-arrow {
 	left: 0;
 }
 
-.next-arrow {
+.mainpage-next-arrow {
 	right: 0;
 }
 
-.image-section > .previous-arrow,
-.image-section > .next-arrow {
+.mainpage-image-section > .mainpage-previous-arrow,
+.mainpage-image-section > .mainpage-next-arrow {
 	opacity: 0;
 	transition: 0.25s;
 }
 
-.image-section:hover > .previous-arrow,
-.image-section:hover > .next-arrow {
+.mainpage-image-section:hover > .mainpage-previous-arrow,
+.mainpage-image-section:hover > .mainpage-next-arrow {
 	opacity: 1;
 }

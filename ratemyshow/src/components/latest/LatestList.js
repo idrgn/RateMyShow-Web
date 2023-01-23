@@ -5,13 +5,13 @@ import "../../screens/latest/Latest";
  * @returns
  */
 const LatestList = (props) => {
-  return (
-    <div className="latestRows">
-      <h3>{props.latest.title}</h3>
-      <p>Año: {props.latest.year}</p>
-      <p>Puntuación: {props.latest.rating}</p>
-    </div>
-  );
+	return (
+		<div className="latest-rows">
+			<h3>{props.latest.title}</h3>
+			<p>Año: {props.latest.year}</p>
+			<p>Puntuación: {props.latest.rating}</p>
+		</div>
+	);
 };
 
 export default LatestList;

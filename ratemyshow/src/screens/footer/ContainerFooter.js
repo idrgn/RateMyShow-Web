@@ -6,12 +6,12 @@ import Footer from "../../components/footer/Footer";
  * @returns
  */
 const ContainerFooter = () => {
-  return (
-    <div>
-      <Outlet />
-      <Footer />
-    </div>
-  );
+	return (
+		<div>
+			<Outlet />
+			<Footer />
+		</div>
+	);
 };
 
 export default ContainerFooter;

@@ -1,0 +1,38 @@
+.footer {
+	background-color: rgb(5, 5, 5);
+	display: grid;
+	grid-template-columns: 50% 30%;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+	bottom: 0%;
+	width: 100vw;
+	height: 8vh;
+	font-size: 1vw;
+}
+
+.footer-links {
+	display: grid;
+	grid-template-columns: 30% 30% 30%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.footer-links a {
+	text-decoration: none;
+	padding: 5%;
+	color: white;
+}
+
+.footer-icons {
+	display: grid;
+	grid-template-columns: 15% 15% 15% 15%;
+	justify-content: space-around;
+	flex-wrap: nowrap;
+	filter: invert(100%);
+}
+
+.footer-icons a img {
+	width: 4vw;
+	height: 4vh;
+}

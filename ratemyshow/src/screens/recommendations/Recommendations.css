@@ -1,24 +1,9 @@
 .recommendations {
-  width: 100%;
+	width: 100%;
 }
 
-.textRecommendations {
-  text-align: center;
-  padding: 2%;
-  font-size: 2em;
-}
-
-.genreRecomendations {
-  text-align: center;
-  font-size: 2em;
-  background-color: rgb(157, 152, 152);
-}
-
-.titlesRecomendations {
-  display: grid;
-  grid-template-columns: 15% 15% 15% 15% 15%;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  padding: 3%;
+.recommendations-text {
+	text-align: center;
+	padding: 2%;
+	font-size: 2em;
 }

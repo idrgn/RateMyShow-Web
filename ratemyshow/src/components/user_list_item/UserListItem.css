@@ -1,0 +1,14 @@
+.userlist-image {
+	display: inline-block;
+	vertical-align: top;
+	padding-right: 1em;
+}
+
+.userlist-data {
+	display: inline-block;
+}
+
+.userlist-profile-image {
+	width: 3em;
+	height: 3em;
+}

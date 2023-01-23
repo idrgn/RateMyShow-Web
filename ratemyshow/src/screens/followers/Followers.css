@@ -1,0 +1,9 @@
+.followers-text {
+	text-align: center;
+}
+
+.followers-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	justify-content: space-around;
+}
