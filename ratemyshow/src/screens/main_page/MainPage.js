@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "./mainpage.css";
 
-import image1 from "../../images/main-page/cover-1.jpg";
-import image2 from "../../images/main-page/cover-2.jpg";
-import image3 from "../../images/main-page/cover-3.jpg";
-import image4 from "../../images/main-page/cover-4.jpg";
-import image5 from "../../images/main-page/cover-5.jpg";
+import image1 from "../../images/main_page/cover-1.jpg";
+import image2 from "../../images/main_page/cover-2.jpg";
+import image3 from "../../images/main_page/cover-3.jpg";
+import image4 from "../../images/main_page/cover-4.jpg";
+import image5 from "../../images/main_page/cover-5.jpg";
 
-import leftArrow from "../../images/main-page/left-arrow.png";
-import rightArrow from "../../images/main-page/right-arrow.png";
+import leftArrow from "../../images/main_page/left-arrow.png";
+import rightArrow from "../../images/main_page/right-arrow.png";
 
 const MainPage = () => {
 	// Se crea el estado para almacenar el índice actual del cover

@@ -17,7 +17,7 @@
 }
 
 .root-container {
-	background: url(../../images/main-page/background.jpg) no-repeat;
+	background: url(../../images/main_page/background.jpg) no-repeat;
 	background-size: cover;
 	background-color: #1b1b1b;
 }
