@@ -10,31 +10,33 @@ import "./Followers.css";
  * @returns
  */
 const FollowerList = (props) => {
-	const params = useParams();
+  const params = useParams();
 
-	// Creamos estado para almacenar la lista de seguidores
-	const [followers, setFollowers] = useState([]);
+  const action = props.following ? "following" : "followers";
 
-	// Pedimos los datos a la API
-	useEffect(() => {
-		axios.get(`https://0ee0ee41-ff72-4ce8-a306-41b3a57f8eb0.mock.pstmn.io/users/${params.username}/followers`).then((response) => {
-			setFollowers(response.data);
-		});
-	}, []);
+  // Creamos estado para almacenar la lista de seguidores
+  const [followers, setFollowers] = useState([]);
 
-	// Función para convertir seguidor a componente
-	const followerToComponent = (u) => {
-		return <UserListItem user={u} />;
-	};
+  // Pedimos los datos a la API
+  useEffect(() => {
+    axios.get(`https://0ee0ee41-ff72-4ce8-a306-41b3a57f8eb0.mock.pstmn.io/users/${params.username}/${action})`).then((response) => {
+      setFollowers(response.data);
+    });
+  }, []);
 
-	return (
-		<div>
-			<div className="followers-text">
-				<h1>Seguidores</h1>
-			</div>
-			<div className="followers-container">{followers.map(followerToComponent)}</div>
-		</div>
-	);
+  // Función para convertir seguidor a componente
+  const followerToComponent = (u) => {
+    return <UserListItem user={u} />;
+  };
+
+  return (
+    <div>
+      <div className="followers-text">
+        <h1>Seguidores</h1>
+      </div>
+      <div className="followers-container">{followers.map(followerToComponent)}</div>
+    </div>
+  );
 };
 
 export default FollowerList;
