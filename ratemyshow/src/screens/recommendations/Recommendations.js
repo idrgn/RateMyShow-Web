@@ -1,8 +1,13 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import RecommendationList from "../../components/recommendation_list/RecommendationList";
 import "./Recommendations.css";
 
+/**
+ * Pantalla de recomendaciones de títilos
+ * @param {*} props
+ * @returns
+ */
 const Recommendations = (props) => {
 	// Creamos estado para almacenar la lista de seguidores
 	const [recommendations, setRecommendations] = useState([]);

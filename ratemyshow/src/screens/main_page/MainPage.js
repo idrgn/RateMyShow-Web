@@ -10,6 +10,10 @@ import image5 from "../../images/main_page/cover-5.jpg";
 import leftArrow from "../../images/main_page/left-arrow.png";
 import rightArrow from "../../images/main_page/right-arrow.png";
 
+/**
+ * Página inicial
+ * @returns
+ */
 const MainPage = () => {
 	// Se crea el estado para almacenar el índice actual del cover
 	const [currentIndex, setCurrentIndex] = useState(0);

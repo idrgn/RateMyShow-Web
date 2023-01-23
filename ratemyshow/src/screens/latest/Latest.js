@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import LatestList from "../../components/latest/LatestList";
 import "./Latest.css";
 
+/**
+ * Pantalla que muestra los últimos títulos
+ * @param {*} props
+ * @returns
+ */
 const Latest = (props) => {
 	// Creamos estado para almacenar la lista de títulos
 	const [latest, setLatest] = useState([]);

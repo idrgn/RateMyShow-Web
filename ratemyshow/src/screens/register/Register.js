@@ -2,6 +2,10 @@ import axios from "axios";
 import { useRef } from "react";
 import "./register.css";
 
+/**
+ * Pantalla de registro de usuario
+ * @returns
+ */
 const Register = () => {
 	// Se definen referencias para los elementos del form
 	const nameRef = useRef(null);
