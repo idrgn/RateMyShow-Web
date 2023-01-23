@@ -9,3 +9,8 @@
 .register-form label {
 	padding-right: 20px;
 }
+
+.register-required::after {
+	content: "*";
+	color: red;
+}

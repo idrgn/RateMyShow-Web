@@ -88,15 +88,21 @@ const Register = () => {
 			</div>
 			<div className="register-form">
 				<form onSubmit={handleRegister}>
-					<label for="name">Nombre</label>
+					<label for="name" className="register-required">
+						Nombre
+					</label>
 					<input name="name" type="text" ref={nameRef}></input>
 					<br></br>
 
-					<label for="surname">Apellidos</label>
+					<label for="surname" className="register-required">
+						Apellidos
+					</label>
 					<input name="surname" type="text" ref={surnameRef}></input>
 					<br></br>
 
-					<label for="e-mail">E-Mail</label>
+					<label for="e-mail" className="register-required">
+						E-Mail
+					</label>
 					<input name="e-mail" type="text" ref={emailRef}></input>
 					<br></br>
 
@@ -104,19 +110,27 @@ const Register = () => {
 					<input name="phone" type="text" ref={phoneRef}></input>
 					<br></br>
 
-					<label for="birthDate">Fecha de nacimiento</label>
+					<label for="birthDate" className="register-required">
+						Fecha de nacimiento
+					</label>
 					<input name="birthDate" type="date" ref={birthDateRef}></input>
 					<br></br>
 
-					<label for="username">Nombre de usuario</label>
+					<label for="username" className="register-required">
+						Nombre de usuario
+					</label>
 					<input name="username" type="text" ref={usernameRef}></input>
 					<br></br>
 
-					<label for="password">Contraseña</label>
+					<label for="password" className="register-required">
+						Contraseña
+					</label>
 					<input name="password" type="password" ref={passwordRef}></input>
 					<br></br>
 
-					<label for="password-repeat">Repetir contraseña</label>
+					<label for="password-repeat" className="register-required">
+						Repetir contraseña
+					</label>
 					<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
 					<br></br>
 
