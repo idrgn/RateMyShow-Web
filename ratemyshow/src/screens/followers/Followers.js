@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserListItem from "../../components/user_list_item/UserListItem";
-import "./followers.css";
+import "./Followers.css";
 
 /**
  * Lista de seguidores

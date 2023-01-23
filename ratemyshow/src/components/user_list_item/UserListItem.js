@@ -1,4 +1,4 @@
-import "./userListItem.css";
+import "./UserListItem.css";
 
 /**
  * Representa un usuario en una lista de usuarios

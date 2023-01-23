@@ -1,4 +1,4 @@
-import "./menu.css";
+import "./Menu.css";
 import avatar from "../../images/menu/avatar.jfif";
 import logout from "../../images/menu/logout.png";
 import lupa from "../../images/menu/lupa.png";

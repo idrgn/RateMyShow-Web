@@ -1,4 +1,4 @@
-import "./header.css";
+import "./Header.css";
 
 /**
  * Header superior
@@ -6,7 +6,7 @@ import "./header.css";
  * @returns
  */
 const Menu = (props) => {
-  return <div className="header"></div>;
+	return <div className="header"></div>;
 };
 
 export default Menu;

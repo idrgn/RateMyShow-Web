@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./mainpage.css";
+import "./MainPage.css";
 
 import image1 from "../../images/main_page/cover-1.jpg";
 import image2 from "../../images/main_page/cover-2.jpg";

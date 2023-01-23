@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
-import "./register.css";
+import "./Register.css";
 
 /**
  * Pantalla de registro de usuario
