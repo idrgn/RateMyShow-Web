@@ -29,7 +29,7 @@ const Recommendations = (props) => {
 			<div className="recommendations-text">
 				<h1>Género</h1>
 			</div>
-			<div className="containerRecommendations">{recommendations.map(recommendationsToComponent)}</div>
+			<div>{recommendations.map(recommendationsToComponent)}</div>
 		</div>
 	);
 };
