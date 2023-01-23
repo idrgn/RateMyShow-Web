@@ -6,7 +6,7 @@ import ContainerHeader from "./screens/header/ContainerHeader";
 import Latest from "./screens/latest/Latest";
 import MainPage from "./screens/main_page/MainPage";
 import ContainerMenu from "./screens/menu/ContainerMenu";
-import NotFound from "./screens/notFound/NotFound";
+import NotFound from "./screens/not_found/NotFound";
 import Recommendations from "./screens/recommendations/Recommendations";
 import UserProfile from "./screens/user_profile/UserProfile";
 import Register from "./screens/register/Register";
