@@ -13,6 +13,7 @@ const FollowerList = (props) => {
   const params = useParams();
 
   const action = props.following ? "following" : "followers";
+  const title = props.following ? "Seguidos" : "Seguidores";
 
   // Creamos estado para almacenar la lista de seguidores
   const [followers, setFollowers] = useState([]);
@@ -32,7 +33,9 @@ const FollowerList = (props) => {
   return (
     <div>
       <div className="followers-text">
-        <h1>Seguidores</h1>
+        <h1>
+          {title} de {params.username}
+        </h1>
       </div>
       <div className="followers-container">{followers.map(followerToComponent)}</div>
     </div>
