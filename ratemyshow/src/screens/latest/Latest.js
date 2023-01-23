@@ -39,14 +39,14 @@ const Latest = (props) => {
 	return (
 		<div className="latest">
 			<div>
-				<h1 className="textLatest">Últimas Series</h1>
+				<h1 className="latest-text">Últimas Series</h1>
 			</div>
 
-			<div className="latestList">{seriesSorted.map(latestToComponent)}</div>
+			<div className="latest-list">{seriesSorted.map(latestToComponent)}</div>
 			<div>
-				<h1 className="textLatest">Últimas Películas</h1>
+				<h1 className="latest-text">Últimas Películas</h1>
 			</div>
-			<div className="latestList">{moviesSorted.map(latestToComponent)}</div>
+			<div className="latest-list">{moviesSorted.map(latestToComponent)}</div>
 		</div>
 	);
 };

@@ -1,14 +1,14 @@
-.contenedorImagen {
-  display: inline-block;
-  vertical-align: top;
-  padding-right: 1em;
+.userlist-image {
+	display: inline-block;
+	vertical-align: top;
+	padding-right: 1em;
 }
 
-.contenedorDatos {
-  display: inline-block;
+.userlist-data {
+	display: inline-block;
 }
 
-.imagenPerfil {
-  width: 3em;
-  height: 3em;
+.userlist-profile-image {
+	width: 3em;
+	height: 3em;
 }

@@ -29,10 +29,10 @@ const FollowerList = (props) => {
 
 	return (
 		<div>
-			<div className="textFollowers">
+			<div className="followers-text">
 				<h1>Seguidores</h1>
 			</div>
-			<div className="containerFollowers">{followers.map(followerToComponent)}</div>
+			<div className="followers-container">{followers.map(followerToComponent)}</div>
 		</div>
 	);
 };

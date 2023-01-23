@@ -32,19 +32,19 @@ const MainPage = () => {
 	};
 
 	return (
-		<div className="root-container">
-			<div className="main-menu-container">
-				<div className="image-section">
-					<img src={images[(currentIndex + 1) % images.length]} className="image-behind-right main-page-image" alt="behind-right" />
-					<img src={images[(currentIndex + 2) % images.length]} className="image-behind-left main-page-image" alt="behind-left" />
-					<img src={images[currentIndex]} className="image-front main-page-image" alt="current" />
-					<img onClick={previousImage} src={leftArrow} alt="previous" className="previous-arrow" />
-					<img onClick={nextImage} src={rightArrow} alt="next" className="next-arrow" />
+		<div className="mainpage-root-container">
+			<div className="mainpage-container">
+				<div className="mainpage-image-section">
+					<img src={images[(currentIndex + 1) % images.length]} className="mainpage-image-behind-right mainpage-image" alt="behind-right" />
+					<img src={images[(currentIndex + 2) % images.length]} className="mainpage-image-behind-left mainpage-image" alt="behind-left" />
+					<img src={images[currentIndex]} className="mainpage-image-front mainpage-image" alt="current" />
+					<img onClick={previousImage} src={leftArrow} alt="previous" className="mainpage-previous-arrow" />
+					<img onClick={nextImage} src={rightArrow} alt="next" className="mainpage-next-arrow" />
 				</div>
-				<div className="log-in">
+				<div className="mainpage-log-in">
 					<a href="#/">INICIAR SESIÓN</a>
 				</div>
-				<div className="sign-up">
+				<div className="mainpage-sign-up">
 					<a href="#/">REGISTRO</a>
 				</div>
 			</div>

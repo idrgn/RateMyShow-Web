@@ -26,7 +26,7 @@ const Recommendations = (props) => {
 
 	return (
 		<div className="recommendations">
-			<div className="textRecommendations">
+			<div className="recommendations-text">
 				<h1>Género</h1>
 			</div>
 			<div className="containerRecommendations">{recommendations.map(recommendationsToComponent)}</div>
