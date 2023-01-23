@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import TitleListItem from "../../components/title_list_item/TitleListItem";
 
 const UserProfile = (props) => {
   const params = useParams();
@@ -19,6 +20,11 @@ const UserProfile = (props) => {
     });
   }, []);
 
+  // Función para transformar títulos a componente.
+  const recommendationsToComponent = (u) => {
+    return <TitleListItem title={u} />;
+  };
+
   return (
     <div>
       <div>
@@ -30,6 +36,14 @@ const UserProfile = (props) => {
         <div>Teléfono: {userProfile.phone}</div>
         <div>Seguidores: {userProfile.numFollowers}</div>
         <div>Seguidos: {userProfile.numFollowing}</div>
+      </div>
+      <div>
+        <h1>FAVORITAS</h1>
+        <div>{userProfile.favorites.map(recommendationsToComponent)}</div>
+      </div>
+      <div>
+        <h1>PENDIENTES</h1>
+        <div>{userProfile.pending.map(recommendationsToComponent)}</div>
       </div>
     </div>
   );
