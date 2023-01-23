@@ -27,9 +27,28 @@ const Register = () => {
 		const password = passwordRef.current.value;
 		const passwordRepeat = passwordRepeatRef.current.value;
 
+		// Se comprueba que la contraseña existe
+		if (!password || !birthDate || !name || !surname || !username) {
+			alert("Rellena todos los campos");
+			return;
+		}
+
+		// Se comprueba que el correo es válido
+		if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+			alert("Introduce un correo válido.");
+			return;
+		}
+
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
 			alert("Las contraseñas no coinciden.");
+			return;
+		}
+
+		// Se comprueba que el username tiene el formato correcto
+		if (!username.match(/^[a-zA-Z0-9]+$/)) {
+			alert("Es necesario un nombre de usuario.");
+			return;
 		}
 
 		// Se almacena el formData
