@@ -2,6 +2,9 @@ import "./menu.css";
 import avatar from "../../images/menu/avatar.jfif";
 import logout from "../../images/menu/logout.png";
 import lupa from "../../images/menu/lupa.png";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 /**
  * Menú superior
@@ -9,6 +12,8 @@ import lupa from "../../images/menu/lupa.png";
  * @returns
  */
 const Menu = (props) => {
+  const params = useParams();
+  const [username, setUsername] = useState(params.username);
   return (
     <div className="menu">
       <div> </div>
@@ -47,9 +52,9 @@ const Menu = (props) => {
       </div>
 
       <div className="perfil">
-        <a href="#">
-          <img src={avatar}></img>
-        </a>
+        <Link to={`/users/${username}`}>
+          <img src={avatar} alt="avatar" className="menu-avatar" />
+        </Link>
       </div>
 
       <div>
