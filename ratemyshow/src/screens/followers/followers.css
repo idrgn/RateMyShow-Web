@@ -1,8 +1,0 @@
-.textFollowers {
-  text-align: center;
-}
-.containerFollowers {
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-content: space-around;
-}
