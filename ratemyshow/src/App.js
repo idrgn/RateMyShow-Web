@@ -22,7 +22,8 @@ function App() {
 					<Route path="login" element={<Login />}></Route>
 					<Route path="" element={<ContainerMenu />}>
 						<Route path="users/:username" element={<UserProfile />}></Route>
-						<Route path="users/:username/followers" element={<FollowerList />}></Route>
+						<Route path="users/:username/followers" element={<FollowerList following={false} />}></Route>
+						<Route path="users/:username/following" element={<FollowerList following={true} />}></Route>
 						<Route path="latest" element={<Latest />}></Route>
 						<Route path="recommendations" element={<Recommendations />}></Route>
 					</Route>
