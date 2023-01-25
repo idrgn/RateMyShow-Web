@@ -14,7 +14,7 @@ const Login = () => {
 	const passwordRef = useRef(null);
 
 	// Evento de inicio de sesión
-	const handleRegister = (e) => {
+	const handleLogin = (e) => {
 		e.preventDefault();
 
 		// Se obtienen los valores de las referencias
@@ -52,7 +52,7 @@ const Login = () => {
 				<h1>Inicio de sesión</h1>
 			</div>
 			<div className="login-form-container">
-				<form onSubmit={handleRegister} className="login-form">
+				<form onSubmit={handleLogin} className="login-form">
 					<div className="login-input-container">
 						<div className="login-required login-input-text">Identificador</div>
 						<input name="username" type="text" ref={identifierRef}></input>
