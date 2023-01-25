@@ -33,6 +33,7 @@ const Login = () => {
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
+				alert("Sesión iniciada correctamente.");
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
