@@ -47,19 +47,25 @@ const Login = () => {
 	};
 
 	return (
-		<div>
-			<div>
+		<div className="login-container">
+			<div className="login-title">
 				<h1>Inicio de sesión</h1>
 			</div>
-			<div>
-				<form onSubmit={handleRegister}>
-					<label for="identifier">Identificador</label>
-					<input name="username" type="text" ref={identifierRef}></input>
-					<br></br>
-					<label for="password">Contraseña</label>
-					<input name="password" type="password" ref={passwordRef}></input>
-					<br></br>
-					<AwesomeButton type="primary">Iniciar sesion</AwesomeButton>
+			<div className="login-form-container">
+				<form onSubmit={handleRegister} className="login-form">
+					<div className="login-input-container">
+						<div className="login-required login-input-text">Identificador</div>
+						<input name="username" type="text" ref={identifierRef}></input>
+					</div>
+					<div className="login-input-container">
+						<div className="login-required login-input-text">Contraseña</div>
+						<input name="password" type="password" ref={passwordRef}></input>
+					</div>
+					<div className="login-button-container">
+						<AwesomeButton type="primary" className="login-button">
+							Iniciar sesion
+						</AwesomeButton>
+					</div>
 				</form>
 			</div>
 		</div>
