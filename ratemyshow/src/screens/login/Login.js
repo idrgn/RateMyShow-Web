@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "./Login.css";
@@ -9,6 +9,9 @@ import "./Login.css";
  * @returns
  */
 const Login = () => {
+	// Se almacena el estado del botón de login
+	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
 	// Se definen referencias para los elementos del form
 	const identifierRef = useRef(null);
 	const passwordRef = useRef(null);
@@ -16,6 +19,9 @@ const Login = () => {
 	// Evento de inicio de sesión
 	const handleLogin = (e) => {
 		e.preventDefault();
+
+		// Se desactiva el botón
+		setbuttonDisabled(true);
 
 		// Se obtienen los valores de las referencias
 		const identifier = identifierRef.current.value;
@@ -44,6 +50,10 @@ const Login = () => {
 				} else {
 					alert(`Error: ${JSON.stringify(err)}`);
 				}
+			})
+			.finally(() => {
+				// Se activa el botón
+				setbuttonDisabled(false);
 			});
 	};
 
@@ -63,7 +73,7 @@ const Login = () => {
 						<input name="password" type="password" ref={passwordRef}></input>
 					</div>
 					<div className="login-button-container">
-						<AwesomeButton type="primary" className="login-button">
+						<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
 							Iniciar sesion
 						</AwesomeButton>
 					</div>

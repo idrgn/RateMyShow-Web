@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "./Register.css";
@@ -8,6 +8,9 @@ import "./Register.css";
  * @returns
  */
 const Register = () => {
+	// Se almacena el estado del botón de login
+	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
 	// Se definen referencias para los elementos del form
 	const nameRef = useRef(null);
 	const surnameRef = useRef(null);
@@ -22,6 +25,9 @@ const Register = () => {
 	const handleRegister = (e) => {
 		e.preventDefault();
 
+		// Se desactiva el botón
+		setbuttonDisabled(true);
+
 		// Se obtienen los valores de las referencias
 		const name = nameRef.current.value;
 		const surname = surnameRef.current.value;
@@ -35,24 +41,28 @@ const Register = () => {
 		// Se comprueba que la contraseña existe
 		if (!password || !birthDate || !name || !surname || !username) {
 			alert("Rellena todos los campos");
+			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el correo es válido
 		if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
 			alert("Introduce un correo válido.");
+			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
 			alert("Las contraseñas no coinciden.");
+			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el username tiene el formato correcto
 		if (!username.match(/^[a-zA-Z0-9]+$/)) {
 			alert("Es necesario un nombre de usuario.");
+			setbuttonDisabled(false);
 			return;
 		}
 
@@ -83,6 +93,10 @@ const Register = () => {
 				} else {
 					alert(`Error: ${JSON.stringify(err)}`);
 				}
+			})
+			.finally(() => {
+				// Se activa el botón
+				setbuttonDisabled(false);
 			});
 	};
 
@@ -130,7 +144,7 @@ const Register = () => {
 					</div>
 
 					<div className="register-button-container">
-						<AwesomeButton type="primary" className="register-button">
+						<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
 							Registro
 						</AwesomeButton>
 					</div>
