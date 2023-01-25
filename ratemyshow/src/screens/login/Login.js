@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useRef } from "react";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import "./Login.css";
 
 /**
@@ -54,12 +56,10 @@ const Login = () => {
 					<label for="identifier">Identificador</label>
 					<input name="username" type="text" ref={identifierRef}></input>
 					<br></br>
-
 					<label for="password">Contraseña</label>
 					<input name="password" type="password" ref={passwordRef}></input>
 					<br></br>
-
-					<button>Iniciar sesión</button>
+					<AwesomeButton type="primary">Iniciar sesion</AwesomeButton>
 				</form>
 			</div>
 		</div>

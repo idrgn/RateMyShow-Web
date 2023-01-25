@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useRef } from "react";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import "./Register.css";
-
 /**
  * Pantalla de registro de usuario
  * @returns
@@ -138,7 +139,7 @@ const Register = () => {
 					<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
 					<br></br>
 
-					<button>Registro</button>
+					<AwesomeButton type="primary">Registro</AwesomeButton>
 				</form>
 			</div>
 		</div>
