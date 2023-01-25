@@ -87,59 +87,53 @@ const Register = () => {
 	};
 
 	return (
-		<div>
+		<div className="register-container">
 			<div className="register-title">
 				<h1>Registro</h1>
 			</div>
-			<div className="register-form">
-				<form onSubmit={handleRegister}>
-					<label for="name" className="register-required">
-						Nombre
-					</label>
-					<input name="name" type="text" ref={nameRef}></input>
-					<br></br>
+			<div className="register-form-container">
+				<form onSubmit={handleRegister} className="register-form">
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Nombre</div>
+						<input name="name" type="text" ref={nameRef}></input>
+					</div>
 
-					<label for="surname" className="register-required">
-						Apellidos
-					</label>
-					<input name="surname" type="text" ref={surnameRef}></input>
-					<br></br>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Apellidos</div>
+						<input name="surname" type="text" ref={surnameRef}></input>
+					</div>
 
-					<label for="e-mail" className="register-required">
-						E-Mail
-					</label>
-					<input name="e-mail" type="text" ref={emailRef}></input>
-					<br></br>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">E-Mail</div>
+						<input name="e-mail" type="text" ref={emailRef}></input>
+					</div>
 
-					<label for="phone">Teléfono</label>
-					<input name="phone" type="text" ref={phoneRef}></input>
-					<br></br>
+					<div className="register-input-container">
+						<div className="register-input-text">Teléfono</div>
+						<input name="phone" type="text" ref={phoneRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Fecha de nacimiento</div>
+						<input name="birthDate" type="date" ref={birthDateRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Nombre de usuario</div>
+						<input name="username" type="text" ref={usernameRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Contraseña</div>
+						<input name="password" type="password" ref={passwordRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Repetir contraseña</div>
+						<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
+					</div>
 
-					<label for="birthDate" className="register-required">
-						Fecha de nacimiento
-					</label>
-					<input name="birthDate" type="date" ref={birthDateRef}></input>
-					<br></br>
-
-					<label for="username" className="register-required">
-						Nombre de usuario
-					</label>
-					<input name="username" type="text" ref={usernameRef}></input>
-					<br></br>
-
-					<label for="password" className="register-required">
-						Contraseña
-					</label>
-					<input name="password" type="password" ref={passwordRef}></input>
-					<br></br>
-
-					<label for="password-repeat" className="register-required">
-						Repetir contraseña
-					</label>
-					<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
-					<br></br>
-
-					<AwesomeButton type="primary">Registro</AwesomeButton>
+					<div className="register-button-container">
+						<AwesomeButton type="primary" className="register-button">
+							Registro
+						</AwesomeButton>
+					</div>
 				</form>
 			</div>
 		</div>
