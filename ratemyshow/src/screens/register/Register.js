@@ -83,6 +83,7 @@ const Register = () => {
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
+				alert("Cuenta creada correctamente.\nSesión iniciada.");
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
