@@ -1,12 +1,16 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import "./Register.css";
-
 /**
  * Pantalla de registro de usuario
  * @returns
  */
 const Register = () => {
+	// Se almacena el estado del botón de login
+	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
 	// Se definen referencias para los elementos del form
 	const nameRef = useRef(null);
 	const surnameRef = useRef(null);
@@ -21,6 +25,9 @@ const Register = () => {
 	const handleRegister = (e) => {
 		e.preventDefault();
 
+		// Se desactiva el botón
+		setbuttonDisabled(true);
+
 		// Se obtienen los valores de las referencias
 		const name = nameRef.current.value;
 		const surname = surnameRef.current.value;
@@ -34,24 +41,28 @@ const Register = () => {
 		// Se comprueba que la contraseña existe
 		if (!password || !birthDate || !name || !surname || !username) {
 			alert("Rellena todos los campos");
+			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el correo es válido
 		if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
 			alert("Introduce un correo válido.");
+			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
 			alert("Las contraseñas no coinciden.");
+			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el username tiene el formato correcto
 		if (!username.match(/^[a-zA-Z0-9]+$/)) {
 			alert("Es necesario un nombre de usuario.");
+			setbuttonDisabled(false);
 			return;
 		}
 
@@ -72,6 +83,7 @@ const Register = () => {
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
+				alert("Cuenta creada correctamente.\nSesión iniciada.");
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
@@ -82,63 +94,61 @@ const Register = () => {
 				} else {
 					alert(`Error: ${JSON.stringify(err)}`);
 				}
+			})
+			.finally(() => {
+				// Se activa el botón
+				setbuttonDisabled(false);
 			});
 	};
 
 	return (
-		<div>
+		<div className="register-container">
 			<div className="register-title">
 				<h1>Registro</h1>
 			</div>
-			<div className="register-form">
-				<form onSubmit={handleRegister}>
-					<label for="name" className="register-required">
-						Nombre
-					</label>
-					<input name="name" type="text" ref={nameRef}></input>
-					<br></br>
+			<div className="register-form-container">
+				<form onSubmit={handleRegister} className="register-form">
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Nombre</div>
+						<input name="name" type="text" ref={nameRef}></input>
+					</div>
 
-					<label for="surname" className="register-required">
-						Apellidos
-					</label>
-					<input name="surname" type="text" ref={surnameRef}></input>
-					<br></br>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Apellidos</div>
+						<input name="surname" type="text" ref={surnameRef}></input>
+					</div>
 
-					<label for="e-mail" className="register-required">
-						E-Mail
-					</label>
-					<input name="e-mail" type="text" ref={emailRef}></input>
-					<br></br>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">E-Mail</div>
+						<input name="e-mail" type="text" ref={emailRef}></input>
+					</div>
 
-					<label for="phone">Teléfono</label>
-					<input name="phone" type="text" ref={phoneRef}></input>
-					<br></br>
+					<div className="register-input-container">
+						<div className="register-input-text">Teléfono</div>
+						<input name="phone" type="text" ref={phoneRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Fecha de nacimiento</div>
+						<input name="birthDate" type="date" ref={birthDateRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Nombre de usuario</div>
+						<input name="username" type="text" ref={usernameRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Contraseña</div>
+						<input name="password" type="password" ref={passwordRef}></input>
+					</div>
+					<div className="register-input-container">
+						<div className="register-input-text register-required">Repetir contraseña</div>
+						<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
+					</div>
 
-					<label for="birthDate" className="register-required">
-						Fecha de nacimiento
-					</label>
-					<input name="birthDate" type="date" ref={birthDateRef}></input>
-					<br></br>
-
-					<label for="username" className="register-required">
-						Nombre de usuario
-					</label>
-					<input name="username" type="text" ref={usernameRef}></input>
-					<br></br>
-
-					<label for="password" className="register-required">
-						Contraseña
-					</label>
-					<input name="password" type="password" ref={passwordRef}></input>
-					<br></br>
-
-					<label for="password-repeat" className="register-required">
-						Repetir contraseña
-					</label>
-					<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
-					<br></br>
-
-					<button>Registro</button>
+					<div className="register-button-container">
+						<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
+							Registro
+						</AwesomeButton>
+					</div>
 				</form>
 			</div>
 		</div>

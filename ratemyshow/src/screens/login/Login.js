@@ -1,18 +1,27 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import "./Login.css";
 
 /**
  * Pantalla de inicio de sesión
  * @returns
  */
 const Login = () => {
+	// Se almacena el estado del botón de login
+	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
 	// Se definen referencias para los elementos del form
 	const identifierRef = useRef(null);
 	const passwordRef = useRef(null);
 
 	// Evento de inicio de sesión
-	const handleRegister = (e) => {
+	const handleLogin = (e) => {
 		e.preventDefault();
+
+		// Se desactiva el botón
+		setbuttonDisabled(true);
 
 		// Se obtienen los valores de las referencias
 		const identifier = identifierRef.current.value;
@@ -30,6 +39,7 @@ const Login = () => {
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
+				alert("Sesión iniciada correctamente.");
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
@@ -40,25 +50,33 @@ const Login = () => {
 				} else {
 					alert(`Error: ${JSON.stringify(err)}`);
 				}
+			})
+			.finally(() => {
+				// Se activa el botón
+				setbuttonDisabled(false);
 			});
 	};
 
 	return (
-		<div>
-			<div>
+		<div className="login-container">
+			<div className="login-title">
 				<h1>Inicio de sesión</h1>
 			</div>
-			<div>
-				<form onSubmit={handleRegister}>
-					<label for="identifier">Identificador</label>
-					<input name="username" type="text" ref={identifierRef}></input>
-					<br></br>
-
-					<label for="password">Contraseña</label>
-					<input name="password" type="password" ref={passwordRef}></input>
-					<br></br>
-
-					<button>Iniciar sesión</button>
+			<div className="login-form-container">
+				<form onSubmit={handleLogin} className="login-form">
+					<div className="login-input-container">
+						<div className="login-required login-input-text">Identificador</div>
+						<input name="username" type="text" ref={identifierRef}></input>
+					</div>
+					<div className="login-input-container">
+						<div className="login-required login-input-text">Contraseña</div>
+						<input name="password" type="password" ref={passwordRef}></input>
+					</div>
+					<div className="login-button-container">
+						<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
+							Iniciar sesion
+						</AwesomeButton>
+					</div>
 				</form>
 			</div>
 		</div>
