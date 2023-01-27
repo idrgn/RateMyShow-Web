@@ -44,6 +44,9 @@ const Login = () => {
 			password: password,
 		};
 
+		// Se muestra al usuario que se está iniciando sesión
+		setWarning(<Alert severity="info">Iniciando sesión...</Alert>);
+
 		axios
 			// Se envía la petición
 			.post("http://localhost:8000/sessions", formData)

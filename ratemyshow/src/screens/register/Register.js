@@ -94,6 +94,9 @@ const Register = () => {
 			password: password,
 		};
 
+		// Se muestra al usuario que se está creando la cuenta
+		setWarning(<Alert severity="info">Creando cuenta...</Alert>);
+
 		axios
 			// Se envía la petición
 			.post("http://localhost:8000/users", formData)
