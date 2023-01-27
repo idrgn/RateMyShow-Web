@@ -16,6 +16,11 @@ const Register = () => {
 	// Se almacenna el estado del mensaje de error
 	const [warning, setWarning] = useState("");
 
+	// Fecha actual
+	let curr = new Date();
+	curr.setDate(curr.getDate() + 3);
+	let date = curr.toISOString().substring(0, 10);
+
 	// Se definen referencias para los elementos del form
 	const nameRef = useRef(null);
 	const surnameRef = useRef(null);
@@ -119,38 +124,42 @@ const Register = () => {
 				<form onSubmit={handleRegister} className="register-form">
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Nombre</div>
-						<input name="name" type="text" ref={nameRef}></input>
+						<input name="name" type="text" ref={nameRef} maxLength={32}></input>
 					</div>
 
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Apellidos</div>
-						<input name="surname" type="text" ref={surnameRef}></input>
+						<input name="surname" type="text" ref={surnameRef} maxLength={32}></input>
 					</div>
 
 					<div className="register-input-container">
 						<div className="register-input-text register-required">E-Mail</div>
-						<input name="e-mail" type="text" ref={emailRef}></input>
+						<input name="e-mail" type="text" ref={emailRef} maxLength={32}></input>
 					</div>
 
 					<div className="register-input-container">
 						<div className="register-input-text">Teléfono</div>
-						<input name="phone" type="text" ref={phoneRef}></input>
+						<input name="phone" type="text" ref={phoneRef} maxLength={32}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Fecha de nacimiento</div>
-						<input name="birthDate" type="date" ref={birthDateRef}></input>
+						<input name="birthDate" type="date" ref={birthDateRef} defaultValue={date}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Nombre de usuario</div>
-						<input name="username" type="text" ref={usernameRef}></input>
+						<input name="username" type="text" ref={usernameRef} maxLength={32}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Contraseña</div>
-						<input name="password" type="password" ref={passwordRef}></input>
+						<input name="password" type="password" ref={passwordRef} maxLength={32}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Repetir contraseña</div>
-						<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
+						<input name="password-repeat" type="password" ref={passwordRepeatRef} maxLength={32}></input>
 					</div>
 
 					<div>{warning}</div>
