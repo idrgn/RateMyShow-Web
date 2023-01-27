@@ -63,8 +63,18 @@ const Register = () => {
 		}
 
 		// Se comprueba que el número de teléfono es válido
-		if (!phone.match(/\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/)) {
+		if (phone && !phone.match(/\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/)) {
 			setWarning(<Alert severity="warning">Introduce un número de teléfono válido.</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
+		if (!password.match(/"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/)) {
+			setWarning(
+				<Alert severity="warning">
+					<p>Introduce una contraseña válida (mínimo una letra y un número, y 8 caracteres).</p>
+				</Alert>
+			);
 			setbuttonDisabled(false);
 			return;
 		}
