@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import TitleListItem from "../../components/title_list_item/TitleListItem";
+import "./Search.css";
 
 const Search = () => {
 	// Parámetros de URL
@@ -32,7 +33,8 @@ const Search = () => {
 
 	return (
 		<div>
-			<div>{searchResults.result.map(titleToComponent)}</div>
+			<div className="search-title">Resultados de búsqueda</div>
+			<div className="search-result-container">{searchResults.result.map(titleToComponent)}</div>
 		</div>
 	);
 };
