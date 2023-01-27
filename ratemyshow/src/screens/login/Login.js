@@ -1,3 +1,4 @@
+import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
@@ -11,6 +12,7 @@ import "./Login.css";
 const Login = () => {
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
+	const [warning, setWarning] = useState("");
 
 	// Se definen referencias para los elementos del form
 	const identifierRef = useRef(null);
@@ -39,16 +41,20 @@ const Login = () => {
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
-				alert("Sesión iniciada correctamente.");
+				setWarning(<Alert severity="success">Sesión iniciada. Redirigiendo...</Alert>);
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
 				if ("response" in err) {
-					if (err.response.status === 400) alert("Bad request");
-					else if (err.response.status === 401) alert("Unauthorized");
-					else alert(`Error, código:${err.response.status}`);
+					if (err.response.status === 400) {
+						setWarning(<Alert severity="error">Error: Bad request.</Alert>);
+					} else if (err.response.status === 401) {
+						setWarning(<Alert severity="error">Error: Bad request.</Alert>);
+					} else {
+						setWarning(<Alert severity="error">{`Error, código:${err.response.status}.`}</Alert>);
+					}
 				} else {
-					alert(`Error: ${JSON.stringify(err)}`);
+					setWarning(<Alert severity="error">Error de conexión.</Alert>);
 				}
 			})
 			.finally(() => {
@@ -72,6 +78,7 @@ const Login = () => {
 						<div className="login-required login-input-text">Contraseña</div>
 						<input name="password" type="password" ref={passwordRef}></input>
 					</div>
+					<div>{warning}</div>
 					<div className="login-button-container">
 						<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
 							Iniciar sesion
