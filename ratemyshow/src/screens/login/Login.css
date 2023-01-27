@@ -26,7 +26,8 @@
 	margin-top: 20px;
 }
 
-.login-input-container {
+.login-input-container,
+.login-other {
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
@@ -49,4 +50,9 @@
 
 .login-button {
 	width: 100%;
+}
+
+.login-other .login-guide {
+	display: inline;
+	color: red;
 }

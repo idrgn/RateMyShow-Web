@@ -95,6 +95,11 @@ const Login = () => {
 							Iniciar sesion
 						</AwesomeButton>
 					</div>
+
+					<div className="login-other">
+						<a href="/register">Crear cuenta</a>
+						<div className="login-guide">*Requerido</div>
+					</div>
 				</form>
 			</div>
 		</div>
