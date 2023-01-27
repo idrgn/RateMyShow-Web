@@ -62,6 +62,13 @@ const Register = () => {
 			return;
 		}
 
+		// Se comprueba que el número de teléfono es válido
+		if (phone && !phone.match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)) {
+			setWarning(<Alert severity="warning">Introduce un número de teléfono válido.</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
 			setWarning(<Alert severity="warning">Las contraseñas no coinciden.</Alert>);
