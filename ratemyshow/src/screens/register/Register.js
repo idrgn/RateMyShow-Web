@@ -69,12 +69,9 @@ const Register = () => {
 			return;
 		}
 
+		// Se comprueba que la contraseña es válida
 		if (!password.match(/"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/)) {
-			setWarning(
-				<Alert severity="warning">
-					<p>Introduce una contraseña válida (mínimo una letra y un número, y 8 caracteres).</p>
-				</Alert>
-			);
+			setWarning(<Alert severity="warning">Introduce una contraseña válida (mínimo una letra y un número, y 8 caracteres).</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
