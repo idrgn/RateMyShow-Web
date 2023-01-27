@@ -12,6 +12,8 @@ import "./Login.css";
 const Login = () => {
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
+	// Se almacenna el estado del mensaje de error
 	const [warning, setWarning] = useState("");
 
 	// Se definen referencias para los elementos del form
@@ -47,11 +49,11 @@ const Login = () => {
 			.catch((err) => {
 				if ("response" in err) {
 					if (err.response.status === 400) {
-						setWarning(<Alert severity="error">Error: Bad request.</Alert>);
+						setWarning(<Alert severity="error">Error 400: Bad request.</Alert>);
 					} else if (err.response.status === 401) {
-						setWarning(<Alert severity="error">Error: Bad request.</Alert>);
+						setWarning(<Alert severity="error">Error 401: Unauthorized.</Alert>);
 					} else {
-						setWarning(<Alert severity="error">{`Error, código:${err.response.status}.`}</Alert>);
+						setWarning(<Alert severity="error">{`Error, código ${err.response.status}.`}</Alert>);
 					}
 				} else {
 					setWarning(<Alert severity="error">Error de conexión.</Alert>);
@@ -78,7 +80,9 @@ const Login = () => {
 						<div className="login-required login-input-text">Contraseña</div>
 						<input name="password" type="password" ref={passwordRef}></input>
 					</div>
+
 					<div>{warning}</div>
+
 					<div className="login-button-container">
 						<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
 							Iniciar sesion

@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "./Register.css";
+
 /**
  * Pantalla de registro de usuario
  * @returns
@@ -11,6 +12,8 @@ import "./Register.css";
 const Register = () => {
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
+	// Se almacenna el estado del mensaje de error
 	const [warning, setWarning] = useState("");
 
 	// Se definen referencias para los elementos del form
