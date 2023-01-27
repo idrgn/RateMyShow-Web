@@ -1,15 +1,31 @@
+import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "./Register.css";
+
 /**
  * Pantalla de registro de usuario
  * @returns
  */
 const Register = () => {
+	// Regex para comprobación de campos
+	const phoneRegex = /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/;
+	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	const usernameRegex = /^[a-zA-Z0-9]+$/;
+	const passwordRegex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/;
+
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
+
+	// Se almacenna el estado del mensaje de error
+	const [warning, setWarning] = useState("");
+
+	// Fecha actual
+	let curr = new Date();
+	curr.setDate(curr.getDate() + 3);
+	let date = curr.toISOString().substring(0, 10);
 
 	// Se definen referencias para los elementos del form
 	const nameRef = useRef(null);
@@ -40,28 +56,42 @@ const Register = () => {
 
 		// Se comprueba que la contraseña existe
 		if (!password || !birthDate || !name || !surname || !username) {
-			alert("Rellena todos los campos");
+			setWarning(<Alert severity="warning">Rellena todos los campos.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el correo es válido
-		if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-			alert("Introduce un correo válido.");
+		if (!email.match(emailRegex)) {
+			setWarning(<Alert severity="warning">Introduce un correo válido.</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
+		// Se comprueba que el número de teléfono es válido
+		if (phone && !phone.match(phoneRegex)) {
+			setWarning(<Alert severity="warning">Introduce un número de teléfono válido.</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
+		// Se comprueba que la contraseña es válida
+		if (!password.match(passwordRegex)) {
+			setWarning(<Alert severity="warning">Introduce una contraseña válida (mínimo una letra y un número, y 8 caracteres).</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
+		// Se comprueba que el username tiene el formato correcto
+		if (!username.match(usernameRegex)) {
+			setWarning(<Alert severity="warning">Es necesario un nombre de usuario.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
-			alert("Las contraseñas no coinciden.");
-			setbuttonDisabled(false);
-			return;
-		}
-
-		// Se comprueba que el username tiene el formato correcto
-		if (!username.match(/^[a-zA-Z0-9]+$/)) {
-			alert("Es necesario un nombre de usuario.");
+			setWarning(<Alert severity="warning">Las contraseñas no coinciden.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
@@ -77,22 +107,29 @@ const Register = () => {
 			password: password,
 		};
 
+		// Se muestra al usuario que se está creando la cuenta
+		setWarning(<Alert severity="info">Creando cuenta...</Alert>);
+
 		axios
 			// Se envía la petición
 			.post("http://localhost:8000/users", formData)
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
-				alert("Cuenta creada correctamente.\nSesión iniciada.");
+				setWarning(<Alert severity="success">Cuenta creada correctamente. Sesión iniciada.</Alert>);
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
 				if ("response" in err) {
-					if (err.response.status === 400) alert("Bad request");
-					else if (err.response.status === 409) alert("Conflict");
-					else alert(`Error, código:${err.response.status}`);
+					if (err.response.status === 400) {
+						setWarning(<Alert severity="error">Error 400: Bad request.</Alert>);
+					} else if (err.response.status === 409) {
+						setWarning(<Alert severity="error">Error 409: Conflict.</Alert>);
+					} else {
+						setWarning(<Alert severity="error">{`Error, código ${err.response.status}.`}</Alert>);
+					}
 				} else {
-					alert(`Error: ${JSON.stringify(err)}`);
+					setWarning(<Alert severity="error">Error de conexión.</Alert>);
 				}
 			})
 			.finally(() => {
@@ -110,44 +147,55 @@ const Register = () => {
 				<form onSubmit={handleRegister} className="register-form">
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Nombre</div>
-						<input name="name" type="text" ref={nameRef}></input>
+						<input name="name" type="text" ref={nameRef} maxLength={32}></input>
 					</div>
 
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Apellidos</div>
-						<input name="surname" type="text" ref={surnameRef}></input>
+						<input name="surname" type="text" ref={surnameRef} maxLength={32}></input>
 					</div>
 
 					<div className="register-input-container">
 						<div className="register-input-text register-required">E-Mail</div>
-						<input name="e-mail" type="text" ref={emailRef}></input>
+						<input name="e-mail" type="text" ref={emailRef} maxLength={32}></input>
 					</div>
 
 					<div className="register-input-container">
-						<div className="register-input-text">Teléfono</div>
-						<input name="phone" type="text" ref={phoneRef}></input>
+						<div className="register-input-text">Teléfono (con prefijo)</div>
+						<input name="phone" type="text" ref={phoneRef} maxLength={32}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Fecha de nacimiento</div>
-						<input name="birthDate" type="date" ref={birthDateRef}></input>
+						<input name="birthDate" type="date" ref={birthDateRef} defaultValue={date}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Nombre de usuario</div>
-						<input name="username" type="text" ref={usernameRef}></input>
+						<input name="username" type="text" ref={usernameRef} maxLength={32}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Contraseña</div>
-						<input name="password" type="password" ref={passwordRef}></input>
+						<input name="password" type="password" ref={passwordRef} maxLength={32}></input>
 					</div>
+
 					<div className="register-input-container">
 						<div className="register-input-text register-required">Repetir contraseña</div>
-						<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
+						<input name="password-repeat" type="password" ref={passwordRepeatRef} maxLength={32}></input>
 					</div>
+
+					<div>{warning}</div>
 
 					<div className="register-button-container">
 						<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
 							Registro
 						</AwesomeButton>
+					</div>
+
+					<div className="register-other">
+						<a href="/login">Iniciar sesión</a>
+						<div className="register-guide">*Requerido</div>
 					</div>
 				</form>
 			</div>

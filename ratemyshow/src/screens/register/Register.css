@@ -26,7 +26,8 @@
 	margin-top: 20px;
 }
 
-.register-input-container {
+.register-input-container,
+.register-other {
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
@@ -49,4 +50,9 @@
 
 .register-button {
 	width: 100%;
+}
+
+.register-other .register-guide {
+	display: inline;
+	color: red;
 }
