@@ -31,6 +31,13 @@ const Login = () => {
 		const identifier = identifierRef.current.value;
 		const password = passwordRef.current.value;
 
+		// Se comprueba que la contraseña existe
+		if (!password || !identifier) {
+			setWarning(<Alert severity="warning">Rellena todos los campos.</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
 		// Se almacena el formData
 		const formData = {
 			identifier: identifier,
@@ -74,11 +81,11 @@ const Login = () => {
 				<form onSubmit={handleLogin} className="login-form">
 					<div className="login-input-container">
 						<div className="login-required login-input-text">Identificador</div>
-						<input name="username" type="text" ref={identifierRef}></input>
+						<input name="username" type="text" ref={identifierRef} maxLength={32}></input>
 					</div>
 					<div className="login-input-container">
 						<div className="login-required login-input-text">Contraseña</div>
-						<input name="password" type="password" ref={passwordRef}></input>
+						<input name="password" type="password" ref={passwordRef} maxLength={32}></input>
 					</div>
 
 					<div>{warning}</div>
