@@ -1,3 +1,4 @@
+import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
@@ -10,6 +11,7 @@ import "./Register.css";
 const Register = () => {
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
+	const [warning, setWarning] = useState("");
 
 	// Se definen referencias para los elementos del form
 	const nameRef = useRef(null);
@@ -40,28 +42,28 @@ const Register = () => {
 
 		// Se comprueba que la contraseña existe
 		if (!password || !birthDate || !name || !surname || !username) {
-			alert("Rellena todos los campos");
+			setWarning(<Alert severity="warning">Rellena todos los campos.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el correo es válido
 		if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
-			alert("Introduce un correo válido.");
+			setWarning(<Alert severity="warning">Introduce un correo válido.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
-			alert("Las contraseñas no coinciden.");
+			setWarning(<Alert severity="warning">Las contraseñas no coinciden.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el username tiene el formato correcto
 		if (!username.match(/^[a-zA-Z0-9]+$/)) {
-			alert("Es necesario un nombre de usuario.");
+			setWarning(<Alert severity="warning">Es necesario un nombre de usuario.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
@@ -83,16 +85,20 @@ const Register = () => {
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
-				alert("Cuenta creada correctamente.\nSesión iniciada.");
+				setWarning(<Alert severity="success">Cuenta creada correctamente. Sesión iniciada.</Alert>);
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
 				if ("response" in err) {
-					if (err.response.status === 400) alert("Bad request");
-					else if (err.response.status === 409) alert("Conflict");
-					else alert(`Error, código:${err.response.status}`);
+					if (err.response.status === 400) {
+						setWarning(<Alert severity="error">Error 400: Bad request.</Alert>);
+					} else if (err.response.status === 409) {
+						setWarning(<Alert severity="error">Error 409: Conflict.</Alert>);
+					} else {
+						setWarning(<Alert severity="error">{`Error, código ${err.response.status}.`}</Alert>);
+					}
 				} else {
-					alert(`Error: ${JSON.stringify(err)}`);
+					setWarning(<Alert severity="error">Error de conexión.</Alert>);
 				}
 			})
 			.finally(() => {
@@ -143,6 +149,8 @@ const Register = () => {
 						<div className="register-input-text register-required">Repetir contraseña</div>
 						<input name="password-repeat" type="password" ref={passwordRepeatRef}></input>
 					</div>
+
+					<div>{warning}</div>
 
 					<div className="register-button-container">
 						<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
