@@ -63,7 +63,7 @@ const Register = () => {
 		}
 
 		// Se comprueba que el número de teléfono es válido
-		if (phone && !phone.match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)) {
+		if (!phone.match(/\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/)) {
 			setWarning(<Alert severity="warning">Introduce un número de teléfono válido.</Alert>);
 			setbuttonDisabled(false);
 			return;
@@ -148,7 +148,7 @@ const Register = () => {
 					</div>
 
 					<div className="register-input-container">
-						<div className="register-input-text">Teléfono</div>
+						<div className="register-input-text">Teléfono (con prefijo)</div>
 						<input name="phone" type="text" ref={phoneRef} maxLength={32}></input>
 					</div>
 
