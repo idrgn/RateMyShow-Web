@@ -10,6 +10,12 @@ import "./Register.css";
  * @returns
  */
 const Register = () => {
+	// Regex para comprobación de campos
+	const phoneRegex = /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/;
+	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	const usernameRegex = /^[a-zA-Z0-9]+$/;
+	const passwordRegex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/;
+
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
 
@@ -56,22 +62,29 @@ const Register = () => {
 		}
 
 		// Se comprueba que el correo es válido
-		if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+		if (!email.match(emailRegex)) {
 			setWarning(<Alert severity="warning">Introduce un correo válido.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que el número de teléfono es válido
-		if (phone && !phone.match(/\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/)) {
+		if (phone && !phone.match(phoneRegex)) {
 			setWarning(<Alert severity="warning">Introduce un número de teléfono válido.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
 
 		// Se comprueba que la contraseña es válida
-		if (!password.match(/"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/)) {
+		if (!password.match(passwordRegex)) {
 			setWarning(<Alert severity="warning">Introduce una contraseña válida (mínimo una letra y un número, y 8 caracteres).</Alert>);
+			setbuttonDisabled(false);
+			return;
+		}
+
+		// Se comprueba que el username tiene el formato correcto
+		if (!username.match(usernameRegex)) {
+			setWarning(<Alert severity="warning">Es necesario un nombre de usuario.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
@@ -79,13 +92,6 @@ const Register = () => {
 		// Se comprueba que las dos contraseñas coinciden
 		if (password !== passwordRepeat) {
 			setWarning(<Alert severity="warning">Las contraseñas no coinciden.</Alert>);
-			setbuttonDisabled(false);
-			return;
-		}
-
-		// Se comprueba que el username tiene el formato correcto
-		if (!username.match(/^[a-zA-Z0-9]+$/)) {
-			setWarning(<Alert severity="warning">Es necesario un nombre de usuario.</Alert>);
 			setbuttonDisabled(false);
 			return;
 		}
