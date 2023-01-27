@@ -169,6 +169,11 @@ const Register = () => {
 							Registro
 						</AwesomeButton>
 					</div>
+
+					<div className="register-other">
+						<a href="/login">Iniciar sesión</a>
+						<div className="register-guide">*Requerido</div>
+					</div>
 				</form>
 			</div>
 		</div>
