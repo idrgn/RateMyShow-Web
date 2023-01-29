@@ -5,14 +5,14 @@ import "./TitleList.css";
 const TitleList = (props) => {
 	const titlesToComponent = (t) => {
 		return (
-			<Grid item xs={12} sm={6} md={2}>
+			<Grid item>
 				<TitleListItem title={t} />
 			</Grid>
 		);
 	};
 
 	return (
-		<Grid container spacing={1} justifyContent="center" className="gc">
+		<Grid container spacing={5} justifyContent="center" className="titlelist-grid-container">
 			{props.titles.map(titlesToComponent)}
 		</Grid>
 	);
