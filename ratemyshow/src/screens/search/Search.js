@@ -8,7 +8,12 @@ import "./Search.css";
 const Search = () => {
 	// Parámetros de URL
 	const [searchParams, setSearchParams] = useSearchParams();
+
+	// Página actual
 	const [page, setPage] = useState(0);
+
+	// Resultados almacenados por página
+	const [stored, setStored] = useState({});
 
 	// Se almacenan los parámetros
 	const search = searchParams.get("query");
@@ -16,24 +21,29 @@ const Search = () => {
 	// Creamos estado para almacenar la respuesta
 	const [searchResults, setSearchResults] = useState({ result: [] });
 
-	// Actualizar página
-	const updatePage = () => {
-		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`).then((response) => {
-			console.log(`http://api.ratemyshow.lekiam.net/titles?query=${search}&$page=${page}`);
-			setSearchResults(response.data);
-		});
-	};
+	// Obtención de datos
+	useEffect(() => {
+		if (page in stored) {
+			// Si los datos ya están almacenados, se cargan
+			setSearchResults(stored[page]);
+		} else {
+			// Si no, pedimos los datos a la API
+			axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`).then((response) => {
+				setSearchResults(response.data);
+				const newStored = stored;
+				newStored[page] = response.data;
+				setStored(newStored);
+			});
+		}
+	}, [page]);
 
 	// Actualizar página
 	const onPageChange = (event, value) => {
-		setPage(value - 1);
-		updatePage();
+		// Solo se actualiza si el valor cambia
+		if (page !== value - 1) {
+			setPage(value - 1);
+		}
 	};
-
-	// Pedimos los datos a la API
-	useEffect(() => {
-		updatePage();
-	}, []);
 
 	return (
 		<div>
