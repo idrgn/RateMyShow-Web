@@ -1,0 +1,10 @@
+.titlelist-grid-container {
+	border: 1px solid red;
+	width: 1px;
+}
+
+.gc {
+	width: 100%;
+	display: flex;
+	padding-left: 10vh;
+}
