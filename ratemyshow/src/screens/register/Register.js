@@ -24,7 +24,7 @@ const Register = () => {
 
 	// Fecha actual
 	let curr = new Date();
-	curr.setDate(curr.getDate() + 3);
+	curr.setDate(curr.getDate());
 	let date = curr.toISOString().substring(0, 10);
 
 	// Se definen referencias para los elementos del form
