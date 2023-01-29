@@ -1,4 +1,4 @@
-import { TextField, Typography } from "@mui/material";
+import { Paper, TextField, Typography } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
@@ -102,28 +102,30 @@ const Login = () => {
 				<Typography variant="h3">Inicio de sesión</Typography>
 			</div>
 			<div className="login-form-container">
-				<form onSubmit={handleLogin} className="login-form">
-					<div className="login-input-container">
-						<TextField required id="identifier-input" label="Identificador" type="text " autoComplete="current-username" inputRef={identifierRef} className="login-text-field" />
-					</div>
+				<Paper variant="outlined">
+					<form onSubmit={handleLogin} className="login-form">
+						<div className="login-input-container">
+							<TextField required id="identifier-input" label="Identificador" type="text " autoComplete="current-username" inputRef={identifierRef} className="login-text-field" />
+						</div>
 
-					<div className="login-input-container">
-						<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" />
-					</div>
+						<div className="login-input-container">
+							<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" />
+						</div>
 
-					<div>{warning}</div>
+						<div>{warning}</div>
 
-					<div className="login-button-container">
-						<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
-							Iniciar sesion
-						</AwesomeButton>
-					</div>
+						<div className="login-button-container">
+							<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
+								Iniciar sesion
+							</AwesomeButton>
+						</div>
 
-					<div className="login-other">
-						<a href="/register">Crear cuenta</a>
-						<div className="login-guide">*Requerido</div>
-					</div>
-				</form>
+						<div className="login-other">
+							<a href="/register">Crear cuenta</a>
+							<div className="login-guide">*Requerido</div>
+						</div>
+					</form>
+				</Paper>
 			</div>
 		</div>
 	);
