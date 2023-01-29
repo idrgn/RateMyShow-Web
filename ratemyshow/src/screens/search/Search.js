@@ -1,3 +1,4 @@
+import { Pagination } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -31,6 +32,9 @@ const Search = () => {
 			<div className="search-title">Resultados de la búsqueda "{search}"</div>
 			<div className="search-result">
 				<TitleList titles={searchResults.result}></TitleList>
+			</div>
+			<div className="search-pagination" color="primary" size="large">
+				<Pagination count={searchResults.pages} />
 			</div>
 		</div>
 	);
