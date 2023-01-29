@@ -8,24 +8,32 @@ import "./Search.css";
 const Search = () => {
 	// Parámetros de URL
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [page, setPage] = useState(0);
 
 	// Se almacenan los parámetros
 	const search = searchParams.get("query");
-	let page = searchParams.get("page");
-
-	// Si la página no está definida, es 0
-	if (page === undefined) page = 0;
 
 	// Creamos estado para almacenar la respuesta
 	const [searchResults, setSearchResults] = useState({ result: [] });
 
-	// Pedimos los datos a la API
-	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&$page={page}`).then((response) => {
-			console.log(`http://api.ratemyshow.lekiam.net/titles?query=${search}`);
+	// Actualizar página
+	const updatePage = () => {
+		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`).then((response) => {
+			console.log(`http://api.ratemyshow.lekiam.net/titles?query=${search}&$page=${page}`);
 			setSearchResults(response.data);
 		});
-	}, [search, searchParams.query]);
+	};
+
+	// Actualizar página
+	const onPageChange = (event, value) => {
+		setPage(value - 1);
+		updatePage();
+	};
+
+	// Pedimos los datos a la API
+	useEffect(() => {
+		updatePage();
+	}, []);
 
 	return (
 		<div>
@@ -34,7 +42,7 @@ const Search = () => {
 				<TitleList titles={searchResults.result}></TitleList>
 			</div>
 			<div className="search-pagination" color="primary" size="large">
-				<Pagination count={searchResults.pages} />
+				<Pagination count={searchResults.pages} onChange={onPageChange} />
 			</div>
 		</div>
 	);
