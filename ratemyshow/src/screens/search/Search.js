@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import TitleListItem from "../../components/title_list_item/TitleListItem";
+import TitleList from "../../components/title_list/TitleList";
 import "./Search.css";
 
 const Search = () => {
@@ -26,15 +26,12 @@ const Search = () => {
 		});
 	}, [search, searchParams.query]);
 
-	// Función para transformar títulos a componente.
-	const titleToComponent = (t) => {
-		return <TitleListItem title={t} />;
-	};
-
 	return (
 		<div>
-			<div className="search-title">Resultados de búsqueda</div>
-			<div className="search-result-container">{searchResults.result.map(titleToComponent)}</div>
+			<div className="search-title">Resultados de la búsqueda "{search}"</div>
+			<div className="search-result">
+				<TitleList titles={searchResults.result}></TitleList>
+			</div>
 		</div>
 	);
 };
