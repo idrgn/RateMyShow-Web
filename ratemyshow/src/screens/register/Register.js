@@ -1,4 +1,4 @@
-import { Paper, TextField } from "@mui/material";
+import { Paper, TextField, Typography } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
@@ -142,7 +142,7 @@ const Register = () => {
 	return (
 		<div className="register-container">
 			<div className="register-title">
-				<h1>Registro</h1>
+				<Typography variant="h3">Registro</Typography>
 			</div>
 			<div className="register-form-container">
 				<Paper variant="outlined">
