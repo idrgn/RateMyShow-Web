@@ -70,7 +70,7 @@ const Login = () => {
 
 		axios
 			// Se envía la petición
-			.post("http://localhost:8000/sessions", formData)
+			.post("http://api.ratemyshow.lekiam.net/sessions", formData)
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
