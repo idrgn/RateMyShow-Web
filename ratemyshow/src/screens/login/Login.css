@@ -18,7 +18,6 @@
 .login-form {
 	padding: 20px;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	border-radius: 25px;
 	width: 30vw;
 }
 
@@ -27,26 +26,27 @@
 }
 
 .login-input-container {
+	margin-bottom: 20px;
+}
+
+.login-other {
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.login-input-container input {
-	padding: 5px;
-	margin-left: 10px;
-}
-
-.login-required::after {
-	content: "*";
-	color: red;
-}
-
-.login-input-text {
-	display: inline;
-}
-
 .login-button {
 	width: 100%;
+}
+
+.login-text-field {
+	width: 100%;
+	margin-bottom: 10vh;
+}
+
+.login-other {
+	margin-top: 20px;
+	padding: 10px;
+	text-align: left;
 }
