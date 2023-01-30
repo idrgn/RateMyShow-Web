@@ -148,19 +148,19 @@ const Register = () => {
 				<Paper variant="outlined">
 					<form onSubmit={handleRegister} className="register-form">
 						<div className="register-input-container">
-							<TextField required id="name-input" label="Nombre" type="text " autoComplete="current-name" inputRef={nameRef} className="register-text-field" />
+							<TextField required id="name-input" label="Nombre" type="text " autoComplete="current-name" inputRef={nameRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<div className="register-input-container">
-							<TextField required id="surname-input" label="Apellidos" type="text " autoComplete="current-surname" inputRef={surnameRef} className="register-text-field" />
+							<TextField required id="surname-input" label="Apellidos" type="text " autoComplete="current-surname" inputRef={surnameRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<div className="register-input-container">
-							<TextField required id="email-input" label="E-Mail" type="text " autoComplete="current-email" inputRef={emailRef} className="register-text-field" />
+							<TextField required id="email-input" label="E-Mail" type="text " autoComplete="current-email" inputRef={emailRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<div className="register-input-container">
-							<TextField id="phone-input" label="Teléfono (con prefijo)" type="text " autoComplete="current-phone" inputRef={phoneRef} className="register-text-field" />
+							<TextField id="phone-input" label="Teléfono (con prefijo)" type="text " autoComplete="current-phone" inputRef={phoneRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<Paper className="register-input-container-date" variant="outlined">
@@ -169,15 +169,15 @@ const Register = () => {
 						</Paper>
 
 						<div className="register-input-container">
-							<TextField required id="username-input" label="Nombre de usuario" type="text " autoComplete="current-username" inputRef={usernameRef} className="register-text-field" />
+							<TextField required id="username-input" label="Nombre de usuario" type="text " autoComplete="current-username" inputRef={usernameRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<div className="register-input-container">
-							<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" />
+							<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<div className="register-input-container">
-							<TextField required id="password-input" label="Repetir contraseña" type="password" autoComplete="current-password" inputRef={passwordRepeatRef} className="login-text-field" />
+							<TextField required id="password-input" label="Repetir contraseña" type="password" autoComplete="current-password" inputRef={passwordRepeatRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
 						</div>
 
 						<div>{warning}</div>
