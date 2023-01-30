@@ -1,3 +1,4 @@
+import { Paper, TextField, Typography } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
@@ -14,7 +15,7 @@ const Login = () => {
 	const phoneRegex = /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/;
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	const usernameRegex = /^[a-zA-Z0-9]+$/;
-	const passwordRegex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/;
+	const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
@@ -69,7 +70,7 @@ const Login = () => {
 
 		axios
 			// Se envía la petición
-			.post("http://localhost:8000/sessions", formData)
+			.post("http://api.ratemyshow.lekiam.net/sessions", formData)
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
@@ -98,32 +99,33 @@ const Login = () => {
 	return (
 		<div className="login-container">
 			<div className="login-title">
-				<h1>Inicio de sesión</h1>
+				<Typography variant="h3">Inicio de sesión</Typography>
 			</div>
 			<div className="login-form-container">
-				<form onSubmit={handleLogin} className="login-form">
-					<div className="login-input-container">
-						<div className="login-required login-input-text">Identificador</div>
-						<input name="username" type="text" ref={identifierRef} maxLength={32}></input>
-					</div>
-					<div className="login-input-container">
-						<div className="login-required login-input-text">Contraseña</div>
-						<input name="password" type="password" ref={passwordRef} maxLength={32}></input>
-					</div>
+				<Paper variant="outlined">
+					<form onSubmit={handleLogin} className="login-form">
+						<div className="login-input-container">
+							<TextField required id="identifier-input" label="Identificador" type="text " autoComplete="current-username" inputRef={identifierRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div>{warning}</div>
+						<div className="login-input-container">
+							<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="login-button-container">
-						<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
-							Iniciar sesion
-						</AwesomeButton>
-					</div>
+						<div>{warning}</div>
 
-					<div className="login-other">
-						<a href="/register">Crear cuenta</a>
-						<div className="login-guide">*Requerido</div>
-					</div>
-				</form>
+						<div className="login-button-container">
+							<AwesomeButton type="primary" className="login-button" disabled={buttonDisabled}>
+								Iniciar sesion
+							</AwesomeButton>
+						</div>
+
+						<div className="login-other">
+							<a href="/register">Crear cuenta</a>
+							<div className="login-guide">*Requerido</div>
+						</div>
+					</form>
+				</Paper>
 			</div>
 		</div>
 	);

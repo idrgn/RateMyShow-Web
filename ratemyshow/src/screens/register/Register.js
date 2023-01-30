@@ -1,3 +1,4 @@
+import { Paper, TextField, Typography } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
@@ -14,7 +15,7 @@ const Register = () => {
 	const phoneRegex = /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/;
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	const usernameRegex = /^[a-zA-Z0-9]+$/;
-	const passwordRegex = /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/;
+	const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 	// Se almacena el estado del botón de login
 	const [buttonDisabled, setbuttonDisabled] = useState(false);
@@ -24,7 +25,7 @@ const Register = () => {
 
 	// Fecha actual
 	let curr = new Date();
-	curr.setDate(curr.getDate() + 3);
+	curr.setDate(curr.getDate());
 	let date = curr.toISOString().substring(0, 10);
 
 	// Se definen referencias para los elementos del form
@@ -112,7 +113,7 @@ const Register = () => {
 
 		axios
 			// Se envía la petición
-			.post("http://localhost:8000/users", formData)
+			.post("http://api.ratemyshow.lekiam.net/users", formData)
 			// Se almacenan el token de sesión generado
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
@@ -141,63 +142,58 @@ const Register = () => {
 	return (
 		<div className="register-container">
 			<div className="register-title">
-				<h1>Registro</h1>
+				<Typography variant="h3">Registro</Typography>
 			</div>
 			<div className="register-form-container">
-				<form onSubmit={handleRegister} className="register-form">
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Nombre</div>
-						<input name="name" type="text" ref={nameRef} maxLength={32}></input>
-					</div>
+				<Paper variant="outlined">
+					<form onSubmit={handleRegister} className="register-form">
+						<div className="register-input-container">
+							<TextField required id="name-input" label="Nombre" type="text " autoComplete="current-name" inputRef={nameRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Apellidos</div>
-						<input name="surname" type="text" ref={surnameRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="surname-input" label="Apellidos" type="text " autoComplete="current-surname" inputRef={surnameRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">E-Mail</div>
-						<input name="e-mail" type="text" ref={emailRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="email-input" label="E-Mail" type="text " autoComplete="current-email" inputRef={emailRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text">Teléfono (con prefijo)</div>
-						<input name="phone" type="text" ref={phoneRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField id="phone-input" label="Teléfono (con prefijo)" type="text " autoComplete="current-phone" inputRef={phoneRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Fecha de nacimiento</div>
-						<input name="birthDate" type="date" ref={birthDateRef} defaultValue={date}></input>
-					</div>
+						<Paper className="register-input-container-date" variant="outlined">
+							<div className="register-input-text register-required">Fecha de nacimiento</div>
+							<input name="birthDate" type="date" ref={birthDateRef} defaultValue={date}></input>
+						</Paper>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Nombre de usuario</div>
-						<input name="username" type="text" ref={usernameRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="username-input" label="Nombre de usuario" type="text " autoComplete="current-username" inputRef={usernameRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Contraseña</div>
-						<input name="password" type="password" ref={passwordRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Repetir contraseña</div>
-						<input name="password-repeat" type="password" ref={passwordRepeatRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="password-input" label="Repetir contraseña" type="password" autoComplete="current-password" inputRef={passwordRepeatRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
+						</div>
 
-					<div>{warning}</div>
+						<div>{warning}</div>
 
-					<div className="register-button-container">
-						<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
-							Registro
-						</AwesomeButton>
-					</div>
+						<div className="register-button-container">
+							<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
+								Registro
+							</AwesomeButton>
+						</div>
 
-					<div className="register-other">
-						<a href="/login">Iniciar sesión</a>
-						<div className="register-guide">*Requerido</div>
-					</div>
-				</form>
+						<div className="register-other">
+							<a href="/login">Iniciar sesión</a>
+							<div className="register-guide">*Requerido</div>
+						</div>
+					</form>
+				</Paper>
 			</div>
 		</div>
 	);
