@@ -1,3 +1,4 @@
+import { Paper, TextField } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import axios from "axios";
 import { useRef, useState } from "react";
@@ -144,60 +145,55 @@ const Register = () => {
 				<h1>Registro</h1>
 			</div>
 			<div className="register-form-container">
-				<form onSubmit={handleRegister} className="register-form">
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Nombre</div>
-						<input name="name" type="text" ref={nameRef} maxLength={32}></input>
-					</div>
+				<Paper variant="outlined">
+					<form onSubmit={handleRegister} className="register-form">
+						<div className="register-input-container">
+							<TextField required id="name-input" label="Nombre" type="text " autoComplete="current-name" inputRef={nameRef} className="register-text-field" />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Apellidos</div>
-						<input name="surname" type="text" ref={surnameRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="surname-input" label="Apellidos" type="text " autoComplete="current-surname" inputRef={surnameRef} className="register-text-field" />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">E-Mail</div>
-						<input name="e-mail" type="text" ref={emailRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="email-input" label="E-Mail" type="text " autoComplete="current-email" inputRef={emailRef} className="register-text-field" />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text">Teléfono (con prefijo)</div>
-						<input name="phone" type="text" ref={phoneRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField id="phone-input" label="Teléfono (con prefijo)" type="text " autoComplete="current-phone" inputRef={phoneRef} className="register-text-field" />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Fecha de nacimiento</div>
-						<input name="birthDate" type="date" ref={birthDateRef} defaultValue={date}></input>
-					</div>
+						<Paper className="register-input-container-date" variant="outlined">
+							<div className="register-input-text register-required">Fecha de nacimiento</div>
+							<input name="birthDate" type="date" ref={birthDateRef} defaultValue={date}></input>
+						</Paper>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Nombre de usuario</div>
-						<input name="username" type="text" ref={usernameRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="username-input" label="Nombre de usuario" type="text " autoComplete="current-username" inputRef={usernameRef} className="register-text-field" />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Contraseña</div>
-						<input name="password" type="password" ref={passwordRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="password-input" label="Contraseña" type="password" autoComplete="current-password" inputRef={passwordRef} className="login-text-field" />
+						</div>
 
-					<div className="register-input-container">
-						<div className="register-input-text register-required">Repetir contraseña</div>
-						<input name="password-repeat" type="password" ref={passwordRepeatRef} maxLength={32}></input>
-					</div>
+						<div className="register-input-container">
+							<TextField required id="password-input" label="Repetir contraseña" type="password" autoComplete="current-password" inputRef={passwordRepeatRef} className="login-text-field" />
+						</div>
 
-					<div>{warning}</div>
+						<div>{warning}</div>
 
-					<div className="register-button-container">
-						<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
-							Registro
-						</AwesomeButton>
-					</div>
+						<div className="register-button-container">
+							<AwesomeButton type="primary" className="register-button" disabled={buttonDisabled}>
+								Registro
+							</AwesomeButton>
+						</div>
 
-					<div className="register-other">
-						<a href="/login">Iniciar sesión</a>
-						<div className="register-guide">*Requerido</div>
-					</div>
-				</form>
+						<div className="register-other">
+							<a href="/login">Iniciar sesión</a>
+							<div className="register-guide">*Requerido</div>
+						</div>
+					</form>
+				</Paper>
 			</div>
 		</div>
 	);

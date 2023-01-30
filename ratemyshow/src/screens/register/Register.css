@@ -18,7 +18,6 @@
 .register-form {
 	padding: 20px;
 	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	border-radius: 25px;
 	width: 30vw;
 }
 
@@ -26,7 +25,10 @@
 	margin-top: 20px;
 }
 
-.register-input-container,
+.register-input-container {
+	margin-bottom: 20px;
+}
+
 .register-other {
 	padding: 20px;
 	display: flex;
@@ -34,25 +36,25 @@
 	align-items: center;
 }
 
-.register-input-container input {
-	padding: 5px;
-	margin-left: 10px;
-}
-
-.register-required::after {
-	content: "*";
-	color: red;
-}
-
-.register-input-text {
-	display: inline;
-}
-
 .register-button {
 	width: 100%;
 }
 
-.register-other .register-guide {
-	display: inline;
-	color: red;
+.register-text-field {
+	width: 100%;
+	margin-bottom: 10vh;
+}
+
+.register-other {
+	margin-top: 20px;
+	padding: 10px;
+	text-align: left;
+}
+
+.register-input-container-date {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
 }
