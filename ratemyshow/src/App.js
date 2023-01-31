@@ -11,6 +11,7 @@ import NotFound from "./screens/not_found/NotFound";
 import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
 import Search from "./screens/search/Search";
+import TitleDetail from "./screens/title_detail/TitleDetail";
 import UserProfile from "./screens/user_profile/UserProfile";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 					<Route path="register" element={<Register />}></Route>
 					<Route path="login" element={<Login />}></Route>
 					<Route path="" element={<ContainerMenu />}>
+						<Route path="titles/:id" element={<TitleDetail />}></Route>
 						<Route path="users/:username" element={<UserProfile />}></Route>
 						<Route path="users/:username/followers" element={<FollowerList following={false} />}></Route>
 						<Route path="users/:username/following" element={<FollowerList following={true} />}></Route>
