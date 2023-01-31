@@ -5,6 +5,8 @@ import TitleListItem from "../../components/title_list_item/TitleListItem";
 import "./UserProfile.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button, IconButton } from "@mui/material";
+import { PersonAdd } from "@mui/icons-material";
 
 const UserProfile = (props) => {
 	const { username } = useParams();
@@ -41,7 +43,10 @@ const UserProfile = (props) => {
 	return (
 		<div className="userprofile-container">
 			<div className="userprofile-profiledata">
-				<img src={image} alt="Foto de perfil" className="userprofile-image" />
+				<div className="userprofile-image">
+					<img src={image} alt="Foto de perfil" />
+				</div>
+
 				<div className="userprofile-data">
 					<div>
 						<span>Nombre de usuario: </span>
@@ -74,15 +79,18 @@ const UserProfile = (props) => {
 				</div>
 			</div>
 			<div className="userprofile-buttons">
-				<Link to={`/users/${username}/followers`}>
-					<button>Seguidores</button>
+				<Link to={`/users/${username}/followers`} style={{ textDecoration: "none" }}>
+					<Button variant="contained">Seguidores</Button>
 				</Link>
-				<Link to={`/users/${username}/following`}>
-					<button>Seguidos</button>
+				<Link to={`/users/${username}/following`} style={{ textDecoration: "none" }}>
+					<Button>Seguidos</Button>
 				</Link>
-				<Link to={`/users/${username}/ratings`}>
-					<button>Valoraciones</button>
+				<Link to={`/users/${username}/ratings`} style={{ textDecoration: "none" }}>
+					<Button>Valoraciones</Button>
 				</Link>
+				<IconButton>
+					<PersonAdd></PersonAdd>
+				</IconButton>
 			</div>
 			<div className="userprofile-fav-pending">
 				<div>
