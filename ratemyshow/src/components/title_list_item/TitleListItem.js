@@ -6,6 +6,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
+import { useState } from "react";
 
 /**
  * Representa un título de una lista de títulos
@@ -13,8 +15,32 @@ import Typography from "@mui/material/Typography";
  * @returns
  */
 const TitleListItem = (props) => {
-	const handleFavorite = () => {};
-	const handlePending = () => {};
+	const [isFavorite, setIsFavorite] = useState(props.title.isFavorite);
+	const [isPending, setIsPending] = useState(props.title.isPending);
+
+	const handleFavorite = () => {
+		if (isFavorite) {
+			axios.delete(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/favorite`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+				setIsFavorite(false);
+			});
+		} else {
+			axios.put(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/favorite`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+				setIsFavorite(true);
+			});
+		}
+	};
+
+	const handlePending = () => {
+		if (isPending) {
+			axios.delete(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/pending`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+				setIsPending(false);
+			});
+		} else {
+			axios.put(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/pending`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+				setIsPending(true);
+			});
+		}
+	};
 
 	return (
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
@@ -29,10 +55,10 @@ const TitleListItem = (props) => {
 			</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label="add to favorites" onClick={handleFavorite}>
-					<FavoriteIcon htmlColor={props.title.isFavorite ? "red" : "grey"} />
+					<FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} />
 				</IconButton>
 				<IconButton aria-label="add to pending" onClick={handlePending}>
-					<AddToQueueIcon htmlColor={props.title.isFavorite ? "blue" : "grey"} />
+					<AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} />
 				</IconButton>
 			</CardActions>
 		</Card>
