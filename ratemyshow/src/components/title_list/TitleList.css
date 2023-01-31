@@ -1,0 +1,9 @@
+.titlelist-grid-container {
+	width: 100%;
+	align-items: center;
+	padding-left: 1vh;
+}
+
+.titlelist-grid-item {
+	margin-bottom: 200px;
+}

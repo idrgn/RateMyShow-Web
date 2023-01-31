@@ -10,6 +10,7 @@ import ContainerMenu from "./screens/menu/ContainerMenu";
 import NotFound from "./screens/not_found/NotFound";
 import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
+import Search from "./screens/search/Search";
 import UserProfile from "./screens/user_profile/UserProfile";
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
 						<Route path="users/:username/following" element={<FollowerList following={true} />}></Route>
 						<Route path="latest" element={<Latest />}></Route>
 						<Route path="recommendations" element={<Recommendations />}></Route>
+						<Route path="search" element={<Search />}></Route>
 					</Route>
 				</Route>
 			</Route>
