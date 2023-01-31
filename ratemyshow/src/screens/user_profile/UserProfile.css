@@ -6,7 +6,7 @@
 
 .userprofile-profiledata {
 	display: grid;
-	grid-template-columns: 20% 45%;
+	grid-template-columns: 20% 60%;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
