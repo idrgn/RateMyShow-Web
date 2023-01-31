@@ -10,36 +10,36 @@ import "./Followers.css";
  * @returns
  */
 const FollowerList = (props) => {
-  const params = useParams();
+	const params = useParams();
 
-  const action = props.following ? "following" : "followers";
-  const title = props.following ? "Seguidos" : "Seguidores";
+	const action = props.following ? "following" : "followers";
+	const title = props.following ? "Seguidos" : "Seguidores";
 
-  // Creamos estado para almacenar la lista de usuarios
-  const [userList, setUserList] = useState([]);
+	// Creamos estado para almacenar la lista de usuarios
+	const [userList, setUserList] = useState({ followers: [] });
 
-  // Pedimos los datos a la API
-  useEffect(() => {
-    axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}`).then((response) => {
-      setUserList(response.data);
-    });
-  }, []);
+	// Pedimos los datos a la API
+	useEffect(() => {
+		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}`).then((response) => {
+			setUserList(response.data);
+		});
+	}, []);
 
-  // Función para convertir lista de usuarios a componente
-  const userListToComponent = (u) => {
-    return <UserListItem user={u} />;
-  };
+	// Función para convertir lista de usuarios a componente
+	const userListToComponent = (u) => {
+		return <UserListItem user={u} />;
+	};
 
-  return (
-    <div>
-      <div className="followers-text">
-        <h1>
-          {title} de {params.username}
-        </h1>
-      </div>
-      <div className="followers-container">{userList.map(userListToComponent)}</div>
-    </div>
-  );
+	return (
+		<div>
+			<div className="followers-text">
+				<h1>
+					{title} de {params.username}
+				</h1>
+			</div>
+			<div className="followers-container">{userList.followers.map(userListToComponent)}</div>
+		</div>
+	);
 };
 
 export default FollowerList;
