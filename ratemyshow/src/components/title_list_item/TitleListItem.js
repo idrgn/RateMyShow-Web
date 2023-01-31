@@ -10,27 +10,31 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 /**
  * Representa un título de una lista de títulos
  * @param {*} props
  * @returns
  */
 const TitleListItem = (props) => {
+	// Estado de los títulos
 	const [isFavorite, setIsFavorite] = useState(props.title.isFavorite);
 	const [isPending, setIsPending] = useState(props.title.isPending);
 
+	// Estado de la carga
 	const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
 	const [isPendingLoading, setIsPendingLoading] = useState(false);
 
 	const navigate = useNavigate();
 
+	// Redirección al hacer click
 	const hanldeRedirect = () => {
 		navigate(`/titles/${props.title.id}`);
 	};
 
+	// Añadir / eliminar favoritos
 	const handleFavorite = () => {
 		setIsFavoriteLoading(true);
-
 		if (isFavorite) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/favorite`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
@@ -48,9 +52,9 @@ const TitleListItem = (props) => {
 		}
 	};
 
+	// Añadir, eliminar pendientes
 	const handlePending = () => {
 		setIsPendingLoading(true);
-
 		if (isPending) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/pending`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
