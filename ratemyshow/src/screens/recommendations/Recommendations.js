@@ -14,7 +14,7 @@ const Recommendations = (props) => {
 
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`https://0ee0ee41-ff72-4ce8-a306-41b3a57f8eb0.mock.pstmn.io/recommendations`).then((response) => {
+		axios.get(`https://api.ratemyshow.lekiam.net/recommendations`).then((response) => {
 			setRecommendations(response.data);
 		});
 	}, []);

@@ -21,7 +21,7 @@ const UserProfile = (props) => {
 
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://localhost:8000/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setUserProfile(response.data);
 			console.log(JSON.stringify(response.data));
 			//localStorage.removeItem("sessionToken");
