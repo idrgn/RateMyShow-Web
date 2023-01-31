@@ -1,0 +1,17 @@
+.search-title {
+	text-align: center;
+	font-size: 75px;
+	padding: 50px;
+}
+
+.search-result {
+	width: 100%;
+	margin-bottom: 75px;
+}
+
+.search-pagination {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 25px;
+}
