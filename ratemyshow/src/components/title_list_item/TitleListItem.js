@@ -13,6 +13,9 @@ import Typography from "@mui/material/Typography";
  * @returns
  */
 const TitleListItem = (props) => {
+	const handleFavorite = () => {};
+	const handlePending = () => {};
+
 	return (
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
 			<CardMedia sx={{ height: 300, width: 200 }} image={props.title.cover} title="Title" />
@@ -25,10 +28,10 @@ const TitleListItem = (props) => {
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites">
+				<IconButton aria-label="add to favorites" onClick={handleFavorite}>
 					<FavoriteIcon />
 				</IconButton>
-				<IconButton aria-label="add to pending">
+				<IconButton aria-label="add to pending" onClick={handlePending}>
 					<AddToQueueIcon />
 				</IconButton>
 			</CardActions>
