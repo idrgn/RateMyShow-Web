@@ -9,7 +9,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 /**
  * Representa un título de una lista de títulos
  * @param {*} props
@@ -21,6 +21,12 @@ const TitleListItem = (props) => {
 
 	const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
 	const [isPendingLoading, setIsPendingLoading] = useState(false);
+
+	const navigate = useNavigate();
+
+	const hanldeRedirect = () => {
+		navigate(`/titles/${props.title.id}`);
+	};
 
 	const handleFavorite = () => {
 		setIsFavoriteLoading(true);
@@ -64,9 +70,9 @@ const TitleListItem = (props) => {
 
 	return (
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
-			<CardMedia sx={{ height: 300, width: 200 }} image={props.title.cover} title="Title" />
+			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover} title="Title" onClick={hanldeRedirect} />
 			<CardContent>
-				<Typography noWrap gutterBottom variant="h6">
+				<Typography noWrap gutterBottom variant="h6" sx={{ cursor: "pointer" }} onClick={hanldeRedirect}>
 					{props.title.primaryTitle}
 				</Typography>
 				<Typography noWrap gutterBottom variant="subtitle1">
