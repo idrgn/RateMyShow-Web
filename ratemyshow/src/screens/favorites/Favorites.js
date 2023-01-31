@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import TitleList from "../../components/title_list/TitleList";
 import TitleListItem from "../../components/title_list_item/TitleListItem";
 import "./Favorites.css";
 /**
@@ -28,9 +29,9 @@ const FavoritesList = (props) => {
 	return (
 		<div>
 			<div>
-				<h1>Tus favoritos</h1>
+				<h1 className="favorites-text">Tus favoritos</h1>
 			</div>
-			<div>{response.favorites.map(titleListToComponent)}</div>
+			<TitleList titles={response.favorites}></TitleList>
 		</div>
 	);
 };
