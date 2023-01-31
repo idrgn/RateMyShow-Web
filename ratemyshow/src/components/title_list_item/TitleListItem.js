@@ -84,10 +84,10 @@ const TitleListItem = (props) => {
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites" onClick={handleFavorite}>
+				<IconButton aria-label="add to favorites" onClick={handleFavorite} disabled={isFavorite === undefined}>
 					{isFavoriteLoading ? <CircularProgress size={20} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} />}
 				</IconButton>
-				<IconButton aria-label="add to pending" onClick={handlePending}>
+				<IconButton aria-label="add to pending" onClick={handlePending} disabled={isFavorite === undefined}>
 					{isPendingLoading ? <CircularProgress size={20} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} />}
 				</IconButton>
 			</CardActions>
