@@ -2,3 +2,9 @@
 	text-align: center;
 	padding: 2%;
 }
+.favorites-pagination {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 25px;
+}
