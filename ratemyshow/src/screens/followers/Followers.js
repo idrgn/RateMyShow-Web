@@ -17,7 +17,7 @@ const FollowerList = (props) => {
 	const title = props.following ? "Seguidos" : "Seguidores";
 
 	// Creamos estado para almacenar la lista de usuarios
-	const [response, setResponse] = useState({ followers: [] });
+	const [response, setResponse] = useState({ followers: [], following: [] });
 	const [page, setPage] = useState(0);
 	// Pedimos los datos a la API
 	useEffect(() => {
@@ -45,7 +45,7 @@ const FollowerList = (props) => {
 					{title} de {params.username}
 				</h1>
 			</div>
-			<div className="followers-container">{response.followers.map(userListToComponent)}</div>
+			<div className="followers-container">{props.following ? response.following.map(userListToComponent) : response.followers.map(userListToComponent)}</div>
 			<div className="followers-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>
