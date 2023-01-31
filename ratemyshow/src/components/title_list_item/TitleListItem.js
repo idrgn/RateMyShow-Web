@@ -29,10 +29,10 @@ const TitleListItem = (props) => {
 			</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label="add to favorites" onClick={handleFavorite}>
-					<FavoriteIcon />
+					<FavoriteIcon htmlColor={props.title.isFavorite ? "red" : "grey"} />
 				</IconButton>
 				<IconButton aria-label="add to pending" onClick={handlePending}>
-					<AddToQueueIcon />
+					<AddToQueueIcon htmlColor={props.title.isFavorite ? "blue" : "grey"} />
 				</IconButton>
 			</CardActions>
 		</Card>
