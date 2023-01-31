@@ -1,4 +1,4 @@
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import TitleListItem from "../title_list_item/TitleListItem";
 import "./TitleList.css";
 
