@@ -14,14 +14,15 @@ const FavoritesList = (props) => {
 	const [response, setResponse] = useState({ favorites: [] });
 
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users/favorites`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/favorites`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
+			console.log(JSON.stringify(response.data));
 		});
 	}, []);
 
 	// Función para convertir lista de titulos a componente
-	const titleListToComponent = (u) => {
-		return <TitleListItem user={u} />;
+	const titleListToComponent = (t) => {
+		return <TitleListItem title={t} />;
 	};
 
 	return (
