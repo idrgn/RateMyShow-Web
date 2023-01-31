@@ -28,7 +28,7 @@ const Search = () => {
 			setSearchResults(stored[page]);
 		} else {
 			// Si no, pedimos los datos a la API
-			axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`).then((response) => {
+			axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 				setSearchResults(response.data);
 				const newStored = stored;
 				newStored[page] = response.data;
