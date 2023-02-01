@@ -1,11 +1,12 @@
-import IconButton from "@mui/material/IconButton";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Divider } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import CircularProgress from "@mui/material/CircularProgress";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
@@ -76,9 +77,11 @@ const TitleListItem = (props) => {
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
 			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
 			<CardContent>
-				<Typography noWrap gutterBottom variant="h6" sx={{ cursor: "pointer" }} onClick={hanldeRedirect}>
+				<Typography align="center" gutterBottom variant="h6" sx={{ height: 66, cursor: "pointer", overflow: "scroll", msOverflowStyle: "none", scrollbarWidth: "none", WebkitLineClamp: 2, WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }} onClick={hanldeRedirect}>
 					{props.title.primaryTitle}
 				</Typography>
+
+				<Divider sx={{ marginBottom: 1 }}></Divider>
 				<Typography noWrap gutterBottom variant="subtitle1">
 					{props.title.startYear} {props.title.endYear ? "-" : ""} {props.title.endYear ? props.title.endYear : ""}
 				</Typography>
