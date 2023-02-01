@@ -1,3 +1,4 @@
+import { Star } from "@mui/icons-material";
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Divider } from "@mui/material";
@@ -94,6 +95,7 @@ const TitleListItem = (props) => {
 				<IconButton aria-label="add to pending" onClick={handlePending} disabled={isFavorite === undefined}>
 					{isPendingLoading ? <CircularProgress size={20} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} />}
 				</IconButton>
+				<Typography sx={{ marginLeft: "auto", marginRight: "0.5vw", color: "grey" }}>{props.title.rating ? props.title.rating.toFixed(1) : "No ratings"}</Typography>
 			</CardActions>
 		</Card>
 	);
