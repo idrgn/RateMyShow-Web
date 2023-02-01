@@ -74,7 +74,7 @@ const TitleListItem = (props) => {
 
 	return (
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
-			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover} title="Title" onClick={hanldeRedirect} />
+			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
 			<CardContent>
 				<Typography noWrap gutterBottom variant="h6" sx={{ cursor: "pointer" }} onClick={hanldeRedirect}>
 					{props.title.primaryTitle}
