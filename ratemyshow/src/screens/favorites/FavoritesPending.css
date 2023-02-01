@@ -1,9 +1,9 @@
-.favorites-text {
+.favoritesPending-text {
 	text-align: center;
 	padding: 2%;
 }
 
-.favorites-pagination {
+.favoritesPending-pagination {
 	display: flex;
 	flex-direction: column;
 	align-items: center;

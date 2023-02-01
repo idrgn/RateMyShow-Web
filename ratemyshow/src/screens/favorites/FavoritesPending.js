@@ -3,8 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import TitleList from "../../components/title_list/TitleList";
-import TitleListItem from "../../components/title_list_item/TitleListItem";
-import "./Favorites.css";
+import "./FavoritesPending.css";
+
 /**
  * Lista de favoritos
  * @param {*} props
@@ -34,16 +34,18 @@ const FavoritesList = (props) => {
 			setPage(value - 1);
 		}
 	};
+
 	return (
 		<div>
 			<div>
-				<h1 className="favorites-text">Tus {title}</h1>
+				<h1 className="favoritesPending-text">Tus {title}</h1>
 			</div>
 			<div>{props.favorites ? <TitleList titles={response.favorites}></TitleList> : <TitleList titles={response.pending}></TitleList>}</div>
-			<div className="favorites-pagination" color="primary" size="large">
+			<div className="favoritesPending-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>
 		</div>
 	);
 };
+
 export default FavoritesList;

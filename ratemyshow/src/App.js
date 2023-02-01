@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import FavoritesList from "./screens/favorites/Favorites";
+import FavoritesList from "./screens/favorites/FavoritesPending";
 import FollowerList from "./screens/followers/Followers";
 import ContainerFooter from "./screens/footer/ContainerFooter";
 import ContainerHeader from "./screens/header/ContainerHeader";
