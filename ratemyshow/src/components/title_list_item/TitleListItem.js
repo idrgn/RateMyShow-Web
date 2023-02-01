@@ -103,10 +103,10 @@ const TitleListItem = (props) => {
 				</Box>
 			</CardContent>
 			<CardActions disableSpacing>
-				<IconButton aria-label="add to favorites" onClick={handleFavorite} disabled={isFavorite === undefined}>
+				<IconButton aria-label="add to favorites" onClick={handleFavorite} disabled={isFavorite === null}>
 					{isFavoriteLoading ? <CircularProgress size={20} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} />}
 				</IconButton>
-				<IconButton aria-label="add to pending" onClick={handlePending} disabled={isFavorite === undefined}>
+				<IconButton aria-label="add to pending" onClick={handlePending} disabled={isFavorite === null}>
 					{isPendingLoading ? <CircularProgress size={20} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} />}
 				</IconButton>
 				<Typography sx={{ marginLeft: "auto", marginRight: "0.5vw", color: "grey" }}>{props.title.rating ? props.title.rating.toFixed(1) + " / 5.0" : "No ratings"}</Typography>
