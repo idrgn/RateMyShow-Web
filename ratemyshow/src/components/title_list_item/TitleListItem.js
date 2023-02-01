@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./TitleListItem.css";
 
 /**
  * Representa un título de una lista de títulos
@@ -77,11 +78,11 @@ const TitleListItem = (props) => {
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
 			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
 			<CardContent>
-				<Typography align="center" gutterBottom variant="h6" sx={{ height: 66, overflow: "scroll", msOverflowStyle: "none", scrollbarWidth: "none", WebkitLineClamp: 2, WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
+				<Typography className="titlelistitem-title" align="center" gutterBottom variant="h6" sx={{ height: 66, overflow: "scroll", msOverflowStyle: "none", scrollbarWidth: "none", WebkitLineClamp: 2, WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
 					{props.title.primaryTitle}
 				</Typography>
 
-				<Divider sx={{ marginBottom: 1 }}></Divider>
+				<Divider sx={{ marginTop: 2, marginBottom: 1 }}></Divider>
 				<Typography noWrap gutterBottom variant="subtitle1">
 					{props.title.startYear} {props.title.endYear ? "-" : ""} {props.title.endYear ? props.title.endYear : ""}
 				</Typography>
