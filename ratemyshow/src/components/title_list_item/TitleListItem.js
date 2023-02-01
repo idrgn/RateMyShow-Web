@@ -81,7 +81,7 @@ const TitleListItem = (props) => {
 
 	return (
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined" className="titlelistitem-card">
-			<CardMedia className="titlelistitem-card-media" sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
+			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
 			<Divider></Divider>
 
 			<CardContent sx={{ pb: 0, pl: 0, pr: 0 }}>
