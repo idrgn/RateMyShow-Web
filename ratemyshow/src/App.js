@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import FavoritesList from "./screens/favorites/Favorites";
+import FavoritesList from "./screens/favorites/FavoritesPending";
 import FollowerList from "./screens/followers/Followers";
 import ContainerFooter from "./screens/footer/ContainerFooter";
 import ContainerHeader from "./screens/header/ContainerHeader";
@@ -26,7 +26,8 @@ function App() {
 						<Route path="users/:username" element={<UserProfile />}></Route>
 						<Route path="users/:username/followers" element={<FollowerList following={false} />}></Route>
 						<Route path="users/:username/following" element={<FollowerList following={true} />}></Route>
-						<Route path="favorites" element={<FavoritesList />}></Route>
+						<Route path="favorites" element={<FavoritesList favorites={true} />}></Route>
+						<Route path="pending" element={<FavoritesList favorites={false} />}></Route>
 						<Route path="latest" element={<Latest />}></Route>
 						<Route path="recommendations" element={<Recommendations />}></Route>
 						<Route path="search" element={<Search />}></Route>
