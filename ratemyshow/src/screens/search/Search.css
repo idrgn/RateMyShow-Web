@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+
 .search-title {
+	font-family: "Work Sans", sans-serif;
 	text-align: center;
 	font-size: 3vw;
 	padding: 3%;
