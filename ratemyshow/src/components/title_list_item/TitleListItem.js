@@ -77,7 +77,7 @@ const TitleListItem = (props) => {
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined">
 			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
 			<CardContent>
-				<Typography align="center" gutterBottom variant="h6" sx={{ height: 66, cursor: "pointer", overflow: "scroll", msOverflowStyle: "none", scrollbarWidth: "none", WebkitLineClamp: 2, WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }} onClick={hanldeRedirect}>
+				<Typography align="center" gutterBottom variant="h6" sx={{ height: 66, overflow: "scroll", msOverflowStyle: "none", scrollbarWidth: "none", WebkitLineClamp: 2, WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
 					{props.title.primaryTitle}
 				</Typography>
 
