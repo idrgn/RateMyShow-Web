@@ -12,12 +12,16 @@ import "./Favorites.css";
  */
 const FavoritesList = (props) => {
 	const params = useParams();
+
+	const action = props.favorites ? "favorites" : "pending";
+	const title = props.favorites ? "Favoritos" : "Pendientes";
+
 	// Creamos estado para almacenar la lista de titulos
-	const [response, setResponse] = useState({ favorites: [] });
+	const [response, setResponse] = useState({ favorites: [], pending: [] });
 	const [page, setPage] = useState(0);
 
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/favorites?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/${action}?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 			console.log(JSON.stringify(response.data));
 		});
@@ -33,11 +37,9 @@ const FavoritesList = (props) => {
 	return (
 		<div>
 			<div>
-				<h1 className="favorites-text">Tus favoritos</h1>
+				<h1 className="favorites-text">Tus {title}</h1>
 			</div>
-			<div>
-				<TitleList titles={response.favorites}></TitleList>
-			</div>
+			<div>{props.favorites ? <TitleList titles={response.favorites}></TitleList> : <TitleList titles={response.pending}></TitleList>}</div>
 			<div className="favorites-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>
