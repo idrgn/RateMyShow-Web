@@ -80,7 +80,7 @@ const TitleListItem = (props) => {
 					{props.title.primaryTitle}
 				</Typography>
 				<Typography noWrap gutterBottom variant="subtitle1">
-					{props.title.startYear}
+					{props.title.startYear} {props.title.endYear ? "-" : ""} {props.title.endYear ? props.title.endYear : ""}
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
