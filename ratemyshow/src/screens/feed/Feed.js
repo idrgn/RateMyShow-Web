@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 /**
- * Lista de favoritos
+ * Lista de feed
  * @param {*} props
  * @returns
  */
@@ -29,7 +29,7 @@ const FeedList = (props) => {
 		}
 	};
 
-	// Función para convertir lista de usuarios a componente
+	// Función para convertir lista de feed a componente
 	const feedItemComponent = (i) => {
 		return <div></div>;
 	};
