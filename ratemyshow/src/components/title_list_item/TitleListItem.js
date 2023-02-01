@@ -1,6 +1,6 @@
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { Divider, Tooltip } from "@mui/material";
+import { CardActionArea, Divider, Tooltip } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -32,7 +32,9 @@ const TitleListItem = (props) => {
 
 	// Redirección al hacer click
 	const hanldeRedirect = () => {
-		navigate(`/titles/${props.title.id}`);
+		setTimeout(() => {
+			navigate(`/titles/${props.title.id}`);
+		}, 200);
 	};
 
 	// Añadir / eliminar favoritos
@@ -81,7 +83,9 @@ const TitleListItem = (props) => {
 
 	return (
 		<Card sx={{ maxWidth: 200, maxHeight: 600 }} variant="outlined" className="titlelistitem-card">
-			<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
+			<CardActionArea>
+				<CardMedia sx={{ height: 300, width: 200, cursor: "pointer" }} image={props.title.cover ? props.title.cover : "http://api.ratemyshow.lekiam.net/img/cover"} title="Title" onClick={hanldeRedirect} />
+			</CardActionArea>
 			<Divider></Divider>
 
 			<CardContent sx={{ pb: 0, pl: 0, pr: 0 }}>

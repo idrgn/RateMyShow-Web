@@ -4,8 +4,8 @@
 	font-family: "Roboto Condensed", sans-serif;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	padding-left: 2%;
-	padding-right: 2%;
+	padding-left: 6%;
+	padding-right: 6%;
 }
 
 .titlelistitem-title::-webkit-scrollbar {
