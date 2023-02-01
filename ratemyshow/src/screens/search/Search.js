@@ -21,6 +21,7 @@ const Search = () => {
 		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setSearchResults(response.data);
 			setPage(response.data.current);
+			setIsLoading(false);
 		});
 	}, [page, search]);
 
