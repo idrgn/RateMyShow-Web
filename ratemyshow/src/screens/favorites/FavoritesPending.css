@@ -1,11 +1,23 @@
-.favoritesPending-text {
+.favoritespending-text {
 	text-align: center;
 	padding: 2%;
 }
 
-.favoritesPending-pagination {
+.favoritespending-pagination {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding-top: 4%;
+}
+.favoritespending-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.favoritespending-titlelist {
+	width: 80%;
+}
+.favoritespending-containertext {
+	width: 100%;
 }

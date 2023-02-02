@@ -6,7 +6,7 @@ import TitleList from "../../components/title_list/TitleList";
 import "./FavoritesPending.css";
 
 /**
- * Lista de favoritos
+ * Lista de favoritos y pending
  * @param {*} props
  * @returns
  */
@@ -36,12 +36,12 @@ const FavoritesList = (props) => {
 	};
 
 	return (
-		<div>
-			<div>
-				<h1 className="favoritesPending-text">Tus {title}</h1>
+		<div className="favoritespending-container">
+			<div className="favoritespending-containertext">
+				<h1 className="favoritespending-text">Tus {title}</h1>
 			</div>
-			<div>{props.favorites ? <TitleList titles={response.favorites}></TitleList> : <TitleList titles={response.pending}></TitleList>}</div>
-			<div className="favoritesPending-pagination" color="primary" size="large">
+			<div className="favoritespending-titlelist">{props.favorites ? <TitleList titles={response.favorites}></TitleList> : <TitleList titles={response.pending}></TitleList>}</div>
+			<div className="favoritespending-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>
 		</div>
