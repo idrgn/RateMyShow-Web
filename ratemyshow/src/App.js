@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import BestRated from "./screens/best_rated/BestRated";
 import FavoritesList from "./screens/favorites/FavoritesPending";
 import FeedList from "./screens/feed/Feed";
 import FollowerList from "./screens/followers/Followers";
@@ -33,6 +34,7 @@ function App() {
 						<Route path="latest" element={<Latest />}></Route>
 						<Route path="recommendations" element={<Recommendations />}></Route>
 						<Route path="search" element={<Search />}></Route>
+						<Route path="best" element={<BestRated />}></Route>
 					</Route>
 				</Route>
 			</Route>
