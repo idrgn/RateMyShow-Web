@@ -1,46 +1,45 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-import logo from "../../images/menu/logo.png";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { alpha, styled } from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
-const pages = [
-	{ name: "Feed", url: "/feed" },
-	{ name: "Mejor Calificadas", url: "/best" },
-	{ name: "Sugerencias", url: "/recommendations" },
-	{ name: "Novedades", url: "latest" },
-	{ name: "Usuarios", url: "/users" },
-];
-
-const settings = [
-	{ name: "Perfil", url: `/users/${localStorage.getItem("username")}` },
-	{ name: "Favoritos", url: "/favorites" },
-	{ name: "Pendientes", url: "/pending" },
-	{ name: "Cerrar sesión", url: "/logout" },
-];
-
-const notLoggedSettings = [
-	{ name: "Iniciar Sesión", url: "/login" },
-	{ name: "Crear cuenta", url: "/register" },
-];
-
-const currentSettings = localStorage.getItem("sessionToken") ? settings : notLoggedSettings;
+import logo from "../../images/menu/logo.png";
 
 function ResponsiveAppBar() {
+	const pages = [
+		{ name: "Feed", url: "/feed" },
+		{ name: "Mejor Calificadas", url: "/best" },
+		{ name: "Sugerencias", url: "/recommendations" },
+		{ name: "Novedades", url: "latest" },
+		{ name: "Usuarios", url: "/users" },
+	];
+
+	const settings = [
+		{ name: "Perfil", url: `/users/${localStorage.getItem("username")}` },
+		{ name: "Favoritos", url: "/favorites" },
+		{ name: "Pendientes", url: "/pending" },
+		{ name: "Cerrar sesión", url: "/logout" },
+	];
+
+	const notLoggedSettings = [
+		{ name: "Iniciar Sesión", url: "/login" },
+		{ name: "Crear cuenta", url: "/register" },
+	];
+
+	const currentSettings = localStorage.getItem("sessionToken") ? settings : notLoggedSettings;
+
 	const searchRef = React.useRef(null);
 	const navigate = useNavigate();
 	const onClickSearch = () => {
