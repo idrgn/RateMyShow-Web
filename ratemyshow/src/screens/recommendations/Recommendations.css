@@ -1,9 +1,13 @@
-.recommendations {
-	width: 100%;
-}
-
 .recommendations-text {
 	text-align: center;
-	padding: 2%;
 	font-size: 2em;
+}
+.recommendations-genre {
+	text-align: center;
+	font-size: 2em;
+	background-color: rgb(185, 190, 200);
+	text-transform: uppercase;
+	padding: 1%;
+	margin-top: 6%;
+	margin-bottom: 2%;
 }
