@@ -1,7 +1,8 @@
+import { Pagination, Rating } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import "./Feed.css";
 /**
  * Lista de feed
  * @param {*} props
@@ -31,16 +32,31 @@ const FeedList = (props) => {
 
 	// Función para convertir lista de feed a componente
 	const feedItemComponent = (i) => {
-		return <div></div>;
+		return (
+			<div className="feed-container">
+				<div className="feed-img">
+					<img src={`http://api.ratemyshow.lekiam.net/pfp/${i.user.avatarId}`} alt="foto de perfil"></img>
+				</div>
+
+				<div className="feed-container-text">
+					<div className="feed-nameuser">{i.user.username}</div>
+					<div className="feed-title">{i.primaryTitle}</div>
+					<div className="feed-rating">
+						<Rating name="half-rating" readOnly defaultValue={i.rating} precision={0.5} size="large" />
+					</div>
+					<div>{i.addeddate}</div>
+				</div>
+			</div>
+		);
 	};
 
 	return (
-		<div>
+		<div className="feed-main-container">
 			<div>
-				<h1>Feed</h1>
+				<h1 className="feed-text">Feed</h1>
 			</div>
 			<div> {response.feed.map(feedItemComponent)}</div>
-			<div color="primary" size="large">
+			<div className="feed-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>
 		</div>
