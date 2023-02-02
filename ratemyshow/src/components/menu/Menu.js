@@ -16,11 +16,41 @@ import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import logo from "../../images/menu/logo.png";
+import { NavLink, useNavigate } from "react-router-dom";
 
-const pages = ["Feed", "Mejor Calificadas", "Sugerencias", "Novedades", "Usuarios"];
-const settings = ["Perfil", "Favoritos", "Pendientes", "Cerrar sesión"];
+const pages = [
+	{ name: "Feed", url: "/feed" },
+	{ name: "Mejor Calificadas", url: "/best" },
+	{ name: "Sugerencias", url: "/recommendations" },
+	{ name: "Novedades", url: "latest" },
+	{ name: "Usuarios", url: "/users" },
+];
+const settings = [
+	{ name: "Perfil", url: "/users/:username" },
+	{ name: "Favoritos", url: "/favorites" },
+	{ name: "Pendientes", url: "/pending" },
+	{ name: "Cerrar sesión", url: "/logout" },
+];
+
+const notLoggedSettings = [
+	{ name: "Iniciar Sesión", url: "/login" },
+	{ name: "Crear cuenta", url: "/register" },
+];
+
+const currentSettings = localStorage.getItem("sessionToken") ? settings : notLoggedSettings;
 
 function ResponsiveAppBar() {
+	const searchRef = React.useRef(null);
+	const navigate = useNavigate();
+	const onClickSearch = () => {
+		navigate(`/search?query=${searchRef.current.value}`);
+	};
+	const handleKeyDown = (e) => {
+		if (e.keyCode === 13) {
+			onClickSearch();
+		}
+	};
+
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -135,9 +165,11 @@ function ResponsiveAppBar() {
 								}}
 							>
 								{pages.map((page) => (
-									<MenuItem key={page} onClick={handleCloseNavMenu}>
-										<Typography textAlign="center">{page}</Typography>
-									</MenuItem>
+									<NavLink to={page.url}>
+										<MenuItem key={page.name} onClick={handleCloseNavMenu}>
+											<Typography textAlign="center">{page.name}</Typography>
+										</MenuItem>
+									</NavLink>
 								))}
 							</Menu>
 						</Box>
@@ -160,16 +192,18 @@ function ResponsiveAppBar() {
 						></Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 							{pages.map((page) => (
-								<Button key={page} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
-									{page}
-								</Button>
+								<NavLink to={page.url}>
+									<Button key={page.name} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
+										{page.name}
+									</Button>
+								</NavLink>
 							))}
 						</Box>
 						<Search sx={{ marginRight: "50px" }}>
 							<SearchIconWrapper>
 								<SearchIcon />
 							</SearchIconWrapper>
-							<StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
+							<StyledInputBase inputRef={searchRef} onKeyDown={handleKeyDown} placeholder="Search…" inputProps={{ "aria-label": "search" }} />
 						</Search>
 
 						<Box sx={{ flexGrow: 0 }}>
@@ -194,10 +228,12 @@ function ResponsiveAppBar() {
 								open={Boolean(anchorElUser)}
 								onClose={handleCloseUserMenu}
 							>
-								{settings.map((setting) => (
-									<MenuItem key={setting} onClick={handleCloseUserMenu}>
-										<Typography textAlign="center">{setting}</Typography>
-									</MenuItem>
+								{currentSettings.map((setting) => (
+									<NavLink to={setting.url}>
+										<MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+											<Typography textAlign="center">{setting.name}</Typography>
+										</MenuItem>
+									</NavLink>
 								))}
 							</Menu>
 						</Box>
