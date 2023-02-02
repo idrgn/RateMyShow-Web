@@ -3,15 +3,16 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
 import { AppBar, Box, IconButton, Paper, Rating, TextField, Typography, Button } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./TitleDetail.css";
 
 const TitleDetail = (props) => {
 	const params = useParams();
-
-	const [titleData, setTitleData] = useState({ crew: [] });
+	const commentRef = useRef(null);
+	const [titleData, setTitleData] = useState({ crew: [], lastComments: [] });
 	const [isLoading, setIsLoading] = useState(true);
+	const [rating, setRating] = useState(-1);
 	const languageMapping = {
 		en: "Inglés",
 		fr: "Francés",
@@ -39,6 +40,38 @@ const TitleDetail = (props) => {
 		.filter((participant) => participant.job === "director")
 		.map((participant) => participant.name)
 		.join(", ");
+
+	const commentToComponent = (c) => {
+		return (
+			<div className="titledetail-comments-users">
+				<div>
+					<span>Usuario: </span>
+					{c.username}
+				</div>
+				<div>
+					<span>Comentario: </span>
+					{c.comment}
+				</div>
+
+				<div>
+					<Rating defaultValue={c.rating} precision={0.5} readOnly size="medium" />
+				</div>
+			</div>
+		);
+	};
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		const comment = commentRef.current.value;
+		axios
+			.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/rating`, { rating: rating, comment: comment }, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+			.then((response) => {
+				alert(JSON.stringify(response));
+			})
+			.catch((error) => {
+				alert(JSON.stringify(error));
+			});
+	};
 
 	// Pedimos los datos a la API
 	useEffect(() => {
@@ -176,17 +209,24 @@ const TitleDetail = (props) => {
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
 					<Typography variant="h4">Tu valoración y comentario:</Typography>
 					<div className="titledetail-rate">
-						<TextField multiline placeholder="Escribe tu comentario..." sx={{ width: "800px", padding: "3%" }}></TextField>
-						<Rating name="half-rating" defaultValue={2.5} precision={0.5} size="large" />
-						<Button>Enviar</Button>
+						<TextField inputRef={commentRef} multiline placeholder="Escribe tu comentario..." sx={{ width: "800px", padding: "3%" }}></TextField>
+						<Rating
+							name="half-rating"
+							value={rating}
+							precision={0.5}
+							size="large"
+							onChange={(_, value) => {
+								setRating(value);
+							}}
+						/>
+						<Button onClick={onSubmit}>Enviar</Button>
 					</div>
 				</Paper>
 			</div>
 			<div className="titledetail-comments">
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
 					<Typography variant="h4">Otros comentarios</Typography>
-					<Typography>Comentario 1</Typography>
-					<Typography>Comentario 2</Typography>
+					<Typography>{titleData.lastComments.map(commentToComponent)}</Typography>
 				</Paper>
 			</div>
 		</div>

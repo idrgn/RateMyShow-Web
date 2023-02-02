@@ -85,3 +85,14 @@
 .titledetail-titulo {
 	padding: 2%;
 }
+
+.titledetail-comments-users {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 2%;
+}
+
+.titledetail-comments-users span {
+	font-weight: bold;
+}
