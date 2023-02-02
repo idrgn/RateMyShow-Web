@@ -14,7 +14,7 @@ const BestRated = () => {
 	// Obtención de datos
 	useEffect(() => {
 		axios
-			.get(`http://api.ratemyshow.lekiam.net/best`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+			.get(`http://api.ratemyshow.lekiam.net/best?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 			.then((response) => {
 				setBestRated(response.data);
 			})
