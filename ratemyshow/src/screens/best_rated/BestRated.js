@@ -19,7 +19,7 @@ const BestRated = () => {
 				setBestRated(response.data);
 			})
 			.finally(setIsLoading(false));
-	}, []);
+	}, [page]);
 
 	const onPageChange = (event, value) => {
 		if (page !== value - 1) {
