@@ -26,6 +26,12 @@ function ResponsiveAppBar() {
 		{ name: "Usuarios", url: "/users" },
 	];
 
+	const notLoggedPages = [
+		{ name: "Mejor Calificadas", url: "/best" },
+		{ name: "Novedades", url: "latest" },
+		{ name: "Usuarios", url: "/users" },
+	];
+
 	const settings = [
 		{ name: "Perfil", url: `/users/${localStorage.getItem("username")}` },
 		{ name: "Favoritos", url: "/favorites" },
@@ -39,6 +45,7 @@ function ResponsiveAppBar() {
 	];
 
 	const currentSettings = localStorage.getItem("sessionToken") ? settings : notLoggedSettings;
+	const currentPages = localStorage.getItem("sessionToken") ? pages : notLoggedPages;
 
 	const searchRef = React.useRef(null);
 	const navigate = useNavigate();
@@ -164,7 +171,7 @@ function ResponsiveAppBar() {
 									display: { xs: "block", md: "none" },
 								}}
 							>
-								{pages.map((page) => (
+								{currentPages.map((page) => (
 									<NavLink to={page.url}>
 										<MenuItem key={page.name} onClick={handleCloseNavMenu}>
 											<Typography textAlign="center">{page.name}</Typography>
@@ -191,7 +198,7 @@ function ResponsiveAppBar() {
 							}}
 						></Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-							{pages.map((page) => (
+							{currentPages.map((page) => (
 								<NavLink to={page.url}>
 									<Button key={page.name} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
 										{page.name}
