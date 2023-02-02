@@ -1,4 +1,4 @@
-import { Pagination, Typography } from "@mui/material";
+import { Pagination } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../../components/loading/Loading";
@@ -29,9 +29,7 @@ const BestRated = () => {
 
 	return (
 		<div className="bestrated-container">
-			<div className="bestrated-title">
-				<Typography variant="h2"> Títulos Mejor Valorados</Typography>
-			</div>
+			<div className="bestrated-title">Títulos Mejor Valorados</div>
 			<div className="bestrated-result">{isLoading ? <Loading></Loading> : <TitleList titles={bestRated.result}></TitleList>}</div>
 			<div className="bestrated-pagination" color="primary" size="large">
 				<Pagination count={bestRated.pages} onChange={onPageChange} />
