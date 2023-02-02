@@ -15,6 +15,7 @@ import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
 import Search from "./screens/search/Search";
 import UserProfile from "./screens/user_profile/UserProfile";
+import TitleDetail from "./screens/title_detail/TitleDetail";
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 						<Route path="latest" element={<Latest />}></Route>
 						<Route path="recommendations" element={<Recommendations />}></Route>
 						<Route path="search" element={<Search />}></Route>
+						<Route path="titles/:id" element={<TitleDetail />}></Route>
 						<Route path="best" element={<BestRated />}></Route>
 					</Route>
 				</Route>

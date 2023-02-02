@@ -1,0 +1,144 @@
+.titledetail-container {
+	width: 100%;
+	align-items: center;
+	text-align: center;
+	margin: 20px;
+}
+
+.titledetail-paper {
+	display: inline-block;
+	text-align: left;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.titledetail-rating-buttons {
+	margin-top: 40px;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.titledetail-info {
+	margin-left: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.titledetail-data-cover {
+	display: flex;
+	justify-content: center;
+}
+
+.titledetail-description {
+	margin-top: 40px;
+	width: 100%;
+}
+
+.titledetail-description-text {
+	width: 65%;
+	padding: 20px;
+}
+
+.titledetail-post-comment {
+	margin-top: 40px;
+	width: 100%;
+	text-align: center;
+}
+
+.titledetail-buttons {
+	padding: 30px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 65%;
+}
+
+.titledetail-comments {
+	margin-top: 40px;
+}
+
+.titledetail-text {
+	padding: 4%;
+	height: 100%;
+}
+
+.titledetail-text span {
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 50px;
+}
+
+.titledetail-rate {
+	padding: 3%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.titledetail-rate button {
+	border: 1px solid rgb(61, 126, 192);
+	float: right;
+}
+
+.titledetail-titulo {
+	padding: 2%;
+}
+
+.titledetail-comment {
+	text-align: justify;
+	background-color: #ebf0f6;
+	border: 1px solid #e3e6ef;
+	min-width: 50%;
+	border-radius: 10px;
+	min-height: 80px;
+}
+
+.titledetail-comments-users {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding: 2%;
+	font-size: 12px;
+	align-items: center;
+	background-color: #f8f9fa;
+	border: 1px solid #e3e6ef;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titledetail-comments-users div {
+	padding: 2%;
+}
+
+.titledetail-comments-users img {
+	width: 80px;
+	height: 80px;
+	padding: 20%;
+}
+.titledetail-avatar-users {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.titledetail-avatar-users span,
+.titledetail-comment span {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.titledetail-rating-number {
+	display: flex;
+	flex-direction: column;
+}
+.titledetail-rating-number div {
+	font-size: 60px;
+	text-align: center;
+	background-color: #ebf0f6;
+	border: 1px solid #e3e6ef;
+	border-radius: 10%;
+}
+
+.titledetail-rating {
+	padding-bottom: 20px;
+}
