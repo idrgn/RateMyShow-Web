@@ -75,6 +75,7 @@ const Login = () => {
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
 				setWarning(<Alert severity="success">Sesión iniciada. Redirigiendo...</Alert>);
+				afterLogin();
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
@@ -94,6 +95,16 @@ const Login = () => {
 				// Se activa el botón
 				setbuttonDisabled(false);
 			});
+	};
+
+	// Obtención de datos de usuario despues de iniciar sesion
+	const afterLogin = () => {
+		axios.get("http://api.ratemyshow.lekiam.net/sessions", { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+			localStorage.setItem("username", response.data.username);
+			localStorage.setItem("name", response.data.name);
+			localStorage.setItem("surname", response.data.surname);
+			localStorage.setItem("avatarId", response.data.avatarId);
+		});
 	};
 
 	return (
