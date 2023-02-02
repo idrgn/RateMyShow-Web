@@ -1,0 +1,14 @@
+.bestrated-container {
+	width: 100%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+.bestrated-title {
+	text-align: center;
+	padding-bottom: 5%;
+}
+
+.bestrated-result {
+	align-items: center;
+}
