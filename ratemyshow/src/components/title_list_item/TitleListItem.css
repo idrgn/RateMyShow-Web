@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed");
+
+.titlelistitem-title {
+	font-family: "Roboto Condensed", sans-serif;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+.titlelistitem-title::-webkit-scrollbar {
+	display: none;
+}
+
+.titlelistitem-card {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
