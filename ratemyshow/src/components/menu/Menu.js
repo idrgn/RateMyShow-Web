@@ -25,8 +25,9 @@ const pages = [
 	{ name: "Novedades", url: "latest" },
 	{ name: "Usuarios", url: "/users" },
 ];
+
 const settings = [
-	{ name: "Perfil", url: "/users/:username" },
+	{ name: "Perfil", url: `/users/${localStorage.getItem("username")}` },
 	{ name: "Favoritos", url: "/favorites" },
 	{ name: "Pendientes", url: "/pending" },
 	{ name: "Cerrar sesión", url: "/logout" },
