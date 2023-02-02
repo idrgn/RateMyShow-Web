@@ -8,14 +8,15 @@ import ContainerFooter from "./screens/footer/ContainerFooter";
 import ContainerHeader from "./screens/header/ContainerHeader";
 import Latest from "./screens/latest/Latest";
 import Login from "./screens/login/Login";
+import Logout from "./screens/logout/Logout";
 import MainPage from "./screens/main_page/MainPage";
 import ContainerMenu from "./screens/menu/ContainerMenu";
 import NotFound from "./screens/not_found/NotFound";
 import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
 import Search from "./screens/search/Search";
-import UserProfile from "./screens/user_profile/UserProfile";
 import TitleDetail from "./screens/title_detail/TitleDetail";
+import UserProfile from "./screens/user_profile/UserProfile";
 
 function App() {
 	return (
@@ -37,6 +38,7 @@ function App() {
 						<Route path="search" element={<Search />}></Route>
 						<Route path="titles/:id" element={<TitleDetail />}></Route>
 						<Route path="best" element={<BestRated />}></Route>
+						<Route path="logout" element={<Logout />}></Route>
 					</Route>
 				</Route>
 			</Route>
