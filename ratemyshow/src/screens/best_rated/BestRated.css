@@ -12,3 +12,9 @@
 .bestrated-result {
 	align-items: center;
 }
+
+.bestrated-pagination {
+	padding-top: 4%;
+	display: flex;
+	justify-content: space-around;
+}
