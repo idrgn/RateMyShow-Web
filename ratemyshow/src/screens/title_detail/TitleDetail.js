@@ -44,17 +44,17 @@ const TitleDetail = (props) => {
 	const commentToComponent = (c) => {
 		return (
 			<div className="titledetail-comments-users">
-				<div>
-					<span>Usuario: </span>
-					{c.username}
+				<div className="titledetail-avatar-users">
+					<span>{c.username}</span>
+					<img src={`http://api.ratemyshow.lekiam.net/pfp/${c.avatarId}`} alt="foto de perfil"></img>
+					<div>{new Date(Date.parse(c.addedDate)).toLocaleDateString("es-ES")}</div>
 				</div>
-				<div>
-					<span>Comentario: </span>
-					{c.comment}
-				</div>
+				<div className="titledetail-comment">{c.comment}</div>
 
-				<div>
-					<Rating defaultValue={c.rating} precision={0.5} readOnly size="medium" />
+				<div className="titledetail-rating-number">
+					<Rating defaultValue={c.rating} precision={0.5} readOnly size="medium" className="titledetail-rating" />
+					<div>{c.rating.toFixed(1)}</div>
+					<p></p>
 				</div>
 			</div>
 		);
