@@ -1,7 +1,7 @@
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
-import { AppBar, Box, IconButton, Paper, Rating, TextField, Typography, Button } from "@mui/material";
+import { AppBar, Box, IconButton, Paper, Rating, TextField, Typography, Button, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -13,6 +13,15 @@ const TitleDetail = (props) => {
 	const [titleData, setTitleData] = useState({ crew: [], lastComments: [] });
 	const [isLoading, setIsLoading] = useState(true);
 	const [rating, setRating] = useState(-1);
+
+	// Estado de los títulos
+	const [isFavorite, setIsFavorite] = useState(false);
+	const [isPending, setIsPending] = useState(false);
+	const [isRated, setIsRated] = useState(false);
+
+	// Estado de la carga
+	const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
+	const [isPendingLoading, setIsPendingLoading] = useState(false);
 	const languageMapping = {
 		en: "Inglés",
 		fr: "Francés",
@@ -60,17 +69,52 @@ const TitleDetail = (props) => {
 		);
 	};
 
-	const onSubmit = (e) => {
+	const handleRating = (e) => {
 		e.preventDefault();
 		const comment = commentRef.current.value;
-		axios
-			.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/rating`, { rating: rating, comment: comment }, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
-			.then((response) => {
-				alert(JSON.stringify(response));
-			})
-			.catch((error) => {
-				alert(JSON.stringify(error));
-			});
+		axios.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/rating`, { rating: rating, comment: comment }, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+			setIsRated(true);
+		});
+	};
+
+	// Añadir / eliminar favoritos
+	const handleFavorite = () => {
+		setIsFavoriteLoading(true);
+		if (isFavorite) {
+			axios
+				.delete(`http://api.ratemyshow.lekiam.net/titles/${params.id}/favorite`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsFavorite(false);
+				})
+				.finally(setIsFavoriteLoading(false));
+		} else {
+			axios
+				.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/favorite`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsFavorite(true);
+				})
+				.finally(setIsFavoriteLoading(false));
+		}
+	};
+
+	// Añadir, eliminar pendientes
+	const handlePending = () => {
+		setIsPendingLoading(true);
+		if (isPending) {
+			axios
+				.delete(`http://api.ratemyshow.lekiam.net/titles/${params.id}/pending`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsPending(false);
+				})
+				.finally(setIsPendingLoading(false));
+		} else {
+			axios
+				.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/pending`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsPending(true);
+				})
+				.finally(setIsPendingLoading(false));
+		}
 	};
 
 	// Pedimos los datos a la API
@@ -79,6 +123,9 @@ const TitleDetail = (props) => {
 			setTitleData(response.data);
 			console.log(JSON.stringify(response.data));
 			setIsLoading(false);
+			setIsFavorite(response.data.isFavorite);
+			setIsPending(response.data.isPending);
+			setIsRated(response.data.isRated);
 		});
 	}, []);
 
@@ -186,17 +233,11 @@ const TitleDetail = (props) => {
 					<Typography></Typography>
 					<Typography></Typography>
 
-					<IconButton>
-						<FavoriteIcon fontSize="large"></FavoriteIcon>
-					</IconButton>
+					<IconButton onClick={handleFavorite}>{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}</IconButton>
 
-					<IconButton>
-						<AddToQueueIcon fontSize="large"></AddToQueueIcon>
-					</IconButton>
+					<IconButton onClick={handlePending}>{isPendingLoading ? <CircularProgress size={30} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} fontSize="large" />}</IconButton>
 
-					<IconButton>
-						<StarIcon fontSize="large"></StarIcon>
-					</IconButton>
+					<IconButton>{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}</IconButton>
 				</Paper>
 			</div>
 			<div id="sinopsis" className="titledetail-description">
@@ -205,7 +246,7 @@ const TitleDetail = (props) => {
 					<Typography variant="h6">{titleData.description}</Typography>
 				</Paper>
 			</div>
-			<div className="titledetail-post-comment">
+			<div className="titledetail-post-comment" hidden={isRated}>
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
 					<Typography variant="h4">Tu valoración y comentario:</Typography>
 					<div className="titledetail-rate">
@@ -219,10 +260,11 @@ const TitleDetail = (props) => {
 								setRating(value);
 							}}
 						/>
-						<Button onClick={onSubmit}>Enviar</Button>
+						<Button onClick={handleRating}>Enviar</Button>
 					</div>
 				</Paper>
 			</div>
+
 			<div className="titledetail-comments">
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
 					<Typography variant="h4">Otros comentarios</Typography>
