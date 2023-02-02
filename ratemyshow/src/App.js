@@ -17,10 +17,10 @@ function App() {
 		<Routes>
 			<Route path="" element={<ContainerHeader />}>
 				<Route path="" element={<ContainerFooter />}>
-					<Route path="" element={<MainPage />}></Route>
-					<Route path="register" element={<Register />}></Route>
-					<Route path="login" element={<Login />}></Route>
 					<Route path="" element={<ContainerMenu />}>
+						<Route path="" element={<MainPage />}></Route>
+						<Route path="register" element={<Register />}></Route>
+						<Route path="login" element={<Login />}></Route>
 						<Route path="users/:username" element={<UserProfile />}></Route>
 						<Route path="users/:username/followers" element={<FollowerList following={false} />}></Route>
 						<Route path="users/:username/following" element={<FollowerList following={true} />}></Route>
