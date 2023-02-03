@@ -53,3 +53,15 @@
 	width: 100%;
 	padding: 2%;
 }
+
+@media screen and (max-width: 480px) {
+	.feed-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.feed-container-text {
+		display: flex;
+		flex-direction: column;
+	}
+}
