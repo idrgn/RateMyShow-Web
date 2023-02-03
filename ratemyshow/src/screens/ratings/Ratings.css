@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap");
+
+.ratings-title {
+	font-family: "Work Sans", sans-serif;
+	text-align: center;
+	font-size: 2vw;
+	padding: 3%;
+}
+
+.ratings-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ratings-titles-container {
+	width: 80%;
+	margin-bottom: 5%;
+}
+
+.ratings-flex {
+	display: flex;
+}
+
+.ratings-comment {
+	height: 80%;
+	width: 100%;
+	background-color: rgb(240, 241, 255);
+	margin-top: 10%;
+	margin-bottom: 10%;
+	text-align: left;
+}
+
+.ratings-comment-text {
+	padding: 10%;
+}
+
+.ratings-paper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	text-align: center;
+	align-items: center;
+	padding: 4%;
+	margin-left: -1%;
+	z-index: -1;
+	background-color: rgb(230, 235, 255);
+	padding-left: 5%;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.ratings-number {
+	padding-bottom: 2%;
+}
