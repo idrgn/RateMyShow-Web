@@ -12,6 +12,7 @@ import Logout from "./screens/logout/Logout";
 import MainPage from "./screens/main_page/MainPage";
 import ContainerMenu from "./screens/menu/ContainerMenu";
 import NotFound from "./screens/not_found/NotFound";
+import Ratings from "./screens/ratings/Ratings";
 import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
 import Search from "./screens/search/Search";
@@ -31,6 +32,7 @@ function App() {
 						<Route path="users/:username" element={<UserProfile />}></Route>
 						<Route path="users/:username/followers" element={<FollowerList following={false} />}></Route>
 						<Route path="users/:username/following" element={<FollowerList following={true} />}></Route>
+						<Route path="users/:username/ratings" element={<Ratings />}></Route>
 						<Route path="favorites" element={<FavoritesList favorites={true} />}></Route>
 						<Route path="pending" element={<FavoritesList favorites={false} />}></Route>
 						<Route path="feed" element={<FeedList />}></Route>
