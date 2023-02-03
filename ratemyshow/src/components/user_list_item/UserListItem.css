@@ -1,4 +1,4 @@
-.userlist-image {
+/*.userlist-image {
 	display: inline-block;
 	vertical-align: top;
 	padding-right: 1em;
@@ -6,9 +6,40 @@
 
 .userlist-data {
 	display: inline-block;
-}
+}*/
 
 .userlist-profile-image {
-	width: 3em;
-	height: 3em;
+	width: 70%;
+	height: 70%;
+}
+
+.userlistitem-card {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	margin-left: 20%;
+	margin-bottom: 5%;
+}
+
+.userlistitem-user {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	padding-left: 6%;
+	padding-right: 6%;
+	text-align: center;
+	padding-bottom: 10%;
+	min-height: 90px;
+}
+
+.userlistitem-profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #e3e6ef;
+}
+
+.userlistitem-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	background-color: #e3e6ef;
 }

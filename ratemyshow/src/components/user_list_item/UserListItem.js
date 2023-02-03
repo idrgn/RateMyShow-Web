@@ -1,4 +1,10 @@
+import { Link } from "react-router-dom";
 import "./UserListItem.css";
+import Card from "@mui/material/Card";
+import { CardActionArea, Divider } from "@mui/material";
+import { Box } from "@mui/system";
+import { IconButton } from "@mui/material";
+import { PersonAdd } from "@mui/icons-material";
 
 /**
  * Representa un usuario en una lista de usuarios
@@ -13,15 +19,27 @@ const UserListItem = (props) => {
 	let image = require(`../../images/user/${imageId}.png`);
 
 	return (
-		<div>
-			<div className="userlist-image">
+		<Card sx={{ maxWidth: 250, maxHeight: 600 }} variant="outlined" className="userlistitem-card">
+			<Box className="userlistitem-profile">
 				<img src={image} alt="Foto de perfil" className="userlist-profile-image"></img>
-			</div>
-			<div className="userlist-data">
-				<h3>{props.user.username}</h3>
-				<p>{props.user.name}</p>
-			</div>
-		</div>
+			</Box>
+			<Divider></Divider>
+			<Box className="userlistitem-user">
+				<Link to={`/users/${props.user.username}`}>
+					<h3>{props.user.username}</h3>
+				</Link>
+				<div>
+					{props.user.name} {props.user.surname}
+				</div>
+			</Box>
+
+			<Divider></Divider>
+			<Box className="userlistitem-button">
+				<IconButton>
+					<PersonAdd />
+				</IconButton>
+			</Box>
+		</Card>
 	);
 };
 
