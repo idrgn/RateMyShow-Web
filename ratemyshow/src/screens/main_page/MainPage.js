@@ -1,12 +1,11 @@
 import { useState } from "react";
 import "./MainPage.css";
-
+import { Link } from "react-router-dom";
 import image1 from "../../images/main_page/cover-1.jpg";
 import image2 from "../../images/main_page/cover-2.jpg";
 import image3 from "../../images/main_page/cover-3.jpg";
 import image4 from "../../images/main_page/cover-4.jpg";
 import image5 from "../../images/main_page/cover-5.jpg";
-
 import leftArrow from "../../images/main_page/left-arrow.png";
 import rightArrow from "../../images/main_page/right-arrow.png";
 
@@ -42,10 +41,10 @@ const MainPage = () => {
 					<img onClick={nextImage} src={rightArrow} alt="next" className="mainpage-next-arrow" />
 				</div>
 				<div className="mainpage-log-in">
-					<a href="#/">INICIAR SESIÓN</a>
+					<Link to="/login">INICIAR SESIÓN</Link>
 				</div>
 				<div className="mainpage-sign-up">
-					<a href="#/">REGISTRO</a>
+					<Link to="/register">REGISTRO</Link>
 				</div>
 			</div>
 		</div>

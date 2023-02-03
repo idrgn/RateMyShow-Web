@@ -1,7 +1,7 @@
 import { Pagination, Rating } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Feed.css";
 import Loading from "../../components/loading/Loading";
 
@@ -22,6 +22,7 @@ const FeedList = (props) => {
 		axios.get(`http://api.ratemyshow.lekiam.net/feed?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 			setIsLoading(false);
+			console.log(JSON.stringify(response.data));
 		});
 	}, [page]);
 
@@ -42,8 +43,12 @@ const FeedList = (props) => {
 				</div>
 
 				<div className="feed-container-text">
-					<div className="feed-nameuser">{i.user.username}</div>
-					<div className="feed-title">{i.primaryTitle}</div>
+					<Link to={`/users/${i.user.username}`}>
+						<div className="feed-nameuser">{i.user.username}</div>
+					</Link>
+					<Link to={`/titles/${i.id}`}>
+						<div className="feed-title">{i.primaryTitle}</div>
+					</Link>
 					<div className="feed-rating">
 						<Rating name="half-rating" readOnly defaultValue={i.rating} precision={0.5} size="large" />
 					</div>
