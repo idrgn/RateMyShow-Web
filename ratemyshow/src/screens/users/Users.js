@@ -12,7 +12,7 @@ const Users = (props) => {
 
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users?query=${search}&page=${page - 1}`).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/users?query=${search}&page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 		});
 	}, [page, search]);
