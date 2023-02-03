@@ -20,6 +20,7 @@
 	margin-left: 10%;
 	margin-top: 10%;
 }
+
 .userprofile-image {
 	width: 200px;
 	height: 200px;
@@ -49,18 +50,17 @@
 	font-weight: bold;
 }
 
-.userprofile-fav-pending h1 {
-	text-align: center;
-	margin-top: 10vh;
+.userprofile-fav-pending {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.userprofile-fav,
-.userprofile-pending {
-	display: grid;
-	grid-template-columns: 15% 15% 15% 15% 15%;
-	justify-content: space-around;
+.userprofile-fav-pending h1 {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
-	margin: 8vh;
+	margin-top: 5%;
 }
 
 .userprofile-buttons {
@@ -90,4 +90,32 @@
 
 .userprofile-buttons button:hover {
 	background-color: #91a9f8;
+}
+
+@media screen and (max-width: 480px) {
+	.userprofile-image {
+		margin-bottom: 30px;
+	}
+
+	.userprofile-profiledata {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.userprofile-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.userprofile-buttons {
+		width: 70%;
+		display: grid;
+		grid-template-columns: 30% 40%;
+		align-items: center;
+		margin-left: 0%;
+		margin-right: 0%;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 }

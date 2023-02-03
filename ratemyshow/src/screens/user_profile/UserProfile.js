@@ -1,13 +1,12 @@
+import { PersonAdd } from "@mui/icons-material";
+import { Button, IconButton } from "@mui/material";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Loading from "../../components/loading/Loading";
+import TitleList from "../../components/title_list/TitleList";
 import TitleListItem from "../../components/title_list_item/TitleListItem";
 import "./UserProfile.css";
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button, IconButton } from "@mui/material";
-import { PersonAdd } from "@mui/icons-material";
-import Loading from "../../components/loading/Loading";
 
 const UserProfile = (props) => {
 	const { username } = useParams();
@@ -99,14 +98,10 @@ const UserProfile = (props) => {
 				</IconButton>
 			</div>
 			<div className="userprofile-fav-pending">
-				<div>
-					<h1>FAVORITAS</h1>
-					<div className="userprofile-fav">{userProfile.favorites.map(recommendationsToComponent)}</div>
-				</div>
-				<div>
-					<h1>PENDIENTES</h1>
-					<div className="userprofile-pending">{userProfile.pending.map(recommendationsToComponent)}</div>
-				</div>
+				<h1>FAVORITAS</h1>
+				<TitleList titles={userProfile.favorites}></TitleList>
+				<h1>PENDIENTES</h1>
+				<TitleList titles={userProfile.pending}></TitleList>
 			</div>
 		</div>
 	);
