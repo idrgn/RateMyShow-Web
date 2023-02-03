@@ -41,10 +41,11 @@ const Users = (props) => {
 	return (
 		<div>
 			<div className="users-text">
-				<h1>Usuarios</h1>
+				<h1 hidden={search !== ""}>Usuarios de RateMyShow</h1>
+				<h1 hidden={search === ""}>Resultados de búsqueda "{search}"</h1>
 			</div>
 			<div className="users-search">
-				<TextField onKeyDown={handleKeyDown} sx={{ width: "50%" }}></TextField>
+				<TextField label="Busca un usuario" onKeyDown={handleKeyDown} sx={{ width: "50%" }}></TextField>
 			</div>
 			<div className="users-container">{response.users.map(userListToComponent)}</div>
 			<div className="users-pagination">
