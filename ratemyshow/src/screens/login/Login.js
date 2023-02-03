@@ -4,6 +4,7 @@ import axios from "axios";
 import { useRef, useState } from "react";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 /**
@@ -11,6 +12,8 @@ import "./Login.css";
  * @returns
  */
 const Login = () => {
+	const navigate = useNavigate();
+
 	// Regex para comprobación de campos
 	const phoneRegex = /\(?\+[0-9]{1,3}\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})? ?(\w{1,10}\s?\d{1,6})?/;
 	const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -75,6 +78,7 @@ const Login = () => {
 			.then((response) => {
 				localStorage.setItem("sessionToken", response.data.sessionToken);
 				setWarning(<Alert severity="success">Sesión iniciada. Redirigiendo...</Alert>);
+				afterLogin();
 			})
 			// Se muestran alertas en los códigos de error
 			.catch((err) => {
@@ -94,6 +98,20 @@ const Login = () => {
 				// Se activa el botón
 				setbuttonDisabled(false);
 			});
+	};
+
+	// Obtención de datos de usuario despues de iniciar sesion
+	const afterLogin = () => {
+		axios.get("http://api.ratemyshow.lekiam.net/sessions", { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+			// Se almacenan los datos de usuario
+			localStorage.setItem("username", response.data.username);
+			localStorage.setItem("name", response.data.name);
+			localStorage.setItem("surname", response.data.surname);
+			localStorage.setItem("avatarId", response.data.avatarId);
+
+			// Se redirecciona al perfil
+			navigate(`/users/${response.data.username}`);
+		});
 	};
 
 	return (
