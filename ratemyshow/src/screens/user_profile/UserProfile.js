@@ -42,7 +42,7 @@ const UserProfile = (props) => {
 	if (isLoading)
 		return (
 			<div>
-				isLoading ? <Loading /> :
+				<Loading /> :
 			</div>
 		);
 
