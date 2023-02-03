@@ -13,11 +13,27 @@ import { alpha, styled } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 import * as React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../images/menu/logo.png";
 
 function ResponsiveAppBar() {
+	const sessionToken = localStorage.getItem("sessionToken");
+	const avatarId = localStorage.getItem("avatarId");
+	const username = localStorage.getItem("username");
+
+	// Si los datos no están almacenados se obtienen
+	if (sessionToken && (!avatarId || !username)) {
+		axios.get("http://api.ratemyshow.lekiam.net/sessions", { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+			// Se almacenan los datos del usuario
+			localStorage.setItem("username", response.data.username);
+			localStorage.setItem("name", response.data.name);
+			localStorage.setItem("surname", response.data.surname);
+			localStorage.setItem("avatarId", response.data.avatarId);
+		});
+	}
+
 	const pages = [
 		{ name: "Feed", url: "/feed" },
 		{ name: "Mejor Calificadas", url: "/best" },
@@ -33,7 +49,7 @@ function ResponsiveAppBar() {
 	];
 
 	const settings = [
-		{ name: "Perfil", url: `/users/${localStorage.getItem("username")}` },
+		{ name: "Perfil", url: `/users/${username}` },
 		{ name: "Favoritos", url: "/favorites" },
 		{ name: "Pendientes", url: "/pending" },
 		{ name: "Cerrar sesión", url: "/logout" },
@@ -44,8 +60,8 @@ function ResponsiveAppBar() {
 		{ name: "Crear cuenta", url: "/register" },
 	];
 
-	const currentSettings = localStorage.getItem("sessionToken") ? settings : notLoggedSettings;
-	const currentPages = localStorage.getItem("sessionToken") ? pages : notLoggedPages;
+	const currentSettings = sessionToken ? settings : notLoggedSettings;
+	const currentPages = sessionToken ? pages : notLoggedPages;
 
 	const searchRef = React.useRef(null);
 	const navigate = useNavigate();
@@ -216,7 +232,7 @@ function ResponsiveAppBar() {
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open settings">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-									<Avatar alt="Remy Sharp" src={localStorage.getItem("avatarId") ? `http://api.ratemyshow.lekiam.net/pfp/${localStorage.getItem("avatarId")}` : "http://api.ratemyshow.lekiam.net/pfp/default"} />
+									<Avatar alt="Remy Sharp" src={avatarId ? `http://api.ratemyshow.lekiam.net/pfp/${avatarId}` : "http://api.ratemyshow.lekiam.net/pfp/default"} />
 								</IconButton>
 							</Tooltip>
 							<Menu
