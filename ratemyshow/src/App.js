@@ -16,6 +16,7 @@ import Recommendations from "./screens/recommendations/Recommendations";
 import Register from "./screens/register/Register";
 import Search from "./screens/search/Search";
 import TitleDetail from "./screens/title_detail/TitleDetail";
+import Users from "./screens/users/Users";
 import UserProfile from "./screens/user_profile/UserProfile";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 						<Route path="titles/:id" element={<TitleDetail />}></Route>
 						<Route path="best" element={<BestRated />}></Route>
 						<Route path="logout" element={<Logout />}></Route>
+						<Route path="users" element={<Users />}></Route>
 					</Route>
 				</Route>
 			</Route>
