@@ -21,7 +21,7 @@ const FollowerList = (props) => {
 	const [page, setPage] = useState(0);
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}?page=${page}`).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 		});
 	}, [page]);
