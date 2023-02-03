@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Feed.css";
+import Loading from "../../components/loading/Loading";
+
 /**
  * Lista de feed
  * @param {*} props
@@ -14,11 +16,12 @@ const FeedList = (props) => {
 	// Creamos estado para almacenar la lista de titulos
 	const [response, setResponse] = useState({ feed: [] });
 	const [page, setPage] = useState(0);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/feed?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
-			console.log(JSON.stringify(response.data));
+			setIsLoading(false);
 		});
 	}, [page]);
 
@@ -55,7 +58,7 @@ const FeedList = (props) => {
 			<div>
 				<h1 className="feed-text">Feed</h1>
 			</div>
-			<div> {response.feed.map(feedItemComponent)}</div>
+			<div> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
 			<div className="feed-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>

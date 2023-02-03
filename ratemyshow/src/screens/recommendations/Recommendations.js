@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import TitleList from "../../components/title_list/TitleList";
 import "./Recommendations.css";
+import Loading from "../../components/loading/Loading";
 
 /**
  * Pantalla de recomendaciones de títilos
@@ -11,12 +12,13 @@ import "./Recommendations.css";
 const Recommendations = (props) => {
 	// Creamos estado para almacenar la lista de seguidores
 	const [recommendations, setRecommendations] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	// Pedimos los datos a la API
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/recommendations`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setRecommendations(response.data);
-			console.log(JSON.stringify(response.data));
+			setIsLoading(false);
 		});
 	}, []);
 
@@ -35,7 +37,7 @@ const Recommendations = (props) => {
 			<div className="recommendations-text">
 				<h1>Recomendaciones</h1>
 			</div>
-			<div>{recommendations.map(recommendationsToComponent)}</div>
+			<div> {isLoading ? <Loading /> : recommendations.map(recommendationsToComponent)}</div>
 		</div>
 	);
 };

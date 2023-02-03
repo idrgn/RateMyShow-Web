@@ -7,6 +7,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
+import Loading from "../../components/loading/Loading";
 
 const UserProfile = (props) => {
 	const { username } = useParams();
@@ -38,7 +39,12 @@ const UserProfile = (props) => {
 		return <TitleListItem title={u} />;
 	};
 
-	if (isLoading) return <div></div>;
+	if (isLoading)
+		return (
+			<div>
+				isLoading ? <Loading /> :
+			</div>
+		);
 
 	return (
 		<div className="userprofile-container">
