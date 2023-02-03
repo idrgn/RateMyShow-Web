@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UserListItem from "../../components/user_list_item/UserListItem";
 import "./Followers.css";
+import Loading from "../../components/loading/Loading";
 
 /**
  * Lista de usuarios
@@ -12,7 +13,7 @@ import "./Followers.css";
  */
 const FollowerList = (props) => {
 	const params = useParams();
-
+	const [isLoading, setIsLoading] = useState(true);
 	const action = props.following ? "following" : "followers";
 	const title = props.following ? "Seguidos" : "Seguidores";
 
@@ -23,6 +24,7 @@ const FollowerList = (props) => {
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
+			setIsLoading(false);
 		});
 	}, [page]);
 
@@ -45,7 +47,7 @@ const FollowerList = (props) => {
 					{title} de {params.username}
 				</h1>
 			</div>
-			<div className="followers-container">{props.following ? response.following.map(userListToComponent) : response.followers.map(userListToComponent)}</div>
+			<div className="followers-container">{props.following ? isLoading ? <Loading /> : response.following.map(userListToComponent) : isLoading ? <Loading /> : response.followers.map(userListToComponent)}</div>
 			<div className="followers-pagination" color="primary" size="large">
 				<Pagination count={response.pages} onChange={onPageChange} />
 			</div>

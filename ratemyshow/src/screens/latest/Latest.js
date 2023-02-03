@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
 
 /**
@@ -19,10 +19,13 @@ const Latest = (props) => {
 		},
 	});
 
+	const [isLoading, setIsLoading] = useState(true);
+
 	// Pedimos los datos a la API
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/latest`).then((response) => {
 			setLatest(response.data);
+			setIsLoading(false);
 		});
 	}, []);
 
@@ -38,15 +41,11 @@ const Latest = (props) => {
 				<h1 style={{ textAlign: "center", fontSize: "50px" }}>Últimas Series</h1>
 			</div>
 
-			<div>
-				<TitleList titles={series}></TitleList>
-			</div>
+			<div>{isLoading ? <Loading /> : <TitleList titles={series}></TitleList>}</div>
 			<div>
 				<h1 style={{ textAlign: "center", fontSize: "50px" }}>Últimas Películas</h1>
 			</div>
-			<div>
-				<TitleList titles={movies}></TitleList>
-			</div>
+			<div>{isLoading ? <Loading /> : <TitleList titles={movies}></TitleList>}</div>
 		</div>
 	);
 };
