@@ -1,45 +1,68 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-import logo from "../../images/menu/logo.png";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { alpha, styled } from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import axios from "axios";
+import * as React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-
-const pages = [
-	{ name: "Feed", url: "/feed" },
-	{ name: "Mejor Calificadas", url: "/best" },
-	{ name: "Sugerencias", url: "/recommendations" },
-	{ name: "Novedades", url: "latest" },
-	{ name: "Usuarios", url: "/users" },
-];
-const settings = [
-	{ name: "Perfil", url: "/users/:username" },
-	{ name: "Favoritos", url: "/favorites" },
-	{ name: "Pendientes", url: "/pending" },
-	{ name: "Cerrar sesión", url: "/logout" },
-];
-
-const notLoggedSettings = [
-	{ name: "Iniciar Sesión", url: "/login" },
-	{ name: "Crear cuenta", url: "/register" },
-];
-
-const currentSettings = localStorage.getItem("sessionToken") ? settings : notLoggedSettings;
+import logo from "../../images/menu/logo.png";
 
 function ResponsiveAppBar() {
+	const sessionToken = localStorage.getItem("sessionToken");
+	const avatarId = localStorage.getItem("avatarId");
+	const username = localStorage.getItem("username");
+
+	// Si los datos no están almacenados se obtienen
+	if (sessionToken && (!avatarId || !username)) {
+		axios.get("http://api.ratemyshow.lekiam.net/sessions", { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+			// Se almacenan los datos del usuario
+			localStorage.setItem("username", response.data.username);
+			localStorage.setItem("name", response.data.name);
+			localStorage.setItem("surname", response.data.surname);
+			localStorage.setItem("avatarId", response.data.avatarId);
+		});
+	}
+
+	const pages = [
+		{ name: "Feed", url: "/feed" },
+		{ name: "Mejor Calificadas", url: "/best" },
+		{ name: "Sugerencias", url: "/recommendations" },
+		{ name: "Novedades", url: "latest" },
+		{ name: "Usuarios", url: "/users" },
+	];
+
+	const notLoggedPages = [
+		{ name: "Mejor Calificadas", url: "/best" },
+		{ name: "Novedades", url: "latest" },
+		{ name: "Usuarios", url: "/users" },
+	];
+
+	const settings = [
+		{ name: "Perfil", url: `/users/${username}` },
+		{ name: "Favoritos", url: "/favorites" },
+		{ name: "Pendientes", url: "/pending" },
+		{ name: "Cerrar sesión", url: "/logout" },
+	];
+
+	const notLoggedSettings = [
+		{ name: "Iniciar Sesión", url: "/login" },
+		{ name: "Crear cuenta", url: "/register" },
+	];
+
+	const currentSettings = sessionToken ? settings : notLoggedSettings;
+	const currentPages = sessionToken ? pages : notLoggedPages;
+
 	const searchRef = React.useRef(null);
 	const navigate = useNavigate();
 	const onClickSearch = () => {
@@ -164,7 +187,7 @@ function ResponsiveAppBar() {
 									display: { xs: "block", md: "none" },
 								}}
 							>
-								{pages.map((page) => (
+								{currentPages.map((page) => (
 									<NavLink to={page.url}>
 										<MenuItem key={page.name} onClick={handleCloseNavMenu}>
 											<Typography textAlign="center">{page.name}</Typography>
@@ -191,7 +214,7 @@ function ResponsiveAppBar() {
 							}}
 						></Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-							{pages.map((page) => (
+							{currentPages.map((page) => (
 								<NavLink to={page.url}>
 									<Button key={page.name} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
 										{page.name}
@@ -209,7 +232,7 @@ function ResponsiveAppBar() {
 						<Box sx={{ flexGrow: 0 }}>
 							<Tooltip title="Open settings">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-									<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+									<Avatar alt="Remy Sharp" src={avatarId ? `http://api.ratemyshow.lekiam.net/pfp/${avatarId}` : "http://api.ratemyshow.lekiam.net/pfp/default"} />
 								</IconButton>
 							</Tooltip>
 							<Menu
