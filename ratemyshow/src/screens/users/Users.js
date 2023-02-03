@@ -6,7 +6,7 @@ import UserListItem from "../../components/user_list_item/UserListItem";
 const Users = (props) => {
 	// Creamos estado para almacenar la lista de usuarios
 	const [response, setResponse] = useState({ users: [] });
-	const [search, setSearch] = useState[""];
+	const [search, setSearch] = useState("");
 	const [page, setPage] = useState(0);
 
 	// Pedimos los datos a la API
