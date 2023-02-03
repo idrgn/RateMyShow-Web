@@ -2,6 +2,7 @@ import { Pagination } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import UserListItem from "../../components/user_list_item/UserListItem";
+import "./Users.css";
 
 const Users = (props) => {
 	// Creamos estado para almacenar la lista de usuarios
@@ -31,12 +32,12 @@ const Users = (props) => {
 
 	return (
 		<div>
-			<div>
+			<div className="users-text">
 				<h1>Usuarios</h1>
 			</div>
-			<div>{response.users.map(userListToComponent)}</div>
-			<div>
-				<Pagination count={response.pages} onChange={onPageChange} />
+			<div className="users-container">{response.users.map(userListToComponent)}</div>
+			<div className="users-pagination">
+				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
 		</div>
 	);
