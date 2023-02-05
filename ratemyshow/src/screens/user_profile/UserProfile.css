@@ -2,6 +2,7 @@
 	display: grid;
 	grid-template-columns: auto;
 	align-items: center;
+	margin-bottom: 15vh;
 }
 
 .userprofile-profiledata {
