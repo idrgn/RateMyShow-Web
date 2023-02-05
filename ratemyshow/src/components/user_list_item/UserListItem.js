@@ -25,7 +25,7 @@ const UserListItem = (props) => {
 	const navigate = useNavigate();
 
 	// Redirección al hacer click
-	const hanldeRedirect = () => {
+	const handleRedirect = () => {
 		setTimeout(() => {
 			navigate(`/user/${props.user.username}`);
 		}, 200);
@@ -51,16 +51,10 @@ const UserListItem = (props) => {
 		}
 	};
 
-	// Se obtiene la id de la imagen de perfil de usuario
-	let imageId = props.user.avatarId;
-
-	// Se carga el archivo
-	let image = require(`../../images/user/${imageId}.png`);
-
 	return (
 		<Card sx={{ maxWidth: 250, maxHeight: 600 }} variant="outlined" className="userlistitem-card">
 			<Box className="userlistitem-profile">
-				<img src={image} alt="Foto de perfil" className="userlist-profile-image"></img>
+				<img src={`http://api.ratemyshow.lekiam.net/pfp/${props.user.avatarId}`} alt="Foto de perfil" className="userlist-profile-image"></img>
 			</Box>
 			<Divider></Divider>
 			<Box className="userlistitem-user">
