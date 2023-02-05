@@ -1,6 +1,7 @@
 .feed-main-container {
 	box-sizing: border-box;
 	width: 100%;
+	margin-bottom: 15vh;
 }
 
 .feed-text {
