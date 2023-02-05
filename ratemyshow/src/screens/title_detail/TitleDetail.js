@@ -140,7 +140,7 @@ const TitleDetail = (props) => {
 			<div className="titledetail-data-cover">
 				<Paper variant="outlined" className="titledetail-paper">
 					<div>
-						<Box className="titledetail-paper" component="img" alt="Title cover." src={titleData.cover} sx={{ height: "100%", width: "100%" }}></Box>
+						<Box className="titledetail-paper" component="img" alt="Title cover." src={titleData.cover} sx={{ height: "60vh", width: "20vw" }}></Box>
 					</div>
 				</Paper>
 
@@ -148,7 +148,7 @@ const TitleDetail = (props) => {
 					variant="outlined"
 					className="titledetail-paper titledetail-info"
 					sx={{
-						width: "40%",
+						width: "45%",
 						padding: 1,
 					}}
 				>
