@@ -1,0 +1,15 @@
+.latest-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 15vh;
+}
+
+.latest-list {
+	width: 90%;
+}
+
+.latest-title {
+	margin-top: 5vh;
+}
