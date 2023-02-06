@@ -14,11 +14,12 @@ const Search = () => {
 
 	// Se obtiene la query
 	const search = searchParams.get("query");
+	console.log(search);
 
 	// Obtención de datos
 	useEffect(() => {
 		setIsLoading(true);
-		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/titles?${search ? `query=${search}&` : ""}page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setSearchResults(response.data);
 			setPage(response.data.current);
 			setIsLoading(false);
@@ -33,7 +34,12 @@ const Search = () => {
 
 	return (
 		<div className="search-container">
-			<div className="search-title">Resultados de la búsqueda "{search}"</div>
+			<div className="search-title" hidden={search === null}>
+				Resultados de la búsqueda "{search}"
+			</div>
+			<div className="search-title" hidden={search !== null}>
+				Títulos de RateMyShow
+			</div>
 			<div className="search-result">{isLoading ? <Loading /> : <TitleList titles={searchResults.result}></TitleList>}</div>
 			<div className="search-pagination">
 				<Pagination count={searchResults.pages} onChange={onPageChange} color="primary" size="large" />
