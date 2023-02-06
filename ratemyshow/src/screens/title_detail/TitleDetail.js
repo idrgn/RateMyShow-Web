@@ -129,7 +129,7 @@ const TitleDetail = (props) => {
 			setIsPending(response.data.isPending);
 			setIsRated(response.data.isRated);
 		});
-	}, []);
+	}, [params.id, isRated]);
 
 	if (isLoading) return <div></div>;
 
