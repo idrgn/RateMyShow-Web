@@ -1,7 +1,7 @@
-import { PersonAdd } from "@mui/icons-material";
-import { Button, IconButton } from "@mui/material";
+import { PersonAdd, PersonAddDisabled } from "@mui/icons-material";
+import { Button, CircularProgress, IconButton } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
@@ -17,13 +17,40 @@ const UserProfile = (props) => {
 	// Creamos estado para saber si se ha cargado la imagen.
 	const [isLoading, setIsLoading] = useState(true);
 
+	// Estado de los títulos
+	const [isFollowed, setIsFollowed] = useState(false);
+
+	// Estado de la carga
+	const [isFollowedLoading, setIsFollowedLoading] = useState(false);
+
 	// Pedimos los datos a la API
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setUserProfile(response.data);
 			setIsLoading(false);
+			setIsFollowed(response.data.isFollowed);
 		});
 	}, [params.username]);
+
+	// Follow / unfollow de usuario
+	const handleFollowed = () => {
+		setIsFollowedLoading(true);
+		if (isFollowed) {
+			axios
+				.delete(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsFollowed(false);
+				})
+				.finally(setIsFollowedLoading(false));
+		} else {
+			axios
+				.put(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsFollowed(true);
+				})
+				.finally(setIsFollowedLoading(false));
+		}
+	};
 
 	if (isLoading)
 		return (
@@ -62,11 +89,11 @@ const UserProfile = (props) => {
 					</div>
 					<div>
 						<span>Seguidores: </span>
-						{userProfile.numFollowers}
+						{userProfile.followers}
 					</div>
 					<div>
 						<span>Seguidos: </span>
-						{userProfile.numFollowing}
+						{userProfile.following}
 					</div>
 				</div>
 			</div>
@@ -80,8 +107,14 @@ const UserProfile = (props) => {
 				<Link to={`/users/${username}/ratings`} style={{ textDecoration: "none" }}>
 					<Button>Valoraciones</Button>
 				</Link>
-				<IconButton>
-					<PersonAdd></PersonAdd>
+				<IconButton
+					onClick={handleFollowed}
+					style={{
+						color: isFollowed ? "#436cf3" : "white",
+						backgroundColor: isFollowed ? "white" : "#436cf3",
+					}}
+				>
+					{isFollowedLoading ? <CircularProgress size={20}></CircularProgress> : isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
 				</IconButton>
 			</div>
 			<div className="userprofile-fav-pending">
