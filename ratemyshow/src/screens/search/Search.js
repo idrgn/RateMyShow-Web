@@ -15,7 +15,6 @@ const Search = () => {
 
 	// Se obtiene la query
 	const search = searchParams.get("query");
-	console.log(search);
 
 	// Obtención de datos
 	useEffect(() => {
