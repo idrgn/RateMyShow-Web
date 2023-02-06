@@ -26,8 +26,8 @@ const BestRated = () => {
 	};
 
 	return (
-		<div className="bestrated-container">
-			<div className="bestrated-title">Títulos Mejor Valorados</div>
+		<div className="general-body">
+			<div className="general-title">Títulos Mejor Valorados</div>
 			<div className="bestrated-result">{isLoading ? <Loading></Loading> : <TitleList titles={bestRated.result}></TitleList>}</div>
 			<div className="bestrated-pagination">
 				<Pagination count={bestRated.pages} onChange={onPageChange} color="primary" size="large" />

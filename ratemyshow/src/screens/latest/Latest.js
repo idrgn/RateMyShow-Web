@@ -1,3 +1,4 @@
+import { Divider } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../../components/loading/Loading";
@@ -37,14 +38,10 @@ const Latest = (props) => {
 	const series = latest.series.result;
 
 	return (
-		<div className="latest-container">
-			<div className="latest-title">
-				<h1 style={{ textAlign: "center", fontSize: "50px" }}>Últimas Series</h1>
-			</div>
+		<div className="general-body">
+			<div className="general-title">Últimas Series</div>
 			<div className="latest-list">{isLoading ? <Loading /> : <TitleList titles={series}></TitleList>}</div>
-			<div className="latest-title">
-				<h1 style={{ textAlign: "center", fontSize: "50px" }}>Últimas Películas</h1>
-			</div>
+			<div className="general-title">Últimas Películas</div>
 			<div className="latest-list">{isLoading ? <Loading /> : <TitleList titles={movies}></TitleList>}</div>
 		</div>
 	);

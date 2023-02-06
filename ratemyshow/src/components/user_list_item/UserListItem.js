@@ -54,7 +54,7 @@ const UserListItem = (props) => {
 	return (
 		<Card sx={{ maxWidth: 250, maxHeight: 600 }} variant="outlined" className="userlistitem-card">
 			<Box className="userlistitem-profile">
-				<img src={`http://api.ratemyshow.lekiam.net/pfp/${props.user.avatarId}`} alt="Foto de perfil" className="userlist-profile-image"></img>
+				<img src={`http://api.ratemyshow.lekiam.net/pfp/${props.user.avatarId}`} alt="Foto de perfil" className="userlistitem-profile-image"></img>
 			</Box>
 			<Divider></Divider>
 			<Box className="userlistitem-user">

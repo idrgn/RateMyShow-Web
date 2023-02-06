@@ -35,9 +35,9 @@ const FavoritesList = (props) => {
 	};
 
 	return (
-		<div className="favoritespending-container">
+		<div className="general-body">
 			<div className="favoritespending-containertext">
-				<h1 className="favoritespending-text">Tus {title}</h1>
+				<div className="general-title">Tus {title}</div>
 			</div>
 			<div className="favoritespending-titlelist">{props.favorites ? isLoading ? <Loading /> : <TitleList titles={response.favorites ? response.favorites : []}></TitleList> : isLoading ? <Loading /> : <TitleList titles={response.pending ? response.pending : []}></TitleList>}</div>
 			<div className="favoritespending-pagination">

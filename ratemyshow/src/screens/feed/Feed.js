@@ -59,9 +59,7 @@ const FeedList = (props) => {
 
 	return (
 		<div className="feed-main-container">
-			<div>
-				<h1 className="feed-text">Feed</h1>
-			</div>
+			<div className="general-title">Feed</div>
 			<div> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
 			<div className="feed-pagination">
 				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />

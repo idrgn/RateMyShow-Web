@@ -135,11 +135,7 @@ const TitleDetail = (props) => {
 
 	return (
 		<div className="titledetail-container">
-			<div id="titulo">
-				<Typography className="titledetail-title" variant="h2">
-					{titleData.translatedTitle ? titleData.translatedTitle : titleData.primaryTitle}
-				</Typography>
-			</div>
+			<div className="general-title">{titleData.translatedTitle ? titleData.translatedTitle : titleData.primaryTitle}</div>
 
 			<div className="titledetail-data-cover">
 				<Paper variant="outlined" className="titledetail-paper">
