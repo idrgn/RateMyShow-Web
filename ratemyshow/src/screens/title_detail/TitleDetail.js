@@ -1,7 +1,7 @@
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
-import { AppBar, Box, IconButton, Paper, Rating, TextField, Typography, Button, CircularProgress } from "@mui/material";
+import { Box, IconButton, Paper, Rating, TextField, Typography, Button, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -35,16 +35,19 @@ const TitleDetail = (props) => {
 		ar: "Árabe",
 	};
 
+	//filtra los miembros del equipo según su trabajo (actor o actriz)
 	const actors = titleData.crew
 		.filter((participant) => participant.job === "actor" || participant.job === "actress")
 		.map((participant) => participant.name)
 		.join(", ");
 
+	//filtra los miembros del equipo según su trabajo (writer)
 	const writer = titleData.crew
 		.filter((participant) => participant.job === "writer")
 		.map((participant) => participant.name)
 		.join(", ");
 
+	//filtra los miembros del equipo según su trabajo (director)
 	const director = titleData.crew
 		.filter((participant) => participant.job === "director")
 		.map((participant) => participant.name)
@@ -121,7 +124,6 @@ const TitleDetail = (props) => {
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/titles/${params.id}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setTitleData(response.data);
-			console.log(JSON.stringify(response.data));
 			setIsLoading(false);
 			setIsFavorite(response.data.isFavorite);
 			setIsPending(response.data.isPending);
@@ -133,14 +135,12 @@ const TitleDetail = (props) => {
 
 	return (
 		<div className="titledetail-container">
-			<div id="titulo" className="titledetail-titulo">
-				<Typography variant="h2">{titleData.primaryTitle}</Typography>
-			</div>
+			<div className="general-title">{titleData.translatedTitle ? titleData.translatedTitle : titleData.primaryTitle}</div>
 
 			<div className="titledetail-data-cover">
 				<Paper variant="outlined" className="titledetail-paper">
 					<div>
-						<Box className="titledetail-paper" component="img" alt="Title cover." src={titleData.cover} sx={{ height: "60vh", width: "20vw" }}></Box>
+						<Box className="titledetail-paper titledetail-image" component="img" alt="Title cover." src={titleData.cover ? titleData.cover : "http://api.ratemyshow.lekiam.net/img/cover"}></Box>
 					</div>
 				</Paper>
 
@@ -148,7 +148,6 @@ const TitleDetail = (props) => {
 					variant="outlined"
 					className="titledetail-paper titledetail-info"
 					sx={{
-						width: "45%",
 						padding: 1,
 					}}
 				>
@@ -219,8 +218,9 @@ const TitleDetail = (props) => {
 							size="large"
 						/>
 					)}
+
 					<Typography variant="h5" color="grey">
-						{titleData.rating ? titleData.rating : "SIN VALORACIONES"}
+						{titleData.rating ? `${titleData.rating} (${titleData.totalRatings} valoraciones)` : "SIN VALORACIONES"}
 					</Typography>
 
 					<Typography></Typography>

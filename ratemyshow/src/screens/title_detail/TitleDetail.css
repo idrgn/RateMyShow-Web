@@ -22,6 +22,7 @@
 	margin-left: 20px;
 	display: flex;
 	align-items: center;
+	width: 41%;
 }
 
 .titledetail-data-cover {
@@ -83,8 +84,9 @@
 	float: right;
 }
 
-.titledetail-titulo {
+.titledetail-title {
 	padding: 2%;
+	width: 80%;
 }
 
 .titledetail-comment {
@@ -144,6 +146,10 @@
 	padding-bottom: 20px;
 }
 
+.titledetail-image {
+	width: 25vw;
+	height: 60vh;
+}
 @media screen and (max-width: 480px) {
 	.titledetail-comments-users {
 		display: flex;
@@ -153,6 +159,7 @@
 	.titledetail-data-cover {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		width: 100%;
 	}
 
@@ -188,5 +195,14 @@
 		align-self: center;
 		width: 85%;
 		padding: 2%;
+	}
+
+	.titledetail-info {
+		width: 100%;
+		padding-left: 0%;
+	}
+
+	.titledetail-title {
+		font-size: 10px;
 	}
 }

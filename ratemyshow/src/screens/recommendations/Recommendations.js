@@ -33,10 +33,8 @@ const Recommendations = (props) => {
 	};
 
 	return (
-		<div className="recommendations">
-			<div className="recommendations-text">
-				<h1>Recomendaciones</h1>
-			</div>
+		<div className="general-body">
+			<div className="general-title">Recomendaciones</div>
 			<div> {isLoading ? <Loading /> : recommendations.map(recommendationsToComponent)}</div>
 		</div>
 	);

@@ -1,8 +1,3 @@
-.recommendations-text {
-	text-align: center;
-	font-size: 2em;
-}
-
 .recommendations-genre {
 	text-align: center;
 	font-size: 2em;
@@ -11,8 +6,4 @@
 	padding: 1%;
 	margin-top: 6%;
 	margin-bottom: 2%;
-}
-
-.recommendations {
-	margin-bottom: 15vh;
 }

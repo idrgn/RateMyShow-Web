@@ -3,6 +3,7 @@ import facebook from "../../images/footer/facebook.svg";
 import instagram from "../../images/footer/instagram.svg";
 import tiktok from "../../images/footer/tiktok.svg";
 import twitter from "../../images/footer/twitter.svg";
+
 /**
  * Footer
  * @param {*} props

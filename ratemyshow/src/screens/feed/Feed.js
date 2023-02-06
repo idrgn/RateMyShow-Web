@@ -10,27 +10,26 @@ import Loading from "../../components/loading/Loading";
  * @param {*} props
  * @returns
  */
-const FeedList = (props) => {
+const Feed = (props) => {
 	const params = useParams();
 
 	// Creamos estado para almacenar la lista de titulos
 	const [response, setResponse] = useState({ feed: [] });
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(1);
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/feed?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/feed?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 			setIsLoading(false);
-			console.log(JSON.stringify(response.data));
 		});
 	}, [page]);
 
 	// Actualizar página
 	const onPageChange = (event, value) => {
 		// Solo se actualiza si el valor cambia
-		if (page !== value - 1) {
-			setPage(value - 1);
+		if (page !== value) {
+			setPage(value);
 		}
 	};
 
@@ -60,14 +59,12 @@ const FeedList = (props) => {
 
 	return (
 		<div className="feed-main-container">
-			<div>
-				<h1 className="feed-text">Feed</h1>
-			</div>
+			<div className="general-title">Feed</div>
 			<div> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
-			<div className="feed-pagination" color="primary" size="large">
-				<Pagination count={response.pages} onChange={onPageChange} />
+			<div className="feed-pagination">
+				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
 		</div>
 	);
 };
-export default FeedList;
+export default Feed;

@@ -40,10 +40,7 @@ const Users = (props) => {
 
 	return (
 		<div>
-			<div className="users-text">
-				<h1 hidden={search !== ""}>Usuarios de RateMyShow</h1>
-				<h1 hidden={search === ""}>Resultados de búsqueda "{search}"</h1>
-			</div>
+			<div className="general-title">{search === "" ? "Usuarios de RateMyShow" : `Resultados de la búsqueda "${search}"`}</div>
 			<div className="users-search">
 				<TextField label="Busca un usuario" onKeyDown={handleKeyDown} sx={{ width: "50%" }}></TextField>
 			</div>
