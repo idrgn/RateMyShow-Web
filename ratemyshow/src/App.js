@@ -39,6 +39,7 @@ function App() {
 						<Route path="latest" element={<Latest />}></Route>
 						<Route path="recommendations" element={<Recommendations />}></Route>
 						<Route path="search" element={<Search />}></Route>
+						<Route path="titles" element={<Search />}></Route>
 						<Route path="titles/:id" element={<TitleDetail />}></Route>
 						<Route path="best" element={<BestRated />}></Route>
 						<Route path="logout" element={<Logout />}></Route>

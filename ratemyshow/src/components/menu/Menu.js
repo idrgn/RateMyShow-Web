@@ -36,7 +36,7 @@ function UpperMenu() {
 
 	const pages = [
 		{ name: "Feed", url: "/feed" },
-		{ name: "Títulos", url: "/search" },
+		{ name: "Títulos", url: "/titles" },
 		{ name: "Mejor Calificadas", url: "/best" },
 		{ name: "Sugerencias", url: "/recommendations" },
 		{ name: "Novedades", url: "latest" },
@@ -44,7 +44,7 @@ function UpperMenu() {
 	];
 
 	const notLoggedPages = [
-		{ name: "Títulos", url: "/search" },
+		{ name: "Títulos", url: "/titles" },
 		{ name: "Mejor Calificadas", url: "/best" },
 		{ name: "Novedades", url: "latest" },
 		{ name: "Usuarios", url: "/users" },
