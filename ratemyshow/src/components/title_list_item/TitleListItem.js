@@ -91,7 +91,7 @@ const TitleListItem = (props) => {
 			<CardContent sx={{ pb: 0, pl: 0, pr: 0 }}>
 				<Tooltip title={props.title.primaryTitle} placement="top">
 					<Typography className="titlelistitem-title" align="center" gutterBottom variant="h6" sx={{ fontWeight: "bold", height: 66, overflow: "scroll", WebkitLineClamp: 2, WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
-						{props.title.primaryTitle}
+						{props.title.translatedTitle ? props.title.translatedTitle : props.title.primaryTitle}
 					</Typography>
 				</Tooltip>
 
