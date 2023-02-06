@@ -39,7 +39,7 @@ const Users = (props) => {
 	};
 
 	return (
-		<div>
+		<div className="users-main-container">
 			<div className="general-title">{search === "" ? "Usuarios de RateMyShow" : `Resultados de la búsqueda "${search}"`}</div>
 			<div className="users-search">
 				<TextField label="Busca un usuario" onKeyDown={handleKeyDown} sx={{ width: "50%" }}></TextField>
