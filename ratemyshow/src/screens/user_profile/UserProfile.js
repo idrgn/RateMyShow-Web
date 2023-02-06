@@ -23,13 +23,27 @@ const UserProfile = (props) => {
 	// Estado de la carga
 	const [isFollowedLoading, setIsFollowedLoading] = useState(false);
 
+	// Estado de usuario no encontrado
+	const [notFound, setNotFound] = useState(false);
+
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
-			setUserProfile(response.data);
-			setIsLoading(false);
-			setIsFollowed(response.data.isFollowed);
-		});
+		axios
+			.get(`http://api.ratemyshow.lekiam.net/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+			.then((response) => {
+				setUserProfile(response.data);
+				setIsLoading(false);
+				setNotFound(false);
+				setIsFollowed(response.data.isFollowed);
+			})
+			.catch((err) => {
+				if ("response" in err) {
+					if (err.response.status === 404) {
+						setIsLoading(false);
+						setNotFound(true);
+					}
+				}
+			});
 	}, [params.username]);
 
 	// Follow / unfollow de usuario
@@ -58,6 +72,10 @@ const UserProfile = (props) => {
 				<Loading /> :
 			</div>
 		);
+
+	if (notFound) {
+		return <div className="general-error">Usuario no encontrado</div>;
+	}
 
 	return (
 		<div className="userprofile-container">
