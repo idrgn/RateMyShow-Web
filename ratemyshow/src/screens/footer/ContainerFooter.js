@@ -7,10 +7,8 @@ import Footer from "../../components/footer/Footer";
  */
 const ContainerFooter = () => {
 	return (
-		<div style={{ minHeight: "100%" }}>
-			<div style={{ minHeight: "100%" }}>
-				<Outlet />
-			</div>
+		<div>
+			<Outlet />
 			<Footer />
 		</div>
 	);

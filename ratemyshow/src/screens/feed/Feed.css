@@ -1,6 +1,7 @@
 .feed-main-container {
 	box-sizing: border-box;
 	width: 100%;
+	margin-bottom: 15vh;
 }
 
 .feed-text {
@@ -52,4 +53,16 @@
 	align-items: center;
 	width: 100%;
 	padding: 2%;
+}
+
+@media screen and (max-width: 480px) {
+	.feed-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.feed-container-text {
+		display: flex;
+		flex-direction: column;
+	}
 }

@@ -188,7 +188,7 @@ function ResponsiveAppBar() {
 								}}
 							>
 								{currentPages.map((page) => (
-									<NavLink to={page.url}>
+									<NavLink to={page.url} style={{ textDecoration: "inherit", color: "inherit" }}>
 										<MenuItem key={page.name} onClick={handleCloseNavMenu}>
 											<Typography textAlign="center">{page.name}</Typography>
 										</MenuItem>
@@ -215,7 +215,7 @@ function ResponsiveAppBar() {
 						></Typography>
 						<Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
 							{currentPages.map((page) => (
-								<NavLink to={page.url}>
+								<NavLink to={page.url} style={{ textDecoration: "inherit", color: "inherit" }}>
 									<Button key={page.name} onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
 										{page.name}
 									</Button>
@@ -252,7 +252,7 @@ function ResponsiveAppBar() {
 								onClose={handleCloseUserMenu}
 							>
 								{currentSettings.map((setting) => (
-									<NavLink to={setting.url}>
+									<NavLink to={setting.url} style={{ textDecoration: "inherit", color: "inherit" }}>
 										<MenuItem key={setting.name} onClick={handleCloseUserMenu}>
 											<Typography textAlign="center">{setting.name}</Typography>
 										</MenuItem>

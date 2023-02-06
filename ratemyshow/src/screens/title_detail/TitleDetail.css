@@ -55,6 +55,7 @@
 
 .titledetail-comments {
 	margin-top: 40px;
+	margin-bottom: 15vh;
 }
 
 .titledetail-text {
@@ -141,4 +142,51 @@
 
 .titledetail-rating {
 	padding-bottom: 20px;
+}
+
+@media screen and (max-width: 480px) {
+	.titledetail-comments-users {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.titledetail-data-cover {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.titledetail-buttons {
+		padding: 30px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		width: 65%;
+	}
+
+	.titledetail-text {
+		padding: 4%;
+		height: 100%;
+		width: 100%;
+	}
+
+	.titledetail-text span {
+		font-weight: bold;
+		font-size: 20px;
+	}
+
+	.titledetail-paper {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	}
+
+	.titledetail-container {
+		align-self: center;
+		width: 85%;
+		padding: 2%;
+	}
 }
