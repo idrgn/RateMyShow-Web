@@ -135,14 +135,16 @@ const TitleDetail = (props) => {
 
 	return (
 		<div className="titledetail-container">
-			<div id="titulo" className="titledetail-titulo">
-				<Typography variant="h2">{titleData.translatedTitle ? titleData.translatedTitle : titleData.primaryTitle}</Typography>
+			<div id="titulo">
+				<Typography className="titledetail-title" variant="h2">
+					{titleData.translatedTitle ? titleData.translatedTitle : titleData.primaryTitle}
+				</Typography>
 			</div>
 
 			<div className="titledetail-data-cover">
 				<Paper variant="outlined" className="titledetail-paper">
 					<div>
-						<Box className="titledetail-paper" component="img" alt="Title cover." src={titleData.cover ? titleData.cover : "http://api.ratemyshow.lekiam.net/img/cover"} sx={{ height: "60vh", width: "20vw" }}></Box>
+						<Box className="titledetail-paper titledetail-image" component="img" alt="Title cover." src={titleData.cover ? titleData.cover : "http://api.ratemyshow.lekiam.net/img/cover"}></Box>
 					</div>
 				</Paper>
 
@@ -150,7 +152,6 @@ const TitleDetail = (props) => {
 					variant="outlined"
 					className="titledetail-paper titledetail-info"
 					sx={{
-						width: "45%",
 						padding: 1,
 					}}
 				>
