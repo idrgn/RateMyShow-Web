@@ -6,8 +6,11 @@ import "./UserProfile.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
-import { PersonAdd } from "@mui/icons-material";
+import { PersonAdd, PersonAddDisabled } from "@mui/icons-material";
 import Loading from "../../components/loading/Loading";
+
+import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const UserProfile = (props) => {
 	const { username } = useParams();
@@ -22,17 +25,51 @@ const UserProfile = (props) => {
 	// Creamos estado para saber si se ha cargado la imagen.
 	const [isLoading, setIsLoading] = useState(true);
 
+	// Estado de los títulos
+	const [isFollowed, setIsFollowed] = useState(false);
+
+	// Estado de la carga
+	const [isFollowedLoading, setIsFollowedLoading] = useState(false);
+
+	const navigate = useNavigate();
+
+	// Redirección al hacer click
+	const hanldeRedirect = () => {
+		setTimeout(() => {
+			navigate(`/user/${params.username}`);
+		}, 200);
+	};
+
 	// Pedimos los datos a la API
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setUserProfile(response.data);
-			console.log(JSON.stringify(response.data));
-			//localStorage.removeItem("sessionToken");
 			let newImage = require(`../../images/user/${response.data.avatarId}.png`);
 			setImage(newImage);
 			setIsLoading(false);
+			setIsFollowed(response.data.isFollowed);
 		});
-	}, []);
+	}, [params.username]);
+
+	// Follow / unfollow de usuario
+	const handleFollowed = () => {
+		setIsFollowedLoading(true);
+		if (isFollowed) {
+			axios
+				.delete(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsFollowed(false);
+				})
+				.finally(setIsFollowedLoading(false));
+		} else {
+			axios
+				.put(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+				.then((response) => {
+					setIsFollowed(true);
+				})
+				.finally(setIsFollowedLoading(false));
+		}
+	};
 
 	// Función para transformar títulos a componente.
 	const recommendationsToComponent = (u) => {
@@ -76,11 +113,11 @@ const UserProfile = (props) => {
 					</div>
 					<div>
 						<span>Seguidores: </span>
-						{userProfile.numFollowers}
+						{userProfile.followers}
 					</div>
 					<div>
 						<span>Seguidos: </span>
-						{userProfile.numFollowing}
+						{userProfile.following}
 					</div>
 				</div>
 			</div>
@@ -94,8 +131,14 @@ const UserProfile = (props) => {
 				<Link to={`/users/${username}/ratings`} style={{ textDecoration: "none" }}>
 					<Button>Valoraciones</Button>
 				</Link>
-				<IconButton>
-					<PersonAdd></PersonAdd>
+				<IconButton
+					onClick={handleFollowed}
+					style={{
+						color: isFollowed ? "#436cf3" : "white",
+						backgroundColor: isFollowed ? "white" : "#436cf3",
+					}}
+				>
+					{isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
 				</IconButton>
 			</div>
 			<div className="userprofile-fav-pending">
