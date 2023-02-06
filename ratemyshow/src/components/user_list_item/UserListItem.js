@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import "./UserListItem.css";
 import Card from "@mui/material/Card";
-import { CardActionArea, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import { Box } from "@mui/system";
 import { IconButton } from "@mui/material";
 import { PersonAdd } from "@mui/icons-material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 
@@ -21,15 +20,6 @@ const UserListItem = (props) => {
 
 	// Estado de la carga
 	const [isFollowedLoading, setIsFollowedLoading] = useState(false);
-
-	const navigate = useNavigate();
-
-	// Redirección al hacer click
-	const handleRedirect = () => {
-		setTimeout(() => {
-			navigate(`/user/${props.user.username}`);
-		}, 200);
-	};
 
 	// Follow / unfollow de usuario
 	const handleFollowed = () => {

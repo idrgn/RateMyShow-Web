@@ -10,7 +10,7 @@ const Search = () => {
 	const [page, setPage] = useState(1);
 	const [noResults, setNoResults] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 	const [searchResults, setSearchResults] = useState({ result: [] });
 
 	// Se obtiene la query

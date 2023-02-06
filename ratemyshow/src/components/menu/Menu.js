@@ -142,7 +142,7 @@ function UpperMenu() {
 			<AppBar position="static" sx={{ bgcolor: "black" }}>
 				<Container maxWidth="xl">
 					<Toolbar disableGutters>
-						<img src={logo} width="50" height="50" />
+						<img src={logo} width="50" height="50" alt="Logotipo" />
 
 						<Typography
 							variant="h6"

@@ -1,7 +1,7 @@
 import { Pagination, Rating } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Feed.css";
 import Loading from "../../components/loading/Loading";
 
@@ -11,8 +11,6 @@ import Loading from "../../components/loading/Loading";
  * @returns
  */
 const Feed = (props) => {
-	const params = useParams();
-
 	// Creamos estado para almacenar la lista de titulos
 	const [response, setResponse] = useState({ feed: [] });
 	const [page, setPage] = useState(1);

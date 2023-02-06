@@ -13,23 +13,23 @@ const Footer = (props) => {
 	return (
 		<div className="footer">
 			<div className="footer-links">
-				<a href="#">Términos y condiciones</a>
-				<a href="#">Políticas de privacidad</a>
-				<a href="#">© RateMyShow.com</a>
+				<a href="http://ratemyshow.lekiam.net">Términos y condiciones</a>
+				<a href="http://ratemyshow.lekiam.net">Políticas de privacidad</a>
+				<a href="http://ratemyshow.lekiam.net">© RateMyShow.com</a>
 			</div>
 
 			<div className="footer-icons">
-				<a href="#">
-					<img src={facebook}></img>
+				<a href="https://facebook.com">
+					<img src={facebook} alt="Facebook logoo"></img>
 				</a>
-				<a href="#">
-					<img src={instagram}></img>
+				<a href="https://www.instagram.com">
+					<img src={instagram} alt="Instagram logo"></img>
 				</a>
-				<a href="#">
-					<img src={twitter}></img>
+				<a href="https://twitter.com">
+					<img src={twitter} alt="Twitter logo"></img>
 				</a>
-				<a href="#">
-					<img src={tiktok}></img>
+				<a href="https://www.tiktok.com">
+					<img src={tiktok} alt="Tiktok logo"></img>
 				</a>
 			</div>
 		</div>
