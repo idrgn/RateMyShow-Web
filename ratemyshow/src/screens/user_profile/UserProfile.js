@@ -97,13 +97,13 @@ const UserProfile = (props) => {
 						<span>Apellido: </span>
 						{userProfile.surname}
 					</div>
-					<div>
+					<div hidden={!userProfile.isOwnUser}>
 						<span>Email: </span>
 						{userProfile.email}
 					</div>
-					<div>
+					<div hidden={!userProfile.isOwnUser}>
 						<span>Teléfono: </span>
-						{userProfile.phone}
+						{userProfile.phone ? userProfile.phone : "Sin número de teléfono"}
 					</div>
 					<div>
 						<span>Seguidores: </span>
@@ -112,6 +112,14 @@ const UserProfile = (props) => {
 					<div>
 						<span>Seguidos: </span>
 						{userProfile.following}
+					</div>
+					<div>
+						<span>Valoraciones: </span>
+						{userProfile.totalRatings}
+					</div>
+					<div>
+						<span>Tiempo de visualización: </span>
+						{userProfile.watchTime ? userProfile.watchTime : "0"} minutos
 					</div>
 				</div>
 			</div>
@@ -136,9 +144,13 @@ const UserProfile = (props) => {
 				</IconButton>
 			</div>
 			<div className="userprofile-fav-pending">
-				<h1>FAVORITAS</h1>
+				<div className="userprofile-title-container" hidden={userProfile.favorites.length === 0}>
+					<h1 className="userprofile-fav">TÍTULOS FAVORITOS</h1>
+				</div>
 				<TitleList titles={userProfile.favorites}></TitleList>
-				<h1>PENDIENTES</h1>
+				<div className="userprofile-title-container" hidden={userProfile.pending.length === 0}>
+					<h1 className="userprofile-pending">TÍTULOS PENDIENTES</h1>
+				</div>
 				<TitleList titles={userProfile.pending}></TitleList>
 			</div>
 		</div>
