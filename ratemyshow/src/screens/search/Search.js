@@ -23,7 +23,7 @@ const Search = () => {
 			.get(`http://api.ratemyshow.lekiam.net/titles?${search ? `query=${search}&` : ""}page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 			.then((response) => {
 				setSearchResults(response.data);
-				setPage(response.data.current);
+				setPage(response.data.current + 1);
 				setIsLoading(false);
 				setNoResults(false);
 			})
