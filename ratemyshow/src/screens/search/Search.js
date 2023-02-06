@@ -8,6 +8,7 @@ import "./Search.css";
 
 const Search = () => {
 	const [page, setPage] = useState(1);
+	const [noResults, setNoResults] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [searchResults, setSearchResults] = useState({ result: [] });
@@ -19,11 +20,21 @@ const Search = () => {
 	// Obtención de datos
 	useEffect(() => {
 		setIsLoading(true);
-		axios.get(`http://api.ratemyshow.lekiam.net/titles?${search ? `query=${search}&` : ""}page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
-			setSearchResults(response.data);
-			setPage(response.data.current);
-			setIsLoading(false);
-		});
+		axios
+			.get(`http://api.ratemyshow.lekiam.net/titles?${search ? `query=${search}&` : ""}page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+			.then((response) => {
+				setSearchResults(response.data);
+				setPage(response.data.current);
+				setIsLoading(false);
+				setNoResults(false);
+			})
+			.catch((err) => {
+				if ("response" in err) {
+					if (err.response.status === 404) {
+						setNoResults(true);
+					}
+				}
+			});
 	}, [page, search]);
 
 	const onPageChange = (event, value) => {
@@ -40,9 +51,14 @@ const Search = () => {
 			<div className="search-title" hidden={search !== null}>
 				Títulos de RateMyShow
 			</div>
-			<div className="search-result">{isLoading ? <Loading /> : <TitleList titles={searchResults.result}></TitleList>}</div>
+			<div className="search-result" hidden={noResults}>
+				{isLoading ? <Loading /> : <TitleList titles={searchResults.result}></TitleList>}
+			</div>
+			<div className="search-title" hidden={!noResults}>
+				Sin resultados
+			</div>
 			<div className="search-pagination">
-				<Pagination count={searchResults.pages} onChange={onPageChange} color="primary" size="large" />
+				<Pagination count={searchResults.pages} onChange={onPageChange} hidden={noResults} color="primary" size="large" />
 			</div>
 		</div>
 	);
