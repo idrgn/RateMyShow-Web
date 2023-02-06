@@ -16,7 +16,7 @@ const Ratings = (props) => {
 		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/ratings?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 		});
-	}, [page]);
+	}, [page, params.username]);
 
 	// Actualizar página
 	const onPageChange = (event, value) => {

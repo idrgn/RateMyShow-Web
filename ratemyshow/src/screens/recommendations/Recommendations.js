@@ -34,8 +34,11 @@ const Recommendations = (props) => {
 
 	return (
 		<div className="general-body">
-			<div className="general-title">Recomendaciones</div>
-			<div> {isLoading ? <Loading /> : recommendations.map(recommendationsToComponent)}</div>
+			<div className="general-title">Sugerencias</div>
+			<div hidden={recommendations.length === 0}> {isLoading ? <Loading /> : recommendations.map(recommendationsToComponent)}</div>
+			<div className="general-title" hidden={!(recommendations.length === 0)}>
+				Añade algún título a favoritos para recibir sugerencias
+			</div>
 		</div>
 	);
 };
