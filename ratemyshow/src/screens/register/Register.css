@@ -58,3 +58,15 @@
 	align-items: center;
 	margin-bottom: 20px;
 }
+
+@media screen and (max-width: 480px) {
+	.register-form {
+		width: 75vw;
+	}
+
+	.register-container {
+		text-align: center;
+		margin-top: 7vh;
+		margin-bottom: 10vh;
+	}
+}

@@ -2,11 +2,13 @@
 
 .mainpage-log-in,
 .mainpage-sign-up {
-	padding: 60px;
+	padding-bottom: 60px;
+	padding-top: 60px;
 	text-align: center;
 	width: 25%;
 	font-size: 50px;
 	font-family: "Work Sans", sans-serif;
+	width: 100%;
 }
 
 .mainpage-log-in > a,

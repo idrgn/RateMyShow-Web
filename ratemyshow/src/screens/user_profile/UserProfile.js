@@ -1,16 +1,11 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import TitleListItem from "../../components/title_list_item/TitleListItem";
-import "./UserProfile.css";
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button, IconButton } from "@mui/material";
 import { PersonAdd, PersonAddDisabled } from "@mui/icons-material";
+import { Button, CircularProgress, IconButton } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
-
-import { useNavigate } from "react-router-dom";
-import CircularProgress from "@mui/material/CircularProgress";
+import TitleList from "../../components/title_list/TitleList";
+import "./UserProfile.css";
 
 const UserProfile = (props) => {
 	const { username } = useParams();
@@ -18,9 +13,6 @@ const UserProfile = (props) => {
 
 	// Creamos estado para almacenar la lista de usuarios
 	const [userProfile, setUserProfile] = useState({ favorites: [], pending: [] });
-
-	// Creamos estado para almacenar la lista imagenes de perfil
-	const [image, setImage] = useState(require(`../../images/user/6.png`));
 
 	// Creamos estado para saber si se ha cargado la imagen.
 	const [isLoading, setIsLoading] = useState(true);
@@ -31,21 +23,10 @@ const UserProfile = (props) => {
 	// Estado de la carga
 	const [isFollowedLoading, setIsFollowedLoading] = useState(false);
 
-	const navigate = useNavigate();
-
-	// Redirección al hacer click
-	const hanldeRedirect = () => {
-		setTimeout(() => {
-			navigate(`/user/${params.username}`);
-		}, 200);
-	};
-
 	// Pedimos los datos a la API
 	useEffect(() => {
 		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setUserProfile(response.data);
-			let newImage = require(`../../images/user/${response.data.avatarId}.png`);
-			setImage(newImage);
 			setIsLoading(false);
 			setIsFollowed(response.data.isFollowed);
 		});
@@ -71,11 +52,6 @@ const UserProfile = (props) => {
 		}
 	};
 
-	// Función para transformar títulos a componente.
-	const recommendationsToComponent = (u) => {
-		return <TitleListItem title={u} />;
-	};
-
 	if (isLoading)
 		return (
 			<div>
@@ -87,7 +63,7 @@ const UserProfile = (props) => {
 		<div className="userprofile-container">
 			<div className="userprofile-profiledata">
 				<div className="userprofile-image">
-					<img src={image} alt="Foto de perfil" />
+					<img src={`http://api.ratemyshow.lekiam.net/pfp/${userProfile.avatarId}`} alt="Foto de perfil" />
 				</div>
 
 				<div className="userprofile-data">
@@ -138,18 +114,14 @@ const UserProfile = (props) => {
 						backgroundColor: isFollowed ? "white" : "#436cf3",
 					}}
 				>
-					{isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
+					{isFollowedLoading ? <CircularProgress size={20}></CircularProgress> : isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
 				</IconButton>
 			</div>
 			<div className="userprofile-fav-pending">
-				<div>
-					<h1>FAVORITAS</h1>
-					<div className="userprofile-fav">{userProfile.favorites.map(recommendationsToComponent)}</div>
-				</div>
-				<div>
-					<h1>PENDIENTES</h1>
-					<div className="userprofile-pending">{userProfile.pending.map(recommendationsToComponent)}</div>
-				</div>
+				<h1>FAVORITAS</h1>
+				<TitleList titles={userProfile.favorites}></TitleList>
+				<h1>PENDIENTES</h1>
+				<TitleList titles={userProfile.pending}></TitleList>
 			</div>
 		</div>
 	);

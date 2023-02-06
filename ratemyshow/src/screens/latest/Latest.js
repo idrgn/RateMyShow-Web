@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
+import "./Latest.css";
 
 /**
  * Pantalla que muestra los últimos títulos
@@ -36,16 +37,15 @@ const Latest = (props) => {
 	const series = latest.series.result;
 
 	return (
-		<div>
-			<div>
+		<div className="latest-container">
+			<div className="latest-title">
 				<h1 style={{ textAlign: "center", fontSize: "50px" }}>Últimas Series</h1>
 			</div>
-
-			<div>{isLoading ? <Loading /> : <TitleList titles={series}></TitleList>}</div>
-			<div>
+			<div className="latest-list">{isLoading ? <Loading /> : <TitleList titles={series}></TitleList>}</div>
+			<div className="latest-title">
 				<h1 style={{ textAlign: "center", fontSize: "50px" }}>Últimas Películas</h1>
 			</div>
-			<div>{isLoading ? <Loading /> : <TitleList titles={movies}></TitleList>}</div>
+			<div className="latest-list">{isLoading ? <Loading /> : <TitleList titles={movies}></TitleList>}</div>
 		</div>
 	);
 };
