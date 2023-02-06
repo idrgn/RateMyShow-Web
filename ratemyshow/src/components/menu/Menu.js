@@ -14,11 +14,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import * as React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../images/menu/logo.png";
+import React from "react";
 
-function ResponsiveAppBar() {
+function UpperMenu() {
 	const sessionToken = localStorage.getItem("sessionToken");
 	const avatarId = localStorage.getItem("avatarId");
 	const username = localStorage.getItem("username");
@@ -266,4 +266,4 @@ function ResponsiveAppBar() {
 		</div>
 	);
 }
-export default ResponsiveAppBar;
+export default UpperMenu;

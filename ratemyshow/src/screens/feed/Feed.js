@@ -10,7 +10,7 @@ import Loading from "../../components/loading/Loading";
  * @param {*} props
  * @returns
  */
-const FeedList = (props) => {
+const Feed = (props) => {
 	const params = useParams();
 
 	// Creamos estado para almacenar la lista de titulos
@@ -67,4 +67,4 @@ const FeedList = (props) => {
 		</div>
 	);
 };
-export default FeedList;
+export default Feed;

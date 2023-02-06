@@ -5,8 +5,8 @@ import "./Header.css";
  * @param {*} props
  * @returns
  */
-const Menu = (props) => {
+const Header = (props) => {
 	return <div className="header"></div>;
 };
 
-export default Menu;
+export default Header;
