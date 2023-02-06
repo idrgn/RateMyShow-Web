@@ -7,7 +7,7 @@ import TitleList from "../../components/title_list/TitleList";
 import "./Search.css";
 
 const Search = () => {
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(1);
 	const [isLoading, setIsLoading] = useState(true);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [searchResults, setSearchResults] = useState({ result: [] });
@@ -18,7 +18,7 @@ const Search = () => {
 	// Obtención de datos
 	useEffect(() => {
 		setIsLoading(true);
-		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/titles?query=${search}&page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setSearchResults(response.data);
 			setPage(response.data.current);
 			setIsLoading(false);
@@ -26,8 +26,8 @@ const Search = () => {
 	}, [page, search]);
 
 	const onPageChange = (event, value) => {
-		if (page !== value - 1) {
-			setPage(value - 1);
+		if (page !== value) {
+			setPage(value);
 		}
 	};
 
@@ -35,8 +35,8 @@ const Search = () => {
 		<div className="search-container">
 			<div className="search-title">Resultados de la búsqueda "{search}"</div>
 			<div className="search-result">{isLoading ? <Loading /> : <TitleList titles={searchResults.result}></TitleList>}</div>
-			<div className="search-pagination" color="primary" size="large">
-				<Pagination count={searchResults.pages} onChange={onPageChange} />
+			<div className="search-pagination">
+				<Pagination count={searchResults.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
 		</div>
 	);

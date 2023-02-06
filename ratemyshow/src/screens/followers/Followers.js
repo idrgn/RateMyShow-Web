@@ -19,10 +19,10 @@ const FollowerList = (props) => {
 
 	// Creamos estado para almacenar la lista de usuarios
 	const [response, setResponse] = useState({ followers: [], following: [] });
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(1);
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}?page=${page}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/${action}?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 			setIsLoading(false);
 		});
@@ -31,8 +31,8 @@ const FollowerList = (props) => {
 	// Actualizar página
 	const onPageChange = (event, value) => {
 		// Solo se actualiza si el valor cambia
-		if (page !== value - 1) {
-			setPage(value - 1);
+		if (page !== value) {
+			setPage(value);
 		}
 	};
 	// Función para convertir lista de usuarios a componente
@@ -48,8 +48,8 @@ const FollowerList = (props) => {
 				</h1>
 			</div>
 			<div className="followers-container">{props.following ? isLoading ? <Loading /> : response.following.map(userListToComponent) : isLoading ? <Loading /> : response.followers.map(userListToComponent)}</div>
-			<div className="followers-pagination" color="primary" size="large">
-				<Pagination count={response.pages} onChange={onPageChange} />
+			<div className="followers-pagination">
+				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
 		</div>
 	);
