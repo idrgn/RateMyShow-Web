@@ -142,7 +142,7 @@ const TitleDetail = (props) => {
 			<div className="titledetail-data-cover">
 				<Paper variant="outlined" className="titledetail-paper">
 					<div>
-						<Box className="titledetail-paper" component="img" alt="Title cover." src={titleData.cover} sx={{ height: "60vh", width: "20vw" }}></Box>
+						<Box className="titledetail-paper" component="img" alt="Title cover." src={titleData.cover ? titleData.cover : "http://api.ratemyshow.lekiam.net/img/cover"} sx={{ height: "60vh", width: "20vw" }}></Box>
 					</div>
 				</Paper>
 
@@ -221,8 +221,9 @@ const TitleDetail = (props) => {
 							size="large"
 						/>
 					)}
+
 					<Typography variant="h5" color="grey">
-						{titleData.rating ? titleData.rating : "SIN VALORACIONES"}
+						{titleData.rating ? `${titleData.rating} (${titleData.totalRatings} valoraciones)` : "SIN VALORACIONES"}
 					</Typography>
 
 					<Typography></Typography>
