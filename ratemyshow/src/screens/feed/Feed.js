@@ -60,7 +60,10 @@ const Feed = (props) => {
 	return (
 		<div className="feed-main-container">
 			<div className="general-title">Feed</div>
-			<div> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
+			<div hidden={response.feed.length === 0}> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
+			<div hidden={!(response.feed.length === 0)} className="general-title">
+				{isLoading ? <Loading /> : "Sigue a alguien para ver su actividad!"}
+			</div>
 			<div className="feed-pagination">
 				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
