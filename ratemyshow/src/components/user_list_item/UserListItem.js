@@ -61,7 +61,7 @@ const UserListItem = (props) => {
 			</Box>
 			<Divider></Divider>
 			<Box className="userlistitem-user">
-				<Link to={`/users/${props.user.username}`}>
+				<Link to={`/users/${props.user.username}`} className="userlistitem-link">
 					<h3>{props.user.username}</h3>
 				</Link>
 				<div>

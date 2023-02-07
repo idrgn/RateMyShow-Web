@@ -34,3 +34,8 @@
 	justify-content: center;
 	background-color: #e3e6ef;
 }
+
+.userlistitem-link {
+	text-decoration: initial;
+	color: initial;
+}
