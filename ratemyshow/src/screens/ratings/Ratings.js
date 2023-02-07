@@ -6,6 +6,11 @@ import Loading from "../../components/loading/Loading";
 import TitleListItem from "../../components/title_list_item/TitleListItem";
 import "./Ratings.css";
 
+/**
+ * Pantalla que muestra las valoraciones de un usuario
+ * @param {*} props
+ * @returns
+ */
 const Ratings = (props) => {
 	const params = useParams();
 

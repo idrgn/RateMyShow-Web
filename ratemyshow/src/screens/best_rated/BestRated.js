@@ -5,6 +5,10 @@ import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
 import "./BestRated.css";
 
+/**
+ * Pantalla que muestra los títiulos mejor valorados
+ * @returns
+ */
 const BestRated = () => {
 	// Creamos estado para almacenar la respuesta
 	const [bestRated, setBestRated] = useState({ result: [] });

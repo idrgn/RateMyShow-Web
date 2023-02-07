@@ -7,7 +7,7 @@ import "./FollowersFollowing.css";
 import Loading from "../../components/loading/Loading";
 
 /**
- * Lista de usuarios
+ * Pantalla que muestra los seguidores / seguidos de un usuario
  * @param {*} props
  * @returns
  */

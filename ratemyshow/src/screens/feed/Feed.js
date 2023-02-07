@@ -6,7 +6,7 @@ import "./Feed.css";
 import Loading from "../../components/loading/Loading";
 
 /**
- * Lista de feed
+ * Pantalla de feed, muestra actividad de los usuarios seguidos
  * @param {*} props
  * @returns
  */

@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import UserListItem from "../../components/user_list_item/UserListItem";
 import "./Users.css";
 
+/**
+ * Pantalla de listado y búsqueda de usuarios
+ * @param {*} props
+ * @returns
+ */
 const Users = (props) => {
 	// Creamos estado para almacenar la lista de usuarios
 	const [response, setResponse] = useState({ users: [] });

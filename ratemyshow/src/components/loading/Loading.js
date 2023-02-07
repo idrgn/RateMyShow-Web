@@ -1,6 +1,10 @@
 import { CircularProgress } from "@mui/material";
 import "./Loading.css";
 
+/**
+ * Pantalla de carga
+ * @returns
+ */
 const Loading = () => {
 	return (
 		<div className="loading-container">

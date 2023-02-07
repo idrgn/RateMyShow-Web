@@ -7,6 +7,11 @@ import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
 import "./UserProfile.css";
 
+/**
+ * Pantalla de perfil de un usuario
+ * @param {*} props
+ * @returns
+ */
 const UserProfile = (props) => {
 	// Timer para la petición
 	let followTimer = null;

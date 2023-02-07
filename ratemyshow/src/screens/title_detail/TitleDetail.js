@@ -6,10 +6,14 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
-
 import "./TitleDetail.css";
 import Loading from "../../components/loading/Loading";
 
+/**
+ * Pantalla de detalles de un título
+ * @param {*} props
+ * @returns
+ */
 const TitleDetail = (props) => {
 	// Timers para las peticiones
 	let favoriteTimer = null;
