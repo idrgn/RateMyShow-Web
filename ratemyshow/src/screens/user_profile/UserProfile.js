@@ -107,7 +107,7 @@ const UserProfile = (props) => {
 						{userProfile.name}
 					</div>
 					<div>
-						<span>Apellido: </span>
+						<span>Apellidos: </span>
 						{userProfile.surname}
 					</div>
 					<div hidden={!userProfile.isOwnUser}>
@@ -123,7 +123,7 @@ const UserProfile = (props) => {
 						{userProfile.followers}
 					</div>
 					<div>
-						<span>Seguidos: </span>
+						<span>Siguiendo: </span>
 						{userProfile.following}
 					</div>
 					<div>
