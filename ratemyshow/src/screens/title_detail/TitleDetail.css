@@ -150,6 +150,12 @@
 	width: 25vw;
 	height: 60vh;
 }
+
+.titledetail-button {
+	margin-top: 10px;
+	width: 100%;
+}
+
 @media screen and (max-width: 480px) {
 	.titledetail-comments-users {
 		display: flex;
@@ -164,30 +170,32 @@
 	}
 
 	.titledetail-buttons {
-		padding: 30px;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		width: 65%;
 	}
 
 	.titledetail-text {
-		padding: 4%;
-		height: 100%;
-		width: 100%;
+		padding: 0%;
+	}
+
+	.titledetail-totalbuttons button {
+		padding: 20px;
 	}
 
 	.titledetail-text span {
 		font-weight: bold;
-		font-size: 20px;
+		font-size: 15px;
+		line-height: 40px;
 	}
 
 	.titledetail-paper {
-		width: 100%;
+		width: 90%;
 		display: flex;
 		flex-direction: column;
-		text-align: left;
+		justify-content: center;
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	}
 
@@ -204,5 +212,9 @@
 
 	.titledetail-title {
 		font-size: 10px;
+	}
+
+	.titledetail-image {
+		width: 100%;
 	}
 }
