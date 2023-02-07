@@ -1,6 +1,7 @@
 import { Pagination, TextField } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "../../components/loading/Loading";
 import UserListItem from "../../components/user_list_item/UserListItem";
 import "./Users.css";
 
@@ -14,12 +15,19 @@ const Users = (props) => {
 	const [response, setResponse] = useState({ users: [] });
 	const [search, setSearch] = useState("");
 	const [page, setPage] = useState(1);
+	const [loading, setLoading] = useState(true);
 
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users?query=${search}&page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
-			setResponse(response.data);
-		});
+		setLoading(true);
+		axios
+			.get(`http://api.ratemyshow.lekiam.net/users?query=${search}&page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+			.then((response) => {
+				setResponse(response.data);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
 	}, [page, search]);
 
 	// Actualizar página
@@ -49,7 +57,7 @@ const Users = (props) => {
 			<div className="users-search">
 				<TextField label="Busca un usuario" onKeyDown={handleKeyDown} sx={{ width: "50%" }}></TextField>
 			</div>
-			<div className="users-container">{response.users.map(userListToComponent)}</div>
+			<div className="users-container">{loading ? <Loading></Loading> : response.users.map(userListToComponent)}</div>
 			<div className="users-pagination">
 				<Pagination count={response.pages} onChange={onPageChange} page={page} color="primary" size="large" />
 			</div>
