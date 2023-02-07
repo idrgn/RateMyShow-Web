@@ -49,7 +49,7 @@ const Feed = (props) => {
 					<div className="feed-rating">
 						<Rating name="half-rating" readOnly defaultValue={i.rating} precision={0.5} size="large" />
 					</div>
-					<div>{i.addeddate}</div>
+					<div>{new Date(Date.parse(i.addedDate)).toLocaleDateString("es-ES")}</div>
 				</div>
 			</div>
 		);
