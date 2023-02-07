@@ -1,3 +1,6 @@
+.users {
+	width: 100%;
+}
 .users-search {
 	text-align: center;
 	padding-bottom: 4%;
@@ -9,6 +12,7 @@
 	grid-template-columns: auto auto auto;
 	justify-content: space-around;
 	padding-bottom: 15vh;
+	padding: 4%;
 }
 
 .users-pagination {
@@ -16,4 +20,21 @@
 	flex-direction: column;
 	align-items: center;
 	padding-top: 4%;
+}
+
+@media screen and (max-width: 500px) {
+	.users-container {
+		display: grid;
+		grid-template-columns: auto auto;
+		justify-content: space-around;
+		padding-bottom: 15vh;
+		padding: 4%;
+	}
+
+	.users-pagination {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 4%;
+	}
 }

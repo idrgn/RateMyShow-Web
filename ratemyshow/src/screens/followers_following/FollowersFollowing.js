@@ -41,11 +41,9 @@ const FollowersFollowing = (props) => {
 	};
 
 	return (
-		<div>
-			<div className="followers-text">
-				<h1>
-					{title} de {params.username}
-				</h1>
+		<div className="general-body">
+			<div className="general-title">
+				{title} de {params.username}
 			</div>
 			<div className="followers-container">{props.following ? isLoading ? <Loading /> : response.following.map(userListToComponent) : isLoading ? <Loading /> : response.followers.map(userListToComponent)}</div>
 			<div className="followers-pagination">

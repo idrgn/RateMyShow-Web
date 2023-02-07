@@ -25,38 +25,120 @@
 }
 
 .feed-img img {
-	width: 100px;
-	height: 100px;
-	position: absolute;
-	margin-left: 15%;
-	margin-top: 10%;
+	width: 7vw;
+	height: 11vh;
+	margin: 0%;
 }
 
 .feed-img {
 	background-color: #e3e6ef;
 	border-radius: 50%;
-	width: 170px;
-	height: 140px;
-	position: relative;
+	width: 10vw;
+	height: 15vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .feed-container-text {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 12% 40% auto 20%;
+	justify-content: space-between;
 	width: 100%;
-	padding: 2%;
+	padding: 3%;
+}
+
+.feed-container-text a {
+	text-decoration: none;
+	color: black;
+	text-transform: capitalize;
+}
+
+.feed-title {
+	font-weight: bold;
 }
 
 @media screen and (max-width: 480px) {
 	.feed-container {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.feed-container-text {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10%;
+	}
+
+	.feed-container-text div {
+		padding: 3%;
+		text-align: center;
+	}
+
+	.feed-img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 25%;
+		height: 100%;
+	}
+
+	.feed-img img {
+		margin: 0%;
+		width: 100%;
+		height: 100%;
+	}
+
+	.feed-container-text a {
+		text-decoration: none;
+		color: black;
+		text-transform: capitalize;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.feed-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.feed-container-text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 5%;
+	}
+
+	.feed-container-text div {
+		padding: 3%;
+		text-align: center;
+	}
+
+	.feed-img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 25%;
+		height: 100%;
+		margin-top: 3%;
+	}
+
+	.feed-img img {
+		margin: 0%;
+		width: 100%;
+		height: 100%;
+	}
+
+	.feed-container-text a {
+		text-decoration: none;
+		color: black;
+		text-transform: capitalize;
 	}
 }

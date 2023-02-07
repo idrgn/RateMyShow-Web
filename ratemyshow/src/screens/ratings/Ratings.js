@@ -49,7 +49,7 @@ const Ratings = (props) => {
 	};
 
 	return (
-		<div className="general-body">
+		<div className="general-body ratings">
 			<div className="general-title">Valoraciones de {params.username}</div>
 			<Grid spacing={8} justifyContent="center" container className="ratings-titles-container">
 				{response.ratings.map(ratingToComponent)}

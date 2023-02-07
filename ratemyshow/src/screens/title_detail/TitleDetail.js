@@ -213,24 +213,23 @@ const TitleDetail = (props) => {
 							defaultValue={5}
 							sx={{
 								color: "grey",
+								padding: "20px",
 							}}
 							readOnly
 							size="large"
 						/>
 					)}
 
-					<Typography variant="h5" color="grey">
+					<Typography variant="h6" color="grey" padding="20px">
 						{titleData.rating ? `${titleData.rating} (${titleData.totalRatings} valoraciones)` : "SIN VALORACIONES"}
 					</Typography>
+					<div className="titledetail-totalbuttons">
+						<IconButton onClick={handleFavorite}>{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}</IconButton>
 
-					<Typography></Typography>
-					<Typography></Typography>
+						<IconButton onClick={handlePending}>{isPendingLoading ? <CircularProgress size={30} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} fontSize="large" />}</IconButton>
 
-					<IconButton onClick={handleFavorite}>{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}</IconButton>
-
-					<IconButton onClick={handlePending}>{isPendingLoading ? <CircularProgress size={30} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} fontSize="large" />}</IconButton>
-
-					<IconButton>{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}</IconButton>
+						<IconButton>{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}</IconButton>
+					</div>
 				</Paper>
 			</div>
 			<div id="sinopsis" className="titledetail-description">

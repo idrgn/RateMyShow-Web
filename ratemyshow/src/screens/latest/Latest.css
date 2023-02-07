@@ -7,9 +7,12 @@
 }
 
 .latest-list {
-	width: 90%;
+	width: 80%;
 }
 
-.latest-title {
-	margin-top: 5vh;
+.latest-background {
+	background-color: rgb(229, 234, 243);
+	padding: 1%;
+	margin-bottom: 2%;
+	width: 100%;
 }

@@ -34,8 +34,8 @@ const Recommendations = (props) => {
 
 	return (
 		<div className="general-body">
-			<div className="general-title">Recomendaciones</div>
-			<div> {isLoading ? <Loading /> : recommendations.map(recommendationsToComponent)}</div>
+			<div className="general-title recommendations">Recomendaciones</div>
+			<div className="general-title recommendations-genres"> {isLoading ? <Loading /> : recommendations.map(recommendationsToComponent)}</div>
 		</div>
 	);
 };
