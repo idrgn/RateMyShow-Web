@@ -129,7 +129,7 @@ const TitleDetail = (props) => {
 			setIsPending(response.data.isPending);
 			setIsRated(response.data.isRated);
 		});
-	}, []);
+	}, [params.id, isRated]);
 
 	if (isLoading) return <div></div>;
 
@@ -221,7 +221,7 @@ const TitleDetail = (props) => {
 					)}
 
 					<Typography variant="h6" color="grey" padding="20px">
-						{titleData.rating ? `${titleData.rating} (${titleData.totalRatings} valoraciones)` : "SIN VALORACIONES"}
+						{titleData.rating ? `${titleData.rating} (${titleData.totalRatings} ${titleData.totalRatings > 1 ? "valoraciones" : "valoración"})` : "SIN VALORACIONES"}
 					</Typography>
 					<div className="titledetail-totalbuttons">
 						<IconButton onClick={handleFavorite}>{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}</IconButton>
@@ -257,9 +257,9 @@ const TitleDetail = (props) => {
 				</Paper>
 			</div>
 
-			<div className="titledetail-comments">
+			<div className="titledetail-comments" hidden={titleData.lastComments.length === 0}>
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
-					<Typography variant="h4">Otros comentarios</Typography>
+					<Typography variant="h4">{titleData.lastComments.length === 0 ? "Sin comentarios" : "Otros comentarios"}</Typography>
 					<Typography>{titleData.lastComments.map(commentToComponent)}</Typography>
 				</Paper>
 			</div>

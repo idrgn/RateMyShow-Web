@@ -26,7 +26,7 @@ const FollowersFollowing = (props) => {
 			setResponse(response.data);
 			setIsLoading(false);
 		});
-	}, [page]);
+	}, [action, page, params.username]);
 
 	// Actualizar página
 	const onPageChange = (event, value) => {

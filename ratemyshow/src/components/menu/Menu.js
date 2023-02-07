@@ -36,6 +36,7 @@ function UpperMenu() {
 
 	const pages = [
 		{ name: "Feed", url: "/feed" },
+		{ name: "Títulos", url: "/titles" },
 		{ name: "Mejor Calificadas", url: "/best" },
 		{ name: "Sugerencias", url: "/recommendations" },
 		{ name: "Novedades", url: "latest" },
@@ -43,6 +44,7 @@ function UpperMenu() {
 	];
 
 	const notLoggedPages = [
+		{ name: "Títulos", url: "/titles" },
 		{ name: "Mejor Calificadas", url: "/best" },
 		{ name: "Novedades", url: "latest" },
 		{ name: "Usuarios", url: "/users" },
@@ -52,6 +54,7 @@ function UpperMenu() {
 		{ name: "Perfil", url: `/users/${username}` },
 		{ name: "Favoritos", url: "/favorites" },
 		{ name: "Pendientes", url: "/pending" },
+		{ name: "Valoraciones", url: `/users/${username}/ratings` },
 		{ name: "Cerrar sesión", url: "/logout" },
 	];
 
@@ -140,9 +143,8 @@ function UpperMenu() {
 				<Container maxWidth="xl">
 					<Toolbar disableGutters>
 						<a href="/">
-							<img src={logo} width="50" height="50" />
+							<img src={logo} width="50" height="50" alt="Logotipo" />
 						</a>
-
 						<Typography
 							variant="h6"
 							noWrap

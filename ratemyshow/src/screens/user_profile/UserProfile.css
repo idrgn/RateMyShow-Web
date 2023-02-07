@@ -57,11 +57,14 @@
 	align-items: center;
 }
 
-.userprofile-fav-pending h1 {
+.userprofile-title-container {
+	margin-top: 3%;
+}
+
+.userprofile-fav .userprofile-pending {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 5%;
 }
 
 .userprofile-buttons {

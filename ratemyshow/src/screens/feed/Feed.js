@@ -1,7 +1,7 @@
 import { Pagination, Rating } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Feed.css";
 import Loading from "../../components/loading/Loading";
 
@@ -11,8 +11,6 @@ import Loading from "../../components/loading/Loading";
  * @returns
  */
 const Feed = (props) => {
-	const params = useParams();
-
 	// Creamos estado para almacenar la lista de titulos
 	const [response, setResponse] = useState({ feed: [] });
 	const [page, setPage] = useState(1);
@@ -60,7 +58,10 @@ const Feed = (props) => {
 	return (
 		<div className="feed-main-container">
 			<div className="general-title">Feed</div>
-			<div> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
+			<div hidden={response.feed.length === 0}> {isLoading ? <Loading /> : response.feed.map(feedItemComponent)}</div>
+			<div hidden={!(response.feed.length === 0)} className="general-title">
+				{isLoading ? <Loading /> : "Sigue a alguien para ver su actividad!"}
+			</div>
 			<div className="feed-pagination">
 				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>

@@ -23,6 +23,15 @@ body {
 	margin-top: 4%;
 }
 
+.general-error {
+	color: red;
+	font-size: 3vw;
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
