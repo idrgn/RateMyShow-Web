@@ -249,7 +249,7 @@ const TitleDetail = (props) => {
 						</Typography>
 						<Typography>
 							<span>Idioma: </span>
-							{languageMapping[titleData.language] || titleData.language}
+							{languageMapping[titleData.language] || titleData.language || "Sin datos"}
 						</Typography>
 					</Box>
 				</Paper>
