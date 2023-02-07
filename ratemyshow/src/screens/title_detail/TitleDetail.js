@@ -5,6 +5,8 @@ import { Box, IconButton, Paper, Rating, TextField, Typography, Button, Circular
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AwesomeButton } from "react-awesome-button";
+
 import "./TitleDetail.css";
 
 const TitleDetail = (props) => {
@@ -13,6 +15,9 @@ const TitleDetail = (props) => {
 	const [titleData, setTitleData] = useState({ crew: [], lastComments: [] });
 	const [isLoading, setIsLoading] = useState(true);
 	const [rating, setRating] = useState(-1);
+	const [page, setPage] = useState(0);
+	const [moreComments, setMoreComments] = useState([]);
+	const [buttonDisabled, setbuttonDisabled] = useState(false);
 
 	// Estado de los títulos
 	const [isFavorite, setIsFavorite] = useState(false);
@@ -118,6 +123,20 @@ const TitleDetail = (props) => {
 				})
 				.finally(setIsPendingLoading(false));
 		}
+	};
+
+	const loadMoreComments = () => {
+		setbuttonDisabled(true);
+		axios
+			.get(`http://api.ratemyshow.lekiam.net/titles/${params.id}/ratings?page=${page}`)
+			.then((response) => {
+				let currentPage = response.data.currentPage + 1 === response.data.pages ? -1 : response.data.currentPage + 1;
+				setMoreComments(moreComments.concat(response.data.ratings));
+				setPage(currentPage);
+			})
+			.finally(() => {
+				setbuttonDisabled(false);
+			});
 	};
 
 	// Pedimos los datos a la API
@@ -258,10 +277,22 @@ const TitleDetail = (props) => {
 				</Paper>
 			</div>
 
+			<div className="titledetail-post-comment" hidden={!isRated}>
+				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
+					<Typography variant="h4">Tu valoración y comentario:</Typography>
+					<div>{titleData.ownRating ? commentToComponent(titleData.ownRating) : undefined}</div>
+				</Paper>
+			</div>
+
 			<div className="titledetail-comments" hidden={titleData.lastComments.length === 0}>
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
 					<Typography variant="h4">{titleData.lastComments.length === 0 ? "Sin comentarios" : "Otros comentarios"}</Typography>
-					<Typography>{titleData.lastComments.map(commentToComponent)}</Typography>
+					<Typography>{moreComments.length > 0 ? moreComments.map(commentToComponent) : titleData.lastComments.map(commentToComponent)}</Typography>
+					<div hidden={titleData.lastComments.length < 5}>
+						<AwesomeButton type="primary" className="titledetail-button" onPress={loadMoreComments} disabled={page === -1 || buttonDisabled}>
+							Cargar más comentarios
+						</AwesomeButton>
+					</div>
 				</Paper>
 			</div>
 		</div>
