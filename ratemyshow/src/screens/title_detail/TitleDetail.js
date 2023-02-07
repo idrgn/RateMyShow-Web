@@ -130,7 +130,7 @@ const TitleDetail = (props) => {
 		axios
 			.get(`http://api.ratemyshow.lekiam.net/titles/${params.id}/ratings?page=${page}`)
 			.then((response) => {
-				let currentPage = response.data.currentPage + 1 === response.data.pages ? -1 : response.data.currentPage + 1;
+				let currentPage = response.data.current + 1 === response.data.pages ? -1 : response.data.current + 1;
 				setMoreComments(moreComments.concat(response.data.ratings));
 				setPage(currentPage);
 			})
