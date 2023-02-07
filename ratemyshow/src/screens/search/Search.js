@@ -19,20 +19,25 @@ const Search = () => {
 	// Obtención de datos
 	useEffect(() => {
 		setIsLoading(true);
+		setNoResults(false);
 		axios
 			.get(`http://api.ratemyshow.lekiam.net/titles?${search ? `query=${search}&` : ""}page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 			.then((response) => {
 				setSearchResults(response.data);
 				setPage(response.data.current + 1);
-				setIsLoading(false);
 				setNoResults(false);
+				setIsLoading(false);
 			})
 			.catch((err) => {
 				if ("response" in err) {
 					if (err.response.status === 404) {
 						setNoResults(true);
+						setIsLoading(false);
 					}
 				}
+			})
+			.finally(() => {
+				setIsLoading(false);
 			});
 	}, [page, search]);
 
@@ -50,14 +55,14 @@ const Search = () => {
 			<div className="search-title" hidden={search !== null}>
 				Títulos de RateMyShow
 			</div>
-			<div className="search-result" hidden={noResults}>
+			<div className="search-result" hidden={noResults && !isLoading}>
 				{isLoading ? <Loading /> : <TitleList titles={searchResults.result}></TitleList>}
 			</div>
 			<div className="search-title" hidden={!noResults}>
 				Sin resultados
 			</div>
 			<div className="search-pagination">
-				<Pagination count={searchResults.pages} onChange={onPageChange} hidden={noResults} color="primary" size="large" />
+				<Pagination count={searchResults.pages} onChange={onPageChange} hidden={noResults || isLoading} color="primary" size="large" />
 			</div>
 		</div>
 	);
