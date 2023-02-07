@@ -35,3 +35,13 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+@media screen and (max-width: 480px) {
+	.general-title {
+		font-family: "Work Sans", sans-serif;
+		padding-bottom: 5%;
+		text-align: center;
+		font-size: 6vw;
+		margin-top: 4%;
+	}
+}
