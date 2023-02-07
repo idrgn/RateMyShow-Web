@@ -55,14 +55,18 @@ const UserProfile = (props) => {
 				.then((response) => {
 					setIsFollowed(false);
 				})
-				.finally(setIsFollowedLoading(false));
+				.finally(() => {
+					setIsFollowedLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFollowed(true);
 				})
-				.finally(setIsFollowedLoading(false));
+				.finally(() => {
+					setIsFollowedLoading(false);
+				});
 		}
 	};
 

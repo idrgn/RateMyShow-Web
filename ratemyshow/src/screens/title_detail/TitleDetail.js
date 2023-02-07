@@ -95,14 +95,18 @@ const TitleDetail = (props) => {
 				.then((response) => {
 					setIsFavorite(false);
 				})
-				.finally(setIsFavoriteLoading(false));
+				.finally(() => {
+					setIsFavoriteLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/favorite`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFavorite(true);
 				})
-				.finally(setIsFavoriteLoading(false));
+				.finally(() => {
+					setIsFavoriteLoading(false);
+				});
 		}
 	};
 
@@ -115,14 +119,18 @@ const TitleDetail = (props) => {
 				.then((response) => {
 					setIsPending(false);
 				})
-				.finally(setIsPendingLoading(false));
+				.finally(() => {
+					setIsPendingLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/pending`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsPending(true);
 				})
-				.finally(setIsPendingLoading(false));
+				.finally(() => {
+					setIsPendingLoading(false);
+				});
 		}
 	};
 
