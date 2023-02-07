@@ -104,11 +104,11 @@ const UserProfile = (props) => {
 					</div>
 					<div>
 						<span>Nombre: </span>
-						{userProfile.name}
+						{userProfile.name} {userProfile.surname}
 					</div>
 					<div>
-						<span>Apellidos: </span>
-						{userProfile.surname}
+						<span>Usuario desde: </span>
+						{new Date(Date.parse(userProfile.registerDate)).toLocaleDateString("es-ES")}
 					</div>
 					<div hidden={!userProfile.isOwnUser}>
 						<span>Email: </span>
