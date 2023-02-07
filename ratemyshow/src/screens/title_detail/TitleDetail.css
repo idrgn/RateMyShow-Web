@@ -156,6 +156,13 @@
 	width: 100%;
 }
 
+.titledetail-totalbuttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 30%;
+}
+
 @media screen and (max-width: 480px) {
 	.titledetail-comments-users {
 		display: flex;

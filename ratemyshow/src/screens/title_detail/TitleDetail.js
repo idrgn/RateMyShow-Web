@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
 
 import "./TitleDetail.css";
+import Loading from "../../components/loading/Loading";
 
 const TitleDetail = (props) => {
 	const params = useParams();
@@ -150,7 +151,12 @@ const TitleDetail = (props) => {
 		});
 	}, [params.id, isRated]);
 
-	if (isLoading) return <div></div>;
+	if (isLoading)
+		return (
+			<div>
+				<Loading></Loading>
+			</div>
+		);
 
 	return (
 		<div className="titledetail-container">
@@ -240,7 +246,7 @@ const TitleDetail = (props) => {
 					)}
 
 					<Typography variant="h6" color="grey" padding="20px">
-						{titleData.rating ? `${titleData.rating} (${titleData.totalRatings} ${titleData.totalRatings > 1 ? "valoraciones" : "valoración"})` : "SIN VALORACIONES"}
+						{titleData.rating ? `${titleData.rating.toFixed(1)} (${titleData.totalRatings} ${titleData.totalRatings > 1 ? "valoraciones" : "valoración"})` : "SIN VALORACIONES"}
 					</Typography>
 					<div className="titledetail-totalbuttons">
 						<IconButton onClick={handleFavorite}>{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}</IconButton>
