@@ -141,8 +141,9 @@ const UserProfile = (props) => {
 					onClick={handleFollowed}
 					style={{
 						color: isFollowed ? "#436cf3" : "white",
-						backgroundColor: isFollowed ? "white" : "#436cf3",
+						backgroundColor: userProfile.isOwnUser ? "grey" : isFollowed ? "white" : "#436cf3",
 					}}
+					disabled={userProfile.isOwnUser}
 				>
 					{isFollowedLoading ? <CircularProgress size={20}></CircularProgress> : isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
 				</IconButton>
