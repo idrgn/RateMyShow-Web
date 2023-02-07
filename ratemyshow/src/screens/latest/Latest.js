@@ -38,7 +38,8 @@ const Latest = (props) => {
 
 	return (
 		<div className="general-body">
-			<div className="general-title latest-background">Últimas Series</div>
+			<div className="general-title">Novedades</div>
+			<div className="general-title latest-background-2">Últimas Series</div>
 			<div className="latest-list">{isLoading ? <Loading /> : <TitleList titles={series}></TitleList>}</div>
 			<div className="general-title latest-background">Últimas Películas</div>
 			<div className="latest-list">{isLoading ? <Loading /> : <TitleList titles={movies}></TitleList>}</div>
