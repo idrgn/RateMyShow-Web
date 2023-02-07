@@ -13,7 +13,7 @@ const TitleList = (props) => {
 
 	return (
 		<Grid container spacing={5} justifyContent="center" className="titlelist-grid-container">
-			{props.titles.map(titlesToComponent)}
+			{props.titles.length ? props.titles.map(titlesToComponent) : <p>No hay datos</p>}
 		</Grid>
 	);
 };
