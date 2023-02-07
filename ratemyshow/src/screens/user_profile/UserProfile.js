@@ -147,11 +147,16 @@ const UserProfile = (props) => {
 				<div className="userprofile-title-container" hidden={userProfile.favorites.length === 0}>
 					<h1 className="userprofile-fav">TÍTULOS FAVORITOS</h1>
 				</div>
-				<TitleList titles={userProfile.favorites}></TitleList>
+				<div hidden={userProfile.favorites.length === 0}>
+					<TitleList titles={userProfile.favorites}></TitleList>
+				</div>
+
 				<div className="userprofile-title-container" hidden={userProfile.pending.length === 0}>
 					<h1 className="userprofile-pending">TÍTULOS PENDIENTES</h1>
 				</div>
-				<TitleList titles={userProfile.pending}></TitleList>
+				<div hidden={userProfile.pending.length === 0}>
+					<TitleList titles={userProfile.pending}></TitleList>
+				</div>
 			</div>
 		</div>
 	);

@@ -38,7 +38,12 @@ const Ratings = (props) => {
 					</Typography>
 					<Rating name="rating" readOnly htmlColor="gold" defaultValue={r.rating} precision={0.5} size="large"></Rating>
 					<Paper variant="outlined" className="ratings-comment">
-						<Typography paragraph variant="h6" className="ratings-comment-text" sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
+						<Typography
+							paragraph
+							variant="h6"
+							className="ratings-comment-text"
+							sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}
+						>
 							{r.comment}
 						</Typography>
 					</Paper>
@@ -52,7 +57,7 @@ const Ratings = (props) => {
 		<div className="general-body ratings">
 			<div className="general-title">Valoraciones de {params.username}</div>
 			<Grid spacing={8} justifyContent="center" container className="ratings-titles-container">
-				{response.ratings.map(ratingToComponent)}
+				{response.ratings.length > 0 ? response.ratings.map(ratingToComponent) : <p>No hay datos</p>}
 			</Grid>
 			<div>
 				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
