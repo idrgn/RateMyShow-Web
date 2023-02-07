@@ -1,3 +1,7 @@
+.ratings {
+	width: 100%;
+}
+
 .ratings-titles-container {
 	width: 80%;
 	margin-bottom: 5%;
@@ -36,4 +40,13 @@
 
 .ratings-number {
 	padding-bottom: 2%;
+}
+
+@media screen and (max-width: 480px) {
+	.ratings-flex {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		width: 55%;
+	}
 }
