@@ -49,10 +49,10 @@ const Search = () => {
 
 	return (
 		<div className="search-container">
-			<div className="search-title" hidden={search === null}>
+			<div className="general-title" hidden={search === null}>
 				Resultados de la búsqueda "{search}"
 			</div>
-			<div className="search-title" hidden={search !== null}>
+			<div className="general-title" hidden={search !== null}>
 				Títulos de RateMyShow
 			</div>
 			<div className="search-result" hidden={noResults && !isLoading}>
