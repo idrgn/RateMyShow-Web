@@ -123,7 +123,7 @@ const Login = () => {
 				<Paper variant="outlined">
 					<form onSubmit={handleLogin} className="login-form">
 						<div className="login-input-container">
-							<TextField required id="identifier-input" label="Identificador" type="text " autoComplete="current-username" inputRef={identifierRef} className="login-text-field" inputProps={{ maxLength: 32 }} />
+							<TextField required id="identifier-input" label="Identificador" type="text " autoComplete="current-username" inputRef={identifierRef} className="login-text-field" inputProps={{ maxLength: 64 }} />
 						</div>
 
 						<div className="login-input-container">

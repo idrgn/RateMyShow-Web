@@ -174,7 +174,7 @@ const Register = () => {
 						</div>
 
 						<div className="register-input-container">
-							<TextField required id="email-input" label="E-Mail" type="text " autoComplete="current-email" inputRef={emailRef} className="register-text-field" inputProps={{ maxLength: 32 }} />
+							<TextField required id="email-input" label="E-Mail" type="text " autoComplete="current-email" inputRef={emailRef} className="register-text-field" inputProps={{ maxLength: 64 }} />
 						</div>
 
 						<div className="register-input-container">
