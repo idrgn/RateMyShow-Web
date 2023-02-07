@@ -82,6 +82,10 @@ const TitleDetail = (props) => {
 		);
 	};
 
+	const capitalizeFirstLetter = (string) => {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	};
+
 	const handleRating = (e) => {
 		e.preventDefault();
 		const comment = commentRef.current.value;
@@ -228,8 +232,8 @@ const TitleDetail = (props) => {
 							}
 						</Typography>
 						<Typography>
-							<span>Género: </span>
-							{titleData.genres.join(", ")}
+							<span>Género(s): </span>
+							{titleData.genres.map((genre) => capitalizeFirstLetter(genre)).join(", ")}
 						</Typography>
 						<Typography>
 							{(titleData.crew.job = "actor") || (titleData.crew.job = "actress") ? (
