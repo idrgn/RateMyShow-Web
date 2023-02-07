@@ -150,6 +150,12 @@
 	width: 25vw;
 	height: 60vh;
 }
+
+.titledetail-button {
+	margin-top: 10px;
+	width: 100%;
+}
+
 @media screen and (max-width: 480px) {
 	.titledetail-comments-users {
 		display: flex;
