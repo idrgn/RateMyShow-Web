@@ -22,6 +22,12 @@
 
 .ratings-comment-text {
 	padding: 10%;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.ratings-comment-text::-webkit-scrollbar {
+	display: none;
 }
 
 .ratings-paper {
