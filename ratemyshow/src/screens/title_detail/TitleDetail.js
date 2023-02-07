@@ -11,6 +11,10 @@ import "./TitleDetail.css";
 import Loading from "../../components/loading/Loading";
 
 const TitleDetail = (props) => {
+	// Timers para las peticiones
+	let favoriteTimer = null;
+	let pendingTimer = null;
+
 	const params = useParams();
 	const commentRef = useRef(null);
 	const [titleData, setTitleData] = useState({ crew: [], lastComments: [] });
@@ -96,6 +100,7 @@ const TitleDetail = (props) => {
 					setIsFavorite(false);
 				})
 				.finally(() => {
+					clearTimeout(favoriteTimer);
 					setIsFavoriteLoading(false);
 				});
 		} else {
@@ -105,9 +110,15 @@ const TitleDetail = (props) => {
 					setIsFavorite(true);
 				})
 				.finally(() => {
+					clearTimeout(favoriteTimer);
 					setIsFavoriteLoading(false);
 				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		favoriteTimer = setTimeout(() => {
+			setIsFavoriteLoading(true);
+		}, 1000);
 	};
 
 	// Añadir, eliminar pendientes
@@ -120,6 +131,7 @@ const TitleDetail = (props) => {
 					setIsPending(false);
 				})
 				.finally(() => {
+					clearTimeout(pendingTimer);
 					setIsPendingLoading(false);
 				});
 		} else {
@@ -129,9 +141,15 @@ const TitleDetail = (props) => {
 					setIsPending(true);
 				})
 				.finally(() => {
+					clearTimeout(pendingTimer);
 					setIsPendingLoading(false);
 				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		pendingTimer = setTimeout(() => {
+			setIsPendingLoading(true);
+		}, 1000);
 	};
 
 	const loadMoreComments = () => {

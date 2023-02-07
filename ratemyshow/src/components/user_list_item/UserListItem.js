@@ -15,6 +15,9 @@ import axios from "axios";
  * @returns
  */
 const UserListItem = (props) => {
+	// Timer para la petición
+	let followTimer = null;
+
 	// Estado de los títulos
 	const [isFollowed, setIsFollowed] = useState(props.user.isFollowed);
 
@@ -23,7 +26,6 @@ const UserListItem = (props) => {
 
 	// Follow / unfollow de usuario
 	const handleFollowed = () => {
-		setIsFollowedLoading(true);
 		if (isFollowed) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/users/${props.user.username}/follow`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
@@ -31,6 +33,7 @@ const UserListItem = (props) => {
 					setIsFollowed(false);
 				})
 				.finally(() => {
+					clearTimeout(followTimer);
 					setIsFollowedLoading(false);
 				});
 		} else {
@@ -40,9 +43,15 @@ const UserListItem = (props) => {
 					setIsFollowed(true);
 				})
 				.finally(() => {
+					clearTimeout(followTimer);
 					setIsFollowedLoading(false);
 				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		followTimer = setTimeout(() => {
+			setIsFollowedLoading(true);
+		}, 1000);
 	};
 
 	return (
