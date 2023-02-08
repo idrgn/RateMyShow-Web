@@ -1,13 +1,13 @@
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
-import { Box, IconButton, Paper, Rating, TextField, Typography, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, IconButton, Paper, Rating, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
-import "./TitleDetail.css";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
+import "./TitleDetail.css";
 
 /**
  * Pantalla de detalles de un título
@@ -71,7 +71,11 @@ const TitleDetail = (props) => {
 		return (
 			<div className="titledetail-comments-users">
 				<div className="titledetail-avatar-users">
-					<span>{c.username}</span>
+					<span>
+						<Link to={`/users/${c.username}`} className="titledetail-link">
+							{c.username}
+						</Link>
+					</span>
 					<img src={`http://api.ratemyshow.lekiam.net/pfp/${c.avatarId}`} alt="foto de perfil"></img>
 					<div>{new Date(Date.parse(c.addedDate)).toLocaleDateString("es-ES")}</div>
 				</div>
