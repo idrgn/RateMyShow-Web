@@ -1,7 +1,7 @@
 import AddToQueueIcon from "@mui/icons-material/AddToQueue";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import StarIcon from "@mui/icons-material/Star";
-import { Box, IconButton, Paper, Rating, TextField, Typography, Button, CircularProgress } from "@mui/material";
+import { Box, IconButton, Paper, Rating, TextField, Typography, CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
