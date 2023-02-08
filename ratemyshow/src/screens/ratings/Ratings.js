@@ -84,7 +84,7 @@ const Ratings = (props) => {
 				<Loading></Loading>
 			</div>
 			<div>
-				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
+				<Pagination hidden={response.ratings.length === 0} count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
 		</div>
 	);
