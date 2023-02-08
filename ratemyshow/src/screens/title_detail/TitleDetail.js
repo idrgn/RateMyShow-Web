@@ -185,6 +185,11 @@ const TitleDetail = (props) => {
 		});
 	}, [params.id, isRated]);
 
+	const gotoFavorite = () => {
+		document.getElementById("titledetail-comment-input").scrollIntoView({ behavior: "smooth" });
+		document.getElementById("titledetail-comment-input").focus();
+	};
+
 	if (isLoading)
 		return (
 			<div>
@@ -289,7 +294,9 @@ const TitleDetail = (props) => {
 							{isPendingLoading ? <CircularProgress size={30} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} fontSize="large" />}
 						</IconButton>
 
-						<IconButton disabled={!localStorage.getItem("sessionToken")}>{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}</IconButton>
+						<IconButton onClick={gotoFavorite} disabled={isRated || !localStorage.getItem("sessionToken")}>
+							{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}
+						</IconButton>
 					</div>
 				</Paper>
 			</div>
@@ -303,7 +310,7 @@ const TitleDetail = (props) => {
 				<Paper variant="outlined" className="titledetail-paper titledetail-description-text">
 					<Typography variant="h4">Tu valoración y comentario:</Typography>
 					<div className="titledetail-rate">
-						<TextField inputRef={commentRef} multiline placeholder="Escribe tu comentario..." sx={{ width: "800px", padding: "3%" }}></TextField>
+						<TextField id="titledetail-comment-input" inputRef={commentRef} multiline placeholder="Escribe tu comentario..." sx={{ width: "800px", padding: "3%" }}></TextField>
 						<Rating
 							name="half-rating"
 							value={rating}
