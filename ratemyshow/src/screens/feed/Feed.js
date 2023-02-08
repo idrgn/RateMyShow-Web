@@ -17,6 +17,7 @@ const Feed = (props) => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
+		setIsLoading(true);
 		axios.get(`http://api.ratemyshow.lekiam.net/feed?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 			setIsLoading(false);
