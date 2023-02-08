@@ -20,6 +20,7 @@ const FavoritesPending = (props) => {
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
+		setIsLoading(true);
 		axios.get(`http://api.ratemyshow.lekiam.net/${action}?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setResponse(response.data);
 			setIsLoading(false);
@@ -39,27 +40,9 @@ const FavoritesPending = (props) => {
 			<div className="favoritespending-containertext">
 				<div className="general-title">Tus {title}</div>
 			</div>
-			<div className="favoritespending-titlelist">
-				{props.favorites ? (
-					isLoading ? (
-						<Loading />
-					) : (
-						<TitleList titles={response.favorites ? response.favorites : []}></TitleList>
-					)
-				) : isLoading ? (
-					<Loading />
-				) : (
-					<TitleList titles={response.pending ? response.pending : []}></TitleList>
-				)}
-			</div>
+			<div className="favoritespending-titlelist">{props.favorites ? isLoading ? <Loading /> : <TitleList titles={response.favorites ? response.favorites : []}></TitleList> : isLoading ? <Loading /> : <TitleList titles={response.pending ? response.pending : []}></TitleList>}</div>
 			<div className="favoritespending-pagination">
-				<Pagination
-					hidden={props.favorites ? (response.favorites ? response.favorites.length === 0 : true) : response.pending ? response.pending.length === 0 : true}
-					count={response.pages}
-					onChange={onPageChange}
-					color="primary"
-					size="large"
-				/>
+				<Pagination hidden={props.favorites ? (response.favorites ? response.favorites.length === 0 : true) : response.pending ? response.pending.length === 0 : true} count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>
 		</div>
 	);
