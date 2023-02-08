@@ -12,7 +12,8 @@
 
 .latest-background {
 	background-color: rgb(229, 234, 243);
-	padding: 1%;
+	padding-top: 1%;
+	padding-bottom: 1%;
 	margin-bottom: 2%;
 	width: 100%;
 }
@@ -20,7 +21,8 @@
 .latest-background-2 {
 	margin-top: 0%;
 	background-color: rgb(229, 234, 243);
-	padding: 1%;
+	padding-top: 1%;
+	padding-bottom: 1%;
 	margin-bottom: 2%;
 	width: 100%;
 }
