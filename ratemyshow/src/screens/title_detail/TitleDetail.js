@@ -93,6 +93,12 @@ const TitleDetail = (props) => {
 	const handleRating = (e) => {
 		e.preventDefault();
 		const comment = commentRef.current.value;
+
+		// Se comprueba que existan los campos
+		if (rating < 0 || !comment) {
+			return;
+		}
+
 		axios.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/rating`, { rating: rating, comment: comment }, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setIsRated(true);
 		});
@@ -320,7 +326,7 @@ const TitleDetail = (props) => {
 								setRating(value);
 							}}
 						/>
-						<AwesomeButton onPress={handleRating} disabled={rating === -1 || commentRef.current.value === "" || !localStorage.getItem("sessionToken")}>
+						<AwesomeButton onPress={handleRating} disabled={rating === -1 || !commentRef.current.value || !localStorage.getItem("sessionToken")}>
 							Enviar
 						</AwesomeButton>
 					</div>

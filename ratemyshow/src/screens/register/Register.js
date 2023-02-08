@@ -59,7 +59,7 @@ const Register = () => {
 		const passwordRepeat = passwordRepeatRef.current.value;
 
 		// Se comprueba que la contraseña existe
-		if (!password || !birthDate || !name || !surname || !username) {
+		if (!password || !birthDate || !name || !surname || !username || !email) {
 			setWarning(<Alert severity="warning">Rellena todos los campos.</Alert>);
 			setbuttonDisabled(false);
 			return;
