@@ -39,9 +39,27 @@ const FavoritesPending = (props) => {
 			<div className="favoritespending-containertext">
 				<div className="general-title">Tus {title}</div>
 			</div>
-			<div className="favoritespending-titlelist">{props.favorites ? isLoading ? <Loading /> : <TitleList titles={response.favorites ? response.favorites : []}></TitleList> : isLoading ? <Loading /> : <TitleList titles={response.pending ? response.pending : []}></TitleList>}</div>
+			<div className="favoritespending-titlelist">
+				{props.favorites ? (
+					isLoading ? (
+						<Loading />
+					) : (
+						<TitleList titles={response.favorites ? response.favorites : []}></TitleList>
+					)
+				) : isLoading ? (
+					<Loading />
+				) : (
+					<TitleList titles={response.pending ? response.pending : []}></TitleList>
+				)}
+			</div>
 			<div className="favoritespending-pagination">
-				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
+				<Pagination
+					hidden={props.favorites ? (response.favorites ? response.favorites.length === 0 : true) : response.pending ? response.pending.length === 0 : true}
+					count={response.pages}
+					onChange={onPageChange}
+					color="primary"
+					size="large"
+				/>
 			</div>
 		</div>
 	);

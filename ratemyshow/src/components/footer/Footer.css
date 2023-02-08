@@ -2,10 +2,12 @@ html {
 	position: relative;
 	min-height: 100%;
 }
+
 body {
 	margin: 0;
 	margin-bottom: 8vh;
 }
+
 .footer {
 	background-color: rgb(5, 5, 5);
 	display: grid;
@@ -43,4 +45,10 @@ body {
 .footer-icons a img {
 	width: 4vw;
 	height: 4vh;
+}
+
+@media screen and (max-width: 480px) {
+	.footer-links a {
+		font-size: 75%;
+	}
 }
