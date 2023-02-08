@@ -51,7 +51,12 @@ const Ratings = (props) => {
 					</Typography>
 					<Rating name="rating" readOnly htmlColor="gold" defaultValue={r.rating} precision={0.5} size="large"></Rating>
 					<Paper variant="outlined" className="ratings-comment">
-						<Typography paragraph variant="h6" className="ratings-comment-text" sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
+						<Typography
+							paragraph
+							variant="h6"
+							className="ratings-comment-text"
+							sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}
+						>
 							{r.comment}
 						</Typography>
 					</Paper>
@@ -66,7 +71,13 @@ const Ratings = (props) => {
 			<div className="general-title">Valoraciones de {params.username}</div>
 			<div hidden={isLoading} className="ratings-grid-container">
 				<Grid spacing={8} justifyContent="center" container className="ratings-titles-container">
-					{response.ratings.length > 0 ? response.ratings.map(ratingToComponent) : <p>No hay datos</p>}
+					{response.ratings.length > 0 ? (
+						response.ratings.map(ratingToComponent)
+					) : (
+						<Grid item>
+							<Typography>No hay datos</Typography>
+						</Grid>
+					)}
 				</Grid>
 			</div>
 			<div hidden={!isLoading}>
