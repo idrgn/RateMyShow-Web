@@ -281,11 +281,15 @@ const TitleDetail = (props) => {
 						{titleData.rating ? `${titleData.rating.toFixed(1)} (${titleData.totalRatings} ${titleData.totalRatings > 1 ? "valoraciones" : "valoración"})` : "SIN VALORACIONES"}
 					</Typography>
 					<div className="titledetail-totalbuttons">
-						<IconButton onClick={handleFavorite}>{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}</IconButton>
+						<IconButton onClick={handleFavorite} disabled={!localStorage.getItem("sessionToken")}>
+							{isFavoriteLoading ? <CircularProgress size={30} /> : <FavoriteIcon htmlColor={isFavorite ? "red" : "grey"} fontSize="large"></FavoriteIcon>}
+						</IconButton>
 
-						<IconButton onClick={handlePending}>{isPendingLoading ? <CircularProgress size={30} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} fontSize="large" />}</IconButton>
+						<IconButton onClick={handlePending} disabled={!localStorage.getItem("sessionToken")}>
+							{isPendingLoading ? <CircularProgress size={30} /> : <AddToQueueIcon htmlColor={isPending ? "blue" : "grey"} fontSize="large" />}
+						</IconButton>
 
-						<IconButton>{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}</IconButton>
+						<IconButton disabled={!localStorage.getItem("sessionToken")}>{isRated ? <StarIcon fontSize="large" htmlColor="gold"></StarIcon> : <StarIcon fontSize="large"></StarIcon>}</IconButton>
 					</div>
 				</Paper>
 			</div>
@@ -309,7 +313,9 @@ const TitleDetail = (props) => {
 								setRating(value);
 							}}
 						/>
-						<Button onClick={handleRating}>Enviar</Button>
+						<AwesomeButton onPress={handleRating} disabled={rating === -1 || commentRef.current.value === "" || !localStorage.getItem("sessionToken")}>
+							Enviar
+						</AwesomeButton>
 					</div>
 				</Paper>
 			</div>

@@ -155,9 +155,9 @@ const UserProfile = (props) => {
 					onClick={handleFollowed}
 					style={{
 						color: isFollowed ? "#436cf3" : "white",
-						backgroundColor: userProfile.isOwnUser ? "grey" : isFollowed ? "white" : "#436cf3",
+						backgroundColor: userProfile.isOwnUser || !localStorage.getItem("sessionToken") ? "grey" : isFollowed ? "white" : "#436cf3",
 					}}
-					disabled={userProfile.isOwnUser}
+					disabled={userProfile.isOwnUser || !localStorage.getItem("sessionToken")}
 				>
 					{isFollowedLoading ? <CircularProgress size={20}></CircularProgress> : isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
 				</IconButton>
