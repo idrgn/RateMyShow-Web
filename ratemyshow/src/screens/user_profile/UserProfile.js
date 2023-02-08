@@ -7,7 +7,15 @@ import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
 import "./UserProfile.css";
 
+/**
+ * Pantalla de perfil de un usuario
+ * @param {*} props
+ * @returns
+ */
 const UserProfile = (props) => {
+	// Timer para la petición
+	let followTimer = null;
+
 	const { username } = useParams();
 	const params = useParams();
 
@@ -48,22 +56,32 @@ const UserProfile = (props) => {
 
 	// Follow / unfollow de usuario
 	const handleFollowed = () => {
-		setIsFollowedLoading(true);
 		if (isFollowed) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFollowed(false);
 				})
-				.finally(setIsFollowedLoading(false));
+				.finally(() => {
+					clearTimeout(followTimer);
+					setIsFollowedLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/users/${params.username}/follow`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFollowed(true);
 				})
-				.finally(setIsFollowedLoading(false));
+				.finally(() => {
+					clearTimeout(followTimer);
+					setIsFollowedLoading(false);
+				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		followTimer = setTimeout(() => {
+			setIsFollowedLoading(true);
+		}, 1000);
 	};
 
 	if (isLoading)
@@ -91,11 +109,11 @@ const UserProfile = (props) => {
 					</div>
 					<div>
 						<span>Nombre: </span>
-						{userProfile.name}
+						{userProfile.name} {userProfile.surname}
 					</div>
 					<div>
-						<span>Apellido: </span>
-						{userProfile.surname}
+						<span>Usuario desde: </span>
+						{new Date(Date.parse(userProfile.registerDate)).toLocaleDateString("es-ES")}
 					</div>
 					<div hidden={!userProfile.isOwnUser}>
 						<span>Email: </span>
@@ -110,7 +128,7 @@ const UserProfile = (props) => {
 						{userProfile.followers}
 					</div>
 					<div>
-						<span>Seguidos: </span>
+						<span>Siguiendo: </span>
 						{userProfile.following}
 					</div>
 					<div>
@@ -137,8 +155,9 @@ const UserProfile = (props) => {
 					onClick={handleFollowed}
 					style={{
 						color: isFollowed ? "#436cf3" : "white",
-						backgroundColor: isFollowed ? "white" : "#436cf3",
+						backgroundColor: userProfile.isOwnUser ? "grey" : isFollowed ? "white" : "#436cf3",
 					}}
+					disabled={userProfile.isOwnUser}
 				>
 					{isFollowedLoading ? <CircularProgress size={20}></CircularProgress> : isFollowed ? <PersonAddDisabled /> : <PersonAdd />}
 				</IconButton>

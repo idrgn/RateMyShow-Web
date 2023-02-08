@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/loading/Loading";
 
+/**
+ * Pantalla encargada del cierre de sesión
+ * @returns
+ */
 const Logout = () => {
 	const navigate = useNavigate();
 	const [open, setOpen] = useState(false);

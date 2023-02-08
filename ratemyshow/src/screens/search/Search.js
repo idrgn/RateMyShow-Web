@@ -6,6 +6,10 @@ import Loading from "../../components/loading/Loading";
 import TitleList from "../../components/title_list/TitleList";
 import "./Search.css";
 
+/**
+ * Pantalla de búsqueda de títulos
+ * @returns
+ */
 const Search = () => {
 	const [page, setPage] = useState(1);
 	const [noResults, setNoResults] = useState(false);

@@ -6,11 +6,19 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
-
 import "./TitleDetail.css";
 import Loading from "../../components/loading/Loading";
 
+/**
+ * Pantalla de detalles de un título
+ * @param {*} props
+ * @returns
+ */
 const TitleDetail = (props) => {
+	// Timers para las peticiones
+	let favoriteTimer = null;
+	let pendingTimer = null;
+
 	const params = useParams();
 	const commentRef = useRef(null);
 	const [titleData, setTitleData] = useState({ crew: [], lastComments: [] });
@@ -78,6 +86,10 @@ const TitleDetail = (props) => {
 		);
 	};
 
+	const capitalizeFirstLetter = (string) => {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	};
+
 	const handleRating = (e) => {
 		e.preventDefault();
 		const comment = commentRef.current.value;
@@ -95,15 +107,26 @@ const TitleDetail = (props) => {
 				.then((response) => {
 					setIsFavorite(false);
 				})
-				.finally(setIsFavoriteLoading(false));
+				.finally(() => {
+					clearTimeout(favoriteTimer);
+					setIsFavoriteLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/favorite`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFavorite(true);
 				})
-				.finally(setIsFavoriteLoading(false));
+				.finally(() => {
+					clearTimeout(favoriteTimer);
+					setIsFavoriteLoading(false);
+				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		favoriteTimer = setTimeout(() => {
+			setIsFavoriteLoading(true);
+		}, 1000);
 	};
 
 	// Añadir, eliminar pendientes
@@ -115,15 +138,26 @@ const TitleDetail = (props) => {
 				.then((response) => {
 					setIsPending(false);
 				})
-				.finally(setIsPendingLoading(false));
+				.finally(() => {
+					clearTimeout(pendingTimer);
+					setIsPendingLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/titles/${params.id}/pending`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsPending(true);
 				})
-				.finally(setIsPendingLoading(false));
+				.finally(() => {
+					clearTimeout(pendingTimer);
+					setIsPendingLoading(false);
+				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		pendingTimer = setTimeout(() => {
+			setIsPendingLoading(true);
+		}, 1000);
 	};
 
 	const loadMoreComments = () => {
@@ -202,8 +236,8 @@ const TitleDetail = (props) => {
 							}
 						</Typography>
 						<Typography>
-							<span>Género: </span>
-							{titleData.genres.join(", ")}
+							<span>Género(s): </span>
+							{titleData.genres.map((genre) => capitalizeFirstLetter(genre)).join(", ")}
 						</Typography>
 						<Typography>
 							{(titleData.crew.job = "actor") || (titleData.crew.job = "actress") ? (
@@ -223,7 +257,7 @@ const TitleDetail = (props) => {
 						</Typography>
 						<Typography>
 							<span>Idioma: </span>
-							{languageMapping[titleData.language] || titleData.language}
+							{languageMapping[titleData.language] || titleData.language || "Sin datos"}
 						</Typography>
 					</Box>
 				</Paper>

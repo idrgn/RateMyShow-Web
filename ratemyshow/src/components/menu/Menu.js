@@ -18,6 +18,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../images/menu/logo.png";
 import React from "react";
 
+/**
+ * Menú superior
+ * @returns
+ */
 function UpperMenu() {
 	const sessionToken = localStorage.getItem("sessionToken");
 	const avatarId = localStorage.getItem("avatarId");

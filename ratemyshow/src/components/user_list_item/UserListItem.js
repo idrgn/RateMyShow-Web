@@ -15,6 +15,9 @@ import axios from "axios";
  * @returns
  */
 const UserListItem = (props) => {
+	// Timer para la petición
+	let followTimer = null;
+
 	// Estado de los títulos
 	const [isFollowed, setIsFollowed] = useState(props.user.isFollowed);
 
@@ -23,22 +26,32 @@ const UserListItem = (props) => {
 
 	// Follow / unfollow de usuario
 	const handleFollowed = () => {
-		setIsFollowedLoading(true);
 		if (isFollowed) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/users/${props.user.username}/follow`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFollowed(false);
 				})
-				.finally(setIsFollowedLoading(false));
+				.finally(() => {
+					clearTimeout(followTimer);
+					setIsFollowedLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/users/${props.user.username}/follow`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFollowed(true);
 				})
-				.finally(setIsFollowedLoading(false));
+				.finally(() => {
+					clearTimeout(followTimer);
+					setIsFollowedLoading(false);
+				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		followTimer = setTimeout(() => {
+			setIsFollowedLoading(true);
+		}, 1000);
 	};
 
 	return (
@@ -48,7 +61,7 @@ const UserListItem = (props) => {
 			</Box>
 			<Divider></Divider>
 			<Box className="userlistitem-user">
-				<Link to={`/users/${props.user.username}`}>
+				<Link to={`/users/${props.user.username}`} className="userlistitem-link">
 					<h3>{props.user.username}</h3>
 				</Link>
 				<div>

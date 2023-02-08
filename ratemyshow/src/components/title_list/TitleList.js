@@ -2,6 +2,11 @@ import Grid from "@mui/material/Grid";
 import TitleListItem from "../title_list_item/TitleListItem";
 import "./TitleList.css";
 
+/**
+ * Lista que contiene datos de N títulos
+ * @param {*} props
+ * @returns
+ */
 const TitleList = (props) => {
 	const titlesToComponent = (t) => {
 		return (

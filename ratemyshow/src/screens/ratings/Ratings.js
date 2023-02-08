@@ -2,20 +2,33 @@ import { Grid, Pagination, Paper, Rating, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../../components/loading/Loading";
 import TitleListItem from "../../components/title_list_item/TitleListItem";
 import "./Ratings.css";
 
+/**
+ * Pantalla que muestra las valoraciones de un usuario
+ * @param {*} props
+ * @returns
+ */
 const Ratings = (props) => {
 	const params = useParams();
 
 	// Creamos estado para almacenar la lista de ratings
+	const [isLoading, setIsLoading] = useState(true);
 	const [response, setResponse] = useState({ ratings: [] });
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/ratings?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
-			setResponse(response.data);
-		});
+		setIsLoading(true);
+		axios
+			.get(`http://api.ratemyshow.lekiam.net/users/${params.username}/ratings?page=${page - 1}`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
+			.then((response) => {
+				setResponse(response.data);
+			})
+			.finally(() => {
+				setIsLoading(false);
+			});
 	}, [page, params.username]);
 
 	// Actualizar página
@@ -51,9 +64,14 @@ const Ratings = (props) => {
 	return (
 		<div className="general-body ratings">
 			<div className="general-title">Valoraciones de {params.username}</div>
-			<Grid spacing={8} justifyContent="center" container className="ratings-titles-container">
-				{response.ratings.length > 0 ? response.ratings.map(ratingToComponent) : <p>No hay datos</p>}
-			</Grid>
+			<div hidden={isLoading} className="ratings-grid-container">
+				<Grid spacing={8} justifyContent="center" container className="ratings-titles-container">
+					{response.ratings.length > 0 ? response.ratings.map(ratingToComponent) : <p>No hay datos</p>}
+				</Grid>
+			</div>
+			<div hidden={!isLoading}>
+				<Loading></Loading>
+			</div>
 			<div>
 				<Pagination count={response.pages} onChange={onPageChange} color="primary" size="large" />
 			</div>

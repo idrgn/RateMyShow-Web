@@ -20,6 +20,10 @@ import "./TitleListItem.css";
  * @returns
  */
 const TitleListItem = (props) => {
+	// Timers para las peticiones
+	let favoriteTimer = null;
+	let pendingTimer = null;
+
 	// Estado de los títulos
 	const [isFavorite, setIsFavorite] = useState(props.title.isFavorite);
 	const [isPending, setIsPending] = useState(props.title.isPending);
@@ -39,42 +43,62 @@ const TitleListItem = (props) => {
 
 	// Añadir / eliminar favoritos
 	const handleFavorite = () => {
-		setIsFavoriteLoading(true);
 		if (isFavorite) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/favorite`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFavorite(false);
 				})
-				.finally(setIsFavoriteLoading(false));
+				.finally(() => {
+					clearTimeout(favoriteTimer);
+					setIsFavoriteLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/favorite`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsFavorite(true);
 				})
-				.finally(setIsFavoriteLoading(false));
+				.finally(() => {
+					clearTimeout(favoriteTimer);
+					setIsFavoriteLoading(false);
+				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		favoriteTimer = setTimeout(() => {
+			setIsFavoriteLoading(true);
+		}, 1000);
 	};
 
 	// Añadir, eliminar pendientes
 	const handlePending = () => {
-		setIsPendingLoading(true);
 		if (isPending) {
 			axios
 				.delete(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/pending`, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsPending(false);
 				})
-				.finally(setIsPendingLoading(false));
+				.finally(() => {
+					clearTimeout(pendingTimer);
+					setIsPendingLoading(false);
+				});
 		} else {
 			axios
 				.put(`http://api.ratemyshow.lekiam.net/titles/${props.title.id}/pending`, {}, { headers: { SessionToken: localStorage.getItem("sessionToken") } })
 				.then((response) => {
 					setIsPending(true);
 				})
-				.finally(setIsPendingLoading(false));
+				.finally(() => {
+					clearTimeout(pendingTimer);
+					setIsPendingLoading(false);
+				});
 		}
+
+		// Se muestra el timer si la petición tarda mas de 1 segundo
+		pendingTimer = setTimeout(() => {
+			setIsPendingLoading(true);
+		}, 1000);
 	};
 
 	const capitalizeFirstLetter = (string) => {
