@@ -52,7 +52,7 @@ const Ratings = (props) => {
 					<Rating name="rating" readOnly htmlColor="gold" defaultValue={r.rating} precision={0.5} size="large"></Rating>
 					<Paper variant="outlined" className="ratings-comment">
 						<Typography paragraph variant="h6" className="ratings-comment-text" sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
-							{r.comment}
+							{r.comment ? r.comment : "Sin comentario"}
 						</Typography>
 					</Paper>
 					<Typography>{new Date(Date.parse(r.ratingDate)).toLocaleDateString("es-ES")}</Typography>

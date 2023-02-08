@@ -54,7 +54,7 @@ const Feed = (props) => {
 
 					<Paper variant="outlined" className="feed-comment-container">
 						<Typography paragraph variant="h6" className="feed-comment-text" sx={{ WebkitLineClamp: 2, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
-							{i.comment}
+							{i.comment ? i.comment : "Sin comentario"}
 						</Typography>
 					</Paper>
 				</div>

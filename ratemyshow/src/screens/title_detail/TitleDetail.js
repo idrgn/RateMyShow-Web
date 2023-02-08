@@ -75,7 +75,7 @@ const TitleDetail = (props) => {
 					<img src={`http://api.ratemyshow.lekiam.net/pfp/${c.avatarId}`} alt="foto de perfil"></img>
 					<div>{new Date(Date.parse(c.addedDate)).toLocaleDateString("es-ES")}</div>
 				</div>
-				<div className="titledetail-comment">{c.comment}</div>
+				<div className="titledetail-comment">{c.comment ? c.comment : "Sin comentario"}</div>
 
 				<div className="titledetail-rating-number">
 					<Rating defaultValue={c.rating} precision={0.5} readOnly size="medium" className="titledetail-rating" />
