@@ -51,12 +51,7 @@ const Ratings = (props) => {
 					</Typography>
 					<Rating name="rating" readOnly htmlColor="gold" defaultValue={r.rating} precision={0.5} size="large"></Rating>
 					<Paper variant="outlined" className="ratings-comment">
-						<Typography
-							paragraph
-							variant="h6"
-							className="ratings-comment-text"
-							sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}
-						>
+						<Typography paragraph variant="h6" className="ratings-comment-text" sx={{ WebkitLineClamp: 8, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
 							{r.comment}
 						</Typography>
 					</Paper>

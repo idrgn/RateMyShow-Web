@@ -1,9 +1,9 @@
-import { Pagination, Rating } from "@mui/material";
+import { Pagination, Paper, Rating, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Feed.css";
 import Loading from "../../components/loading/Loading";
+import "./Feed.css";
 
 /**
  * Pantalla de feed, muestra actividad de los usuarios seguidos
@@ -51,6 +51,12 @@ const Feed = (props) => {
 						<Rating name="half-rating" readOnly defaultValue={i.rating} precision={0.5} size="large" />
 					</div>
 					<div>{new Date(Date.parse(i.addedDate)).toLocaleDateString("es-ES")}</div>
+
+					<Paper variant="outlined" className="ratings-comment-container">
+						<Typography paragraph variant="h6" className="feed-comment-text" sx={{ WebkitLineClamp: 2, overflow: "scroll", WebkitAlignContent: "center", display: "-webkit-box", WebkitBoxOrient: "vertical" }}>
+							{i.comment}
+						</Typography>
+					</Paper>
 				</div>
 			</div>
 		);
