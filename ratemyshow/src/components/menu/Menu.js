@@ -238,7 +238,7 @@ function UpperMenu() {
 						</Search>
 
 						<Box sx={{ flexGrow: 0 }}>
-							<Tooltip title="Open settings">
+							<Tooltip title="Menú de usuario">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Avatar alt="Remy Sharp" src={avatarId ? `http://api.ratemyshow.lekiam.net/pfp/${avatarId}` : "http://api.ratemyshow.lekiam.net/pfp/default"} />
 								</IconButton>
