@@ -197,10 +197,8 @@ const TitleDetail = (props) => {
 			<div className="general-title">{titleData.translatedTitle ? titleData.translatedTitle : titleData.primaryTitle}</div>
 
 			<div className="titledetail-data-cover">
-				<Paper variant="outlined" className="titledetail-paper">
-					<div>
-						<Box className="titledetail-paper titledetail-image" component="img" alt="Title cover." src={titleData.cover ? titleData.cover : "http://api.ratemyshow.lekiam.net/img/cover"}></Box>
-					</div>
+				<Paper variant="outlined" className="titledetail-paper titledetail-image-container">
+					<Box className="titledetail-paper titledetail-image" component="img" alt="Title cover." src={titleData.cover ? titleData.cover : "http://api.ratemyshow.lekiam.net/img/cover"}></Box>
 				</Paper>
 
 				<Paper
