@@ -24,7 +24,7 @@ const Latest = (props) => {
 
 	// Pedimos los datos a la API
 	useEffect(() => {
-		axios.get(`http://api.ratemyshow.lekiam.net/latest`).then((response) => {
+		axios.get(`http://api.ratemyshow.lekiam.net/latest`, { headers: { SessionToken: localStorage.getItem("sessionToken") } }).then((response) => {
 			setLatest(response.data);
 			setIsLoading(false);
 		});
